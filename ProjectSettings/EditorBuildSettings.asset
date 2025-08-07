@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Nebula Room.unity
+    guid: 8801d128ca5218542be20f914f014b00
+  m_configObjects:
+    com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: c92e8a4ec2823034dac8b11324f6613c, type: 2}
+    com.unity.adaptiveperformance.samsung.android.provider_settings: {fileID: 11400000, guid: b600fabf941574645ac1dee8355ca04c, type: 2}
+    com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: e8bef2d793c79a84797473ee95143ff7, type: 2}
+    com.unity.input.settings: {fileID: 11400000, guid: 6a03f120aefc1ec4190c64f8665f00f1, type: 2}

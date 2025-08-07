@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ce708b8a9749bf4482afcefdb0abb25, type: 3}
+  m_Name: Planet Settings
+  m_EditorClassIdentifier: 
+  <Mass>k__BackingField: 10000
+  Level1OrbitRange: {x: 30, y: 35}
+  Level2OrbitRange: {x: 30, y: 35}
+  Level3OrbitRange: {x: 30, y: 35}
+  Level4OrbitRange: {x: 30, y: 35}
+  Level5OrbitRange: {x: 30, y: 35}
+  Level6OrbitRange: {x: 30, y: 35}
+  Level7OrbitRange: {x: 40, y: 45}
+  Level8OrbitRange: {x: 40, y: 45}
+  Level9OrbitRange: {x: 40, y: 45}
+  <InitialSpeedRange>k__BackingField: {x: 10, y: 15}
+  <InitialRotationRange>k__BackingField: {x: 20, y: 25}
+  <SpeedToPlayer>k__BackingField: 3
+  <ShrinkSpeedToPlayer>k__BackingField: 350
+  <OrbitDeclineRate>k__BackingField: 10
+  <SpeedIncreaseRate>k__BackingField: 5
+  <TrajectorySteps>k__BackingField: 30
+  <TrajectoryDeltaTime>k__BackingField: 0.1
+  <RadialGain>k__BackingField: 10
+  <TangentGain>k__BackingField: 1
+  <PathSpeed>k__BackingField: 20
+  <ShrinkSpeed>k__BackingField: 10
+  <FadeOutSpeed>k__BackingField: 2
+  <TimeBetweenAbsorbSFXCalls>k__BackingField: 0.25
+  <Variant1Prefab>k__BackingField: {fileID: 7412056892289224704, guid: 94b3d85bf67554745b7049258c2cffbb, type: 3}
+  <Variant2Prefab>k__BackingField: {fileID: 7412056892289224704, guid: 94b3d85bf67554745b7049258c2cffbb, type: 3}
+  <Variant3Prefab>k__BackingField: {fileID: 5204723089484698490, guid: 5a932fc9c4a0a4c4ba56ee5a295ca026, type: 3}

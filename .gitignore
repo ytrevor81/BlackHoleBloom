@@ -1,0 +1,14 @@
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Uu]ser[Ss]ettings/
+Recordings/
+BHB Project/
+.vs/
+*.csproj
+*.unityproj
+*.sln
+*.apk
+*.xcodeproj
+*.xcworkspace

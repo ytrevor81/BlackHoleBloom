@@ -1,0 +1,478 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9004328955552465146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: BHB Project/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 638901143851322945
+  FileSizes:
+  - Name: Desktop
+    Value: 1566
+  Exists: 1
+--- !u!114 &-8199075959444700587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/sfx/player/begin_game_pulse
+  m_EditorClassIdentifier: 
+  Path: event:/sfx/player/begin_game_pulse
+  Guid:
+    Data1: -491040243
+    Data2: 1113629879
+    Data3: 620516512
+    Data4: 1810183471
+  Banks:
+  - {fileID: -6231564603185801334}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-7593443118025104309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/room1/progress
+  m_EditorClassIdentifier: 
+  Name: progress
+  StudioPath: 
+  Min: 0
+  Max: 5
+  Default: 0
+  ID:
+    data1: 3306070132
+    data2: 954418510
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &-6231564603185801334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/SFX.bank
+  m_EditorClassIdentifier: 
+  Path: BHB Project/Build/Desktop/SFX.bank
+  Name: SFX
+  StudioPath: bank:/SFX
+  lastModified: 638901141562329419
+  FileSizes:
+  - Name: Desktop
+    Value: 781440
+  Exists: 1
+--- !u!114 &-5776665377490052150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/sfx/celestial_bodies/asteroid
+  m_EditorClassIdentifier: 
+  Path: event:/sfx/celestial_bodies/asteroid
+  Guid:
+    Data1: 1555995318
+    Data2: 1224713348
+    Data3: 1802167470
+    Data4: -618037617
+  Banks:
+  - {fileID: -6231564603185801334}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-5338675942564478211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/room1/music_eq
+  m_EditorClassIdentifier: 
+  Name: music_eq
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 1
+  ID:
+    data1: 3080903984
+    data2: 1464092343
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
+--- !u!114 &-3769509549085456842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/sfx/celestial_bodies/gas
+  m_EditorClassIdentifier: 
+  Path: event:/sfx/celestial_bodies/gas
+  Guid:
+    Data1: -112297924
+    Data2: 1106168563
+    Data3: 1766383284
+    Data4: -1168103919
+  Banks:
+  - {fileID: -6231564603185801334}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-3387730748027142287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/music_eq
+  m_EditorClassIdentifier: 
+  Name: music_eq
+  StudioPath: parameter:/music_eq
+  Min: 0
+  Max: 1
+  Default: 1
+  ID:
+    data1: 3080903984
+    data2: 1464092343
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
+  m_Name: FMODStudioCache
+  m_EditorClassIdentifier: 
+  EditorBanks:
+  - {fileID: -9004328955552465146}
+  - {fileID: 7513126858984082448}
+  - {fileID: -6231564603185801334}
+  - {fileID: 2793256333662002165}
+  EditorEvents:
+  - {fileID: 8641868965032021420}
+  - {fileID: 4975734303735167819}
+  - {fileID: -3769509549085456842}
+  - {fileID: 2933885544446366238}
+  - {fileID: -5776665377490052150}
+  - {fileID: 1235135348098802263}
+  - {fileID: -8199075959444700587}
+  - {fileID: 7921522783198782720}
+  - {fileID: 466131972120641160}
+  EditorParameters:
+  - {fileID: -3387730748027142287}
+  MasterBanks:
+  - {fileID: 7513126858984082448}
+  StringsBanks:
+  - {fileID: -9004328955552465146}
+  cacheVersion: 131848
+  cacheTime: 638901143851322945
+  SerializableEventsDict:
+  - key: event:/music/room1
+    index: 0
+  - key: event:/sfx/player/level_up
+    index: 1
+  - key: event:/sfx/celestial_bodies/gas
+    index: 2
+  - key: event:/sfx/celestial_bodies/star
+    index: 3
+  - key: event:/sfx/celestial_bodies/asteroid
+    index: 4
+  - key: event:/sfx/celestial_bodies/planet
+    index: 5
+  - key: event:/sfx/player/begin_game_pulse
+    index: 6
+  - key: event:/sfx/ui/button_press
+    index: 7
+  - key: event:/sfx/ui/enter_game
+    index: 8
+--- !u!114 &466131972120641160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/sfx/ui/enter_game
+  m_EditorClassIdentifier: 
+  Path: event:/sfx/ui/enter_game
+  Guid:
+    Data1: -1005251976
+    Data2: 1336462554
+    Data3: -2030494844
+    Data4: -1610230951
+  Banks:
+  - {fileID: -6231564603185801334}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters:
+  - {fileID: 7375397373570983096}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3997
+--- !u!114 &1235135348098802263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/sfx/celestial_bodies/planet
+  m_EditorClassIdentifier: 
+  Path: event:/sfx/celestial_bodies/planet
+  Guid:
+    Data1: 996861902
+    Data2: 1133189310
+    Data3: 1566144933
+    Data4: 1191215573
+  Banks:
+  - {fileID: -6231564603185801334}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &2793256333662002165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Music.bank
+  m_EditorClassIdentifier: 
+  Path: BHB Project/Build/Desktop/Music.bank
+  Name: Music
+  StudioPath: bank:/Music
+  lastModified: 638901141560557811
+  FileSizes:
+  - Name: Desktop
+    Value: 6649696
+  Exists: 1
+--- !u!114 &2933885544446366238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/sfx/celestial_bodies/star
+  m_EditorClassIdentifier: 
+  Path: event:/sfx/celestial_bodies/star
+  Guid:
+    Data1: 1393479438
+    Data2: 1314339773
+    Data3: 1454707881
+    Data4: -1203021047
+  Banks:
+  - {fileID: -6231564603185801334}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &4975734303735167819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/sfx/player/level_up
+  m_EditorClassIdentifier: 
+  Path: event:/sfx/player/level_up
+  Guid:
+    Data1: 1534545911
+    Data2: 1318149172
+    Data3: 1401453959
+    Data4: -150085270
+  Banks:
+  - {fileID: -6231564603185801334}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &7375397373570983096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/enter_game/music_eq
+  m_EditorClassIdentifier: 
+  Name: music_eq
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 1
+  ID:
+    data1: 3080903984
+    data2: 1464092343
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
+--- !u!114 &7513126858984082448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: BHB Project/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 638901143851292937
+  FileSizes:
+  - Name: Desktop
+    Value: 1890
+  Exists: 1
+--- !u!114 &7921522783198782720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/sfx/ui/button_press
+  m_EditorClassIdentifier: 
+  Path: event:/sfx/ui/button_press
+  Guid:
+    Data1: 998547982
+    Data2: 1310136524
+    Data3: -1333860425
+    Data4: 432614308
+  Banks:
+  - {fileID: -6231564603185801334}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &8641868965032021420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/music/room1
+  m_EditorClassIdentifier: 
+  Path: event:/music/room1
+  Guid:
+    Data1: 695446012
+    Data2: 1120268909
+    Data3: -245110897
+    Data4: -833796351
+  Banks:
+  - {fileID: 2793256333662002165}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -7593443118025104309}
+  - {fileID: -5338675942564478211}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 494400

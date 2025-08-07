@@ -1,0 +1,126 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8307817777127249692
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6653158509427720509}
+  - component: {fileID: 4453750693286950586}
+  - component: {fileID: 9004313672495025561}
+  - component: {fileID: 3891162402216918152}
+  - component: {fileID: 9108639968282900800}
+  - component: {fileID: 5749345420689933537}
+  m_Layer: 0
+  m_Name: Formation Managers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6653158509427720509
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8307817777127249692}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -28.542501, y: 27.845648, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4453750693286950586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8307817777127249692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f14dd0398251c94a90cc1067bf902b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <HapticsManager>k__BackingField: {fileID: 9108639968282900800}
+  <AudioManager>k__BackingField: {fileID: 5749345420689933537}
+  <RoomTime>k__BackingField: 300
+  <Level2ObjectCount>k__BackingField: 10
+  <Level3ObjectCount>k__BackingField: 25
+  <Level4ObjectCount>k__BackingField: 50
+  <Level5ObjectCount>k__BackingField: 100
+  <Level6ObjectCount>k__BackingField: 180
+  <Level7ObjectCount>k__BackingField: 260
+  <Level8ObjectCount>k__BackingField: 340
+  <Level9ObjectCount>k__BackingField: 420
+  <Level10ObjectCount>k__BackingField: 500
+--- !u!114 &9004313672495025561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8307817777127249692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f967d8b7aaedecc4eb252d373355fdb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blackScreen: {fileID: 0}
+  mainMenuAssets:
+  - {fileID: 0}
+  - {fileID: 0}
+  room1Assets:
+  - {fileID: 0}
+  - {fileID: 0}
+  playerStar: {fileID: 0}
+  playerBlackHole: {fileID: 0}
+  uiCanvasGroup: {fileID: 0}
+  gravityArea: {fileID: 0}
+  audioManager: {fileID: 5749345420689933537}
+--- !u!114 &3891162402216918152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8307817777127249692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23a6be5cef6e56b459e4c2a8b832afa8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectName: NEW MANAGERS
+--- !u!114 &9108639968282900800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8307817777127249692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b467b3c58054c0245b9912a8ba4b1003, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5749345420689933537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8307817777127249692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3542c5279ad35145b2088e3d3c03cac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <TrackToPlayOnStart>k__BackingField: 0
+  <MusicBank>k__BackingField: {fileID: 11400000, guid: 28924c8b2df8d644fa2224a32fddb6bb, type: 2}
+  <SFXBank>k__BackingField: {fileID: 11400000, guid: 37c7cd3e6df9c5e4da1e3c5ff683f18c, type: 2}
