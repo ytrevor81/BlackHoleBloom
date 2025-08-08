@@ -61,6 +61,7 @@ public class HUDController : MonoBehaviour
     [Space]
 
     [SerializeField] private Animator boostAnimator;
+    [SerializeField] private TMP_Text boostMultiplierText;
 
     private const string LEVEL_UP_TRIGGER = "LevelUp";
     private const string GAIN_TRIGGER = "Gain";
@@ -112,9 +113,24 @@ public class HUDController : MonoBehaviour
     {
         if (isTimerActive)
             UpdateTimer();
+        
+        if (player.inBoostMode)
+            boostMultiplierText.text = HandleBoostMultiplierNum();
 
         HandleGalaxyIconAndProgressBarVFX();
         HandFadeInOrOut();
+    }
+
+    private string HandleBoostMultiplierNum()
+    {
+        if (player.BoostMultiplier <= 1)
+            return "x2";
+
+        else
+        {
+            int displayMultiplier = Mathf.Max(2, Mathf.CeilToInt(player.BoostMultiplier));
+            return $"x{displayMultiplier}";
+        }
     }
 
     private void HandFadeInOrOut()
