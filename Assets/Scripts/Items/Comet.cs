@@ -7,18 +7,10 @@ public class Comet : MonoBehaviour, IGravityInteract, IBarrierInteract
     private Animator animator;
     private Rigidbody2D rb;
     private OffscreenArrow offscreenArrow;
-    [SerializeField]private TrailRenderer trail;
-    
-    //[SerializeField] private GameObject[] cometChunks;
-    [SerializeField] private Transform explodeParticle;
     [SerializeField] private Transform cometCore;
     [SerializeField] private float coreRotationSpeed;
-    [SerializeField] private float wholeRotationSpeed;
     [SerializeField] private float travelSpeed;
-    [SerializeField] private float speedToPlayer;
     [SerializeField] private float shrinkSpeed;
-    [SerializeField] private SpriteRenderer[] coreRenderers;
-    [SerializeField] private ParticleSystem goToPlayerParticles;
     private PlayerController player;
     private bool inPlayerZone;
     private float coreRotation;
@@ -89,21 +81,6 @@ public class Comet : MonoBehaviour, IGravityInteract, IBarrierInteract
         offscreenArrow.RemoveTargetFromOffscreenArrow(transform);
         inPlayerZone = true;
         gameObject.tag = BHBConstants.NULL;
-
-        // for (int i=0; i < cometChunks.Length; i++)
-        // {
-        //     cometChunks[i].transform.SetParent(null);
-        //     cometChunks[i].SetActive(true);
-        // }
-
-        //explodeParticle.position = cometCore.position;
-        //explodeParticle.SetParent(null);
-        //explodeParticle.gameObject.SetActive(true);
-
-        // coreRenderers[0].enabled = false;
-        // coreRenderers[1].enabled = false;
-        //rb.isKinematic = true;
-        //rb.velocity = Vector2.zero;
 
         rb.mass = 0.3f;
         rb.drag = 3.5f;

@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: BHB Project/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638901143851322945
+  lastModified: 638903500688091098
   FileSizes:
   - Name: Desktop
     Value: 1566
@@ -47,7 +47,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &-7593443118025104309
+--- !u!114 &-6700445256659268147
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -57,7 +57,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/room1/progress
+  m_Name: parameter:/nebula/progress
   m_EditorClassIdentifier: 
   Name: progress
   StudioPath: 
@@ -118,30 +118,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &-5338675942564478211
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/room1/music_eq
-  m_EditorClassIdentifier: 
-  Name: music_eq
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 1
-  ID:
-    data1: 3080903984
-    data2: 1464092343
-  Type: 0
-  IsGlobal: 1
-  Labels: []
-  Exists: 1
 --- !u!114 &-3769509549085456842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,7 +187,6 @@ MonoBehaviour:
   - {fileID: -6231564603185801334}
   - {fileID: 2793256333662002165}
   EditorEvents:
-  - {fileID: 8641868965032021420}
   - {fileID: 4975734303735167819}
   - {fileID: -3769509549085456842}
   - {fileID: 2933885544446366238}
@@ -220,6 +195,7 @@ MonoBehaviour:
   - {fileID: -8199075959444700587}
   - {fileID: 7921522783198782720}
   - {fileID: 466131972120641160}
+  - {fileID: 1451742474431278819}
   EditorParameters:
   - {fileID: -3387730748027142287}
   MasterBanks:
@@ -227,25 +203,25 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: -9004328955552465146}
   cacheVersion: 131848
-  cacheTime: 638901143851322945
+  cacheTime: 638903500688748893
   SerializableEventsDict:
-  - key: event:/music/room1
-    index: 0
   - key: event:/sfx/player/level_up
-    index: 1
+    index: 0
   - key: event:/sfx/celestial_bodies/gas
-    index: 2
+    index: 1
   - key: event:/sfx/celestial_bodies/star
-    index: 3
+    index: 2
   - key: event:/sfx/celestial_bodies/asteroid
-    index: 4
+    index: 3
   - key: event:/sfx/celestial_bodies/planet
-    index: 5
+    index: 4
   - key: event:/sfx/player/begin_game_pulse
-    index: 6
+    index: 5
   - key: event:/sfx/ui/button_press
-    index: 7
+    index: 6
   - key: event:/sfx/ui/enter_game
+    index: 7
+  - key: event:/music/nebula
     index: 8
 --- !u!114 &466131972120641160
 MonoBehaviour:
@@ -302,6 +278,35 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &1451742474431278819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/music/nebula
+  m_EditorClassIdentifier: 
+  Path: event:/music/nebula
+  Guid:
+    Data1: 695446012
+    Data2: 1120268909
+    Data3: -245110897
+    Data4: -833796351
+  Banks:
+  - {fileID: 2793256333662002165}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -6700445256659268147}
+  - {fileID: 8978391084485660093}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 494400
 --- !u!114 &2793256333662002165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -317,7 +322,7 @@ MonoBehaviour:
   Path: BHB Project/Build/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 638901141560557811
+  lastModified: 638903500688748893
   FileSizes:
   - Name: Desktop
     Value: 6649696
@@ -415,7 +420,7 @@ MonoBehaviour:
   Path: BHB Project/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638901143851292937
+  lastModified: 638903500688058654
   FileSizes:
   - Name: Desktop
     Value: 1890
@@ -447,7 +452,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &8641868965032021420
+--- !u!114 &8978391084485660093
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -456,23 +461,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/music/room1
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/nebula/music_eq
   m_EditorClassIdentifier: 
-  Path: event:/music/room1
-  Guid:
-    Data1: 695446012
-    Data2: 1120268909
-    Data3: -245110897
-    Data4: -833796351
-  Banks:
-  - {fileID: 2793256333662002165}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
-  Parameters:
-  - {fileID: -7593443118025104309}
-  - {fileID: -5338675942564478211}
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 494400
+  Name: music_eq
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 1
+  ID:
+    data1: 3080903984
+    data2: 1464092343
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1

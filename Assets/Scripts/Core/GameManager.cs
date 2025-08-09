@@ -123,19 +123,19 @@ public class GameManager : MonoBehaviour
 
     private bool CanLevelUp()
     {
-        return (CurrentLevel == GameManager.Level.Level1 && NumOfObjectsAbsorbed >= Level2ObjectCount) ||
-               (CurrentLevel == GameManager.Level.Level2 && NumOfObjectsAbsorbed >= Level3ObjectCount) ||
-               (CurrentLevel == GameManager.Level.Level3 && NumOfObjectsAbsorbed >= Level4ObjectCount) ||
-               (CurrentLevel == GameManager.Level.Level4 && NumOfObjectsAbsorbed >= Level5ObjectCount) ||
-               (CurrentLevel == GameManager.Level.Level5 && NumOfObjectsAbsorbed >= Level6ObjectCount) ||
-               (CurrentLevel == GameManager.Level.Level6 && NumOfObjectsAbsorbed >= Level7ObjectCount) ||
-               (CurrentLevel == GameManager.Level.Level7 && NumOfObjectsAbsorbed >= Level8ObjectCount) ||
-               (CurrentLevel == GameManager.Level.Level8 && NumOfObjectsAbsorbed >= Level9ObjectCount) ||
-               (CurrentLevel == GameManager.Level.Level9 && NumOfObjectsAbsorbed >= Level10ObjectCount) ||
-               (CurrentLevel == GameManager.Level.Level10 && NumOfObjectsAbsorbed >= Level10ObjectCount);
+        return (CurrentLevel == Level.Level1 && NumOfObjectsAbsorbed >= Level2ObjectCount) ||
+               (CurrentLevel == Level.Level2 && NumOfObjectsAbsorbed >= Level3ObjectCount) ||
+               (CurrentLevel == Level.Level3 && NumOfObjectsAbsorbed >= Level4ObjectCount) ||
+               (CurrentLevel == Level.Level4 && NumOfObjectsAbsorbed >= Level5ObjectCount) ||
+               (CurrentLevel == Level.Level5 && NumOfObjectsAbsorbed >= Level6ObjectCount) ||
+               (CurrentLevel == Level.Level6 && NumOfObjectsAbsorbed >= Level7ObjectCount) ||
+               (CurrentLevel == Level.Level7 && NumOfObjectsAbsorbed >= Level8ObjectCount) ||
+               (CurrentLevel == Level.Level8 && NumOfObjectsAbsorbed >= Level9ObjectCount) ||
+               (CurrentLevel == Level.Level9 && NumOfObjectsAbsorbed >= Level10ObjectCount) ||
+               (CurrentLevel == Level.Level10 && NumOfObjectsAbsorbed >= Level10ObjectCount);
     }
 
-    public void ResetScene()
+    public void BackToMainMenu()
     {
         Time.timeScale = 1;
         CurrentLevel = Level.Level1;
@@ -143,6 +143,6 @@ public class GameManager : MonoBehaviour
         Timer = RoomTime;
         NumOfObjectsAbsorbed = 0;
         CutscenePlaying = false;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene("Nebula Room");
     }
 }

@@ -94,6 +94,9 @@ public class NewComet : MonoBehaviour, IGravityInteract, IBarrierInteract
 
     public void EnterOrbit()
     {
+        if (GM.CutscenePlaying)
+            return;
+
         if (currentCoroutine != null)
             StopCoroutine(currentCoroutine);
 

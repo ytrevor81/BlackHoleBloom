@@ -74,6 +74,7 @@ public class MainMenu : MonoBehaviour
 
         musicEQValue = 1;
         RuntimeManager.StudioSystem.setParameterByName(musicEQParameter, musicEQValue);
+        GM.AudioManager.PlayMusicTrackImmediately(AudioManager.MusicTrack.Nebula);
 
         currentZoom = transposer.m_CameraDistance;
     }

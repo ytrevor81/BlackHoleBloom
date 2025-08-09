@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Text;
+using Cinemachine;
+using FMODUnity;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,6 +20,7 @@ public class HUDController : MonoBehaviour
     [Space]
 
     [SerializeField] private TMP_Text timerText;
+    [SerializeField] private Animator timerAnimator;
 
     private bool isTimerActive;
     private TimeSpan timeSpan;
@@ -63,6 +66,17 @@ public class HUDController : MonoBehaviour
     [SerializeField] private Animator boostAnimator;
     [SerializeField] private TMP_Text boostMultiplierText;
 
+    [Header("CHANGE ROOM CUTSCENE")]
+    [Space]
+
+    [SerializeField] private CinemachineVirtualCamera mainCamera;
+    [SerializeField] private float zoomTarget;
+    [SerializeField] private float zoomTime;
+    [SerializeField] private float fadeTimeUI;
+    [SerializeField] private float musicEQFadeSpeed;
+
+    private CinemachineFramingTransposer transposer;
+
     private const string LEVEL_UP_TRIGGER = "LevelUp";
     private const string GAIN_TRIGGER = "Gain";
     private const string END_BOOL = "end";
@@ -72,12 +86,14 @@ public class HUDController : MonoBehaviour
     private bool isFadingOut;
     private float fadeSpeed = 1f;
     private IEnumerator currentCoroutine;
+    private WaitForSecondsRealtime delayOneSecond = new WaitForSecondsRealtime(1f);
 
     void Awake()
     {
         Instance = this;
         galaxyIconTransform = galaxyIcon.transform;
         targetIconAndBarColor = galaxyIcon.color;
+        transposer = mainCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
     }
 
     void Start()
@@ -85,8 +101,15 @@ public class HUDController : MonoBehaviour
         GM = GameManager.Instance;
         player = PlayerController.Instance;
         levelBar.fillAmount = 0;
+
         GM.Timer = GM.RoomTime;
         isTimerActive = true;
+
+        timeSpan = TimeSpan.FromSeconds(GM.Timer);
+
+        int minutes = timeSpan.Minutes;
+        int seconds = timeSpan.Seconds;
+        timerText.text = $"{minutes:D2}:{seconds:D2}";
 
         GM.OnLevelChanged += LevelUp;
         GM.OnRoomCompleted += RoomCompleted;
@@ -131,6 +154,50 @@ public class HUDController : MonoBehaviour
             int displayMultiplier = Mathf.Max(2, Mathf.CeilToInt(player.BoostMultiplier));
             return $"x{displayMultiplier}";
         }
+    }
+
+    public void BackToMainMenu()
+    {
+        StopCurrentCoroutine();
+
+        GM.InvokeCutsceneStarted();
+        isFadingOut = true;
+        currentCoroutine = BackToMainMenuCoroutine();
+        StartCoroutine(currentCoroutine);
+    }
+
+    private IEnumerator BackToMainMenuCoroutine()
+    {
+        float elapsedTime = 0;
+        float startZoom = transposer.m_CameraDistance;
+        float currentZoom;
+        float musicEQValue = 1f;
+        string musicEQParameter = GM.AudioManager.MusicBank.MusicEQParameter;
+
+        while (elapsedTime < zoomTime)
+        {
+            musicEQValue -= Time.deltaTime * musicEQFadeSpeed;
+
+            if (musicEQValue <= 0)
+            {
+                musicEQValue = 0;
+                RuntimeManager.StudioSystem.setParameterByName(musicEQParameter, musicEQValue);
+            }
+            else
+                RuntimeManager.StudioSystem.setParameterByName(musicEQParameter, musicEQValue);
+
+            elapsedTime += Time.deltaTime;
+            currentZoom = Mathf.Lerp(startZoom, zoomTarget, elapsedTime / zoomTime);
+            transposer.m_CameraDistance = currentZoom;
+
+            yield return null;
+        }
+
+        GM.AudioManager.StopMusicFadeOut();
+
+        yield return delayOneSecond;
+
+        GM.BackToMainMenu();
     }
 
     private void HandFadeInOrOut()

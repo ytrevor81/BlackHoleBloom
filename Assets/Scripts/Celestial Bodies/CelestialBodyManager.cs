@@ -193,9 +193,14 @@ public class CelestialBodyManager : MonoBehaviour
         }
     }
 
+    private bool CannotMove()
+    {
+        return GM.SpecialAnimationPlaying || GM.CutscenePlaying;
+    }
+
     void FixedUpdate()
     {
-        if (GM.SpecialAnimationPlaying)
+        if (CannotMove())
             return;
 
         if (moveableCelestialBodiesSet.Count > 0)

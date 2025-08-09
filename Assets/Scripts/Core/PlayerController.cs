@@ -116,11 +116,16 @@ public class PlayerController : MonoBehaviour
             UpdateScaleAndCameraSize();
     }
 
+    private bool CannotMove()
+    {
+        return GM.SpecialAnimationPlaying || GM.CutscenePlaying;
+    }
+
     private void FixedUpdate()
     {
         rb.velocity = Vector2.zero;
 
-        if (GM.SpecialAnimationPlaying)
+        if (CannotMove())
             return;
 
         Vector2 playerInputForce = CalculatePlayerInputForce();
@@ -174,6 +179,9 @@ public class PlayerController : MonoBehaviour
 
     public void AddWhiteHoleMass(float mass, int numOfObjectsAbsorbed)
     {
+        if (GM.CutscenePlaying)
+            return;
+
         CacheHUDIfNull();
         GM.Score += mass;
         GM.NumOfObjectsAbsorbed += numOfObjectsAbsorbed;
@@ -183,6 +191,9 @@ public class PlayerController : MonoBehaviour
 
     public void AddMass(float mass)
     {
+        if (GM.CutscenePlaying)
+            return;
+            
         CacheHUDIfNull();
         GM.Score += mass;
         GM.NumOfObjectsAbsorbed += 1;

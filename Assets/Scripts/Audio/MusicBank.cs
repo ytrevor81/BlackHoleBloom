@@ -14,25 +14,25 @@ public class MusicBank : ScriptableObject
 
     [field: Header("TRACKS")]
     [field: Space]
-    [field: SerializeField] public string Room1Track { get; private set; }
-    public EventDescription Room1TrackDescription;
-    private bool room1Loaded;
+    [field: SerializeField] public string NebulaTrack { get; private set; }
+    public EventDescription NebulaTrackDescription;
+    private bool nebulaLoaded;
 
     public void LoadRoomTracks()
     {
-        if (!room1Loaded)
+        if (!nebulaLoaded)
         {
-            room1Loaded = true;
-            Room1TrackDescription = BHBAudio.EventDescriptionWithLoadedSampleData(Room1Track);
+            nebulaLoaded = true;
+            NebulaTrackDescription = BHBAudio.EventDescriptionWithLoadedSampleData(NebulaTrack);
         }
     }
     
     public void UnloadRoomTracks()
     {
-        if (room1Loaded)
+        if (nebulaLoaded)
         {
-            room1Loaded = false;
-            BHBAudio.UnloadSampleData(Room1TrackDescription);
+            nebulaLoaded = false;
+            BHBAudio.UnloadSampleData(NebulaTrackDescription);
         }
     }
 }

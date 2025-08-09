@@ -7,8 +7,9 @@ public class AudioManager : MonoBehaviour
     private GameManager GM;
     public enum MusicTrack
     {
-        MainMenu,
-        Room1
+        Nebula,
+        SolarSystem,
+        Interstellar
     }
 
     [field: SerializeField] public MusicTrack TrackToPlayOnStart { get; set; }
@@ -37,7 +38,9 @@ public class AudioManager : MonoBehaviour
     {
         GM = GameManager.Instance;
         initialized = true;
-        PlayMusicTrack(TrackToPlayOnStart);
+
+        if (HUDController.Instance != null) //if it's not null, it means we're in editor playing a specific setup. Do NOT wrap this in #if UNITY_EDITOR
+            PlayMusicTrackImmediately(TrackToPlayOnStart);
 
         masterController = FMODUnity.RuntimeManager.GetVCA("vca:/Master");
         musicController = FMODUnity.RuntimeManager.GetVCA("vca:/Music");
@@ -56,13 +59,13 @@ public class AudioManager : MonoBehaviour
 
     private EventDescription GetMusicTrackDescription(MusicTrack track)
     {
-        if (track == MusicTrack.Room1)
-            return MusicBank.Room1TrackDescription;
+        if (track == MusicTrack.Nebula)
+            return MusicBank.NebulaTrackDescription;
 
-        return MusicBank.Room1TrackDescription;
+        return MusicBank.NebulaTrackDescription;
     }
 
-    private void PlayMusicTrack(MusicTrack track)
+    public void PlayMusicTrackImmediately(MusicTrack track)
     {
         mainMusicInstance.clearHandle();
         mainMusicInstance = BHBAudio.CreateInstanceLoadedSampleData(GetMusicTrackDescription(track));
@@ -85,7 +88,7 @@ public class AudioManager : MonoBehaviour
             StartCoroutine(currentCoroutine);
         }
         else
-            PlayMusicTrack(track);
+            PlayMusicTrackImmediately(track);
     }
 
     private IEnumerator ChangeMusicTrackCoroutine(MusicTrack track)
@@ -93,7 +96,12 @@ public class AudioManager : MonoBehaviour
         yield return delayChangeMusicTime;
 
         mainMusicInstance.clearHandle();
-        PlayMusicTrack(track);
+        PlayMusicTrackImmediately(track);
+    }
+
+    public void StopMusicFadeOut()
+    {
+        BHBAudio.StopAndReleaseInstanceFadeOut(mainMusicInstance);
     }
 
     public bool MusicPlaying()

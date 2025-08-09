@@ -62,7 +62,7 @@ public class PresetManager : MonoBehaviour
         gravityArea.SetActive(false);
         EditorUtility.SetDirty(gravityArea);
 
-        audioManager.TrackToPlayOnStart = AudioManager.MusicTrack.MainMenu;
+        audioManager.TrackToPlayOnStart = AudioManager.MusicTrack.Nebula;
         EditorUtility.SetDirty(audioManager);
 
         for (int i = 0; i < nebulaBG.Length; i++)
@@ -98,7 +98,7 @@ public class PresetManager : MonoBehaviour
         gravityArea.SetActive(true);
         EditorUtility.SetDirty(gravityArea);
         
-        audioManager.TrackToPlayOnStart = AudioManager.MusicTrack.Room1;
+        audioManager.TrackToPlayOnStart = AudioManager.MusicTrack.Nebula;
         EditorUtility.SetDirty(audioManager);
 
         for (int i = 0; i < nebulaBG.Length; i++)

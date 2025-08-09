@@ -10676,7 +10676,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2556d2086406b4e4eb9c72863e688516, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomType: 1
   sparkles: {fileID: 7391876222383659904}
   accretionDiskSpriteRenderer: {fileID: 4337845135304978566}
   accretionDiskContainer: {fileID: 2557070350346063781}
@@ -10785,8 +10784,6 @@ MonoBehaviour:
     EdgeBrightness: 2
     ArmsAlpha: 2
     SparklesEmissionIntensity: 15
-  stayOnColorTime: 0
-  changeColorTime: 0
 --- !u!1 &9184293059341867467
 GameObject:
   m_ObjectHideFlags: 0
@@ -10861,7 +10858,7 @@ SpriteRenderer:
   m_SortingLayerID: -1071006633
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 921c40fbf1338f9419f3823a92e4a267, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fab06e0be9375cc4d823efa71629885c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

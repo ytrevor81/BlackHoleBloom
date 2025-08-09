@@ -170,6 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d369a0a53be332418523beb9bc88fd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HUD: {fileID: 0}
   menuFadeTime: 0
   buttonsCanvasGroup: {fileID: 0}
   optionsPage: {fileID: 0}
@@ -430,6 +431,7 @@ MonoBehaviour:
   canvasGroup: {fileID: 3722846749916435162}
   conclusionScreen: {fileID: 259593688532667800}
   timerText: {fileID: 5755362009720755094}
+  timerAnimator: {fileID: 5304576487449267132}
   levelBar: {fileID: 3477957305831557262}
   levelBarAnimator: {fileID: 8018608596674816656}
   levelTextAnimator: {fileID: 3762715293224042809}
@@ -445,6 +447,11 @@ MonoBehaviour:
   scoreText: {fileID: 3548594489553239718}
   boostAnimator: {fileID: 7380799537593377593}
   boostMultiplierText: {fileID: 6504711964946377074}
+  mainCamera: {fileID: 0}
+  zoomTarget: 10
+  zoomTime: 2
+  fadeTimeUI: 1.5
+  musicEQFadeSpeed: 0.5
 --- !u!225 &3722846749916435162
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -2036,6 +2043,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d369a0a53be332418523beb9bc88fd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HUD: {fileID: 0}
   menuFadeTime: 0.25
   buttonsCanvasGroup: {fileID: 3991574749861138455}
   optionsPage: {fileID: 6180016193080405023}

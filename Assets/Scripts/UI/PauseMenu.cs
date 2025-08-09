@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class PauseMenu : MonoBehaviour
 {
+    [SerializeField] private HUDController HUD;
     [SerializeField] private float menuFadeTime;
     [SerializeField] private CanvasGroup buttonsCanvasGroup;
     [SerializeField] private GameObject optionsPage;
@@ -103,7 +104,8 @@ public class PauseMenu : MonoBehaviour
     {
         if (!canInteract) return;
 
-        GameManager.Instance.ResetScene();
+        ResumeGame_Event();
+        HUD.BackToMainMenu();
     }
 
     public void BackFromOptionsPage()

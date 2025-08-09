@@ -37,7 +37,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _SpaghettifyTex:
-        m_Texture: {fileID: 2800000, guid: f42e561e7b3097b4c8e33700d573441e, type: 3}
+        m_Texture: {fileID: 2800000, guid: 8201dfc7df5216c4ca355e07fb7fb8e4, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -56,8 +56,8 @@ Material:
     m_Floats:
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _ScrollSpeed: 0
+    - _ScrollSpeed: 10
     m_Colors:
-    - _Tiling: {r: 0.7, g: 2.67, b: 0, a: 0}
-    - _TintColor: {r: 1, g: 0.63831425, b: 0, a: 0.7490196}
+    - _Tiling: {r: 10, g: 10, b: 0, a: 0}
+    - _TintColor: {r: 1, g: 1, b: 1, a: 0.7490196}
   m_BuildTextureStacks: []
