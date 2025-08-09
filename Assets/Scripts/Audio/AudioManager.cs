@@ -22,7 +22,7 @@ public class AudioManager : MonoBehaviour
     private bool initialized;
     private bool musicIsChanging;
     private EventInstance mainMusicInstance;
-    private IEnumerator currentCoroutine;
+    private Coroutine currentCoroutine;
     private WaitForSeconds delayChangeMusicTime = new WaitForSeconds(1f);
     private VCA masterController;
     private VCA musicController;
@@ -85,8 +85,7 @@ public class AudioManager : MonoBehaviour
         if (mainMusicInstance.isValid())
         {
             BHBAudio.StopAndReleaseInstanceFadeOut(mainMusicInstance);
-            currentCoroutine = ChangeMusicTrackCoroutine(track);
-            StartCoroutine(currentCoroutine);
+            currentCoroutine = StartCoroutine(ChangeMusicTrackCoroutine(track));
         }
         else
             PlayMusicTrackImmediately(track);
@@ -96,28 +95,13 @@ public class AudioManager : MonoBehaviour
     {
         if (currentCoroutine != null)
             StopCoroutine(currentCoroutine);
+
+        currentCoroutine = null;
     }
 
-    public void DecreaseMusicPitch(float pitchDecreaseTime)
+    public EventInstance GetMusicInstance()
     {
-        StopCurrentCoroutine();
-        currentCoroutine = DecreaseMusicPitchCoroutine(pitchDecreaseTime);
-        StartCoroutine(currentCoroutine);
-    }
-    public IEnumerator DecreaseMusicPitchCoroutine(float pitchDecreaseTime)
-    {
-        float elapsedTime = 0;
-        float currentPitch = 1;
-        float targetPitch = 0.1f;
-
-        while (elapsedTime < pitchDecreaseTime)
-        {
-            elapsedTime += Time.deltaTime;
-            currentPitch = Mathf.Lerp(1f, targetPitch, elapsedTime / pitchDecreaseTime);
-            mainMusicInstance.setPitch(currentPitch);
-
-            yield return null;
-        }
+        return mainMusicInstance;
     }
 
     private IEnumerator ChangeMusicTrackCoroutine(MusicTrack track)

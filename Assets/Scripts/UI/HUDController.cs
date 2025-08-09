@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Text;
 using Cinemachine;
+using FMOD.Studio;
 using FMODUnity;
 using TMPro;
 using UnityEngine;
@@ -174,16 +175,12 @@ public class HUDController : MonoBehaviour
 
     public void PlayerLost()
     {
-        if (GM == null)
-            GM = GameManager.Instance;
-
         StopCurrentCoroutine();
 
         GM.InvokeCutsceneStarted();
         isFadingOut = true;
         timerAnimator.enabled = true;
 
-        GM.AudioManager.DecreaseMusicPitch(pitchChangeTime);
         currentCoroutine = PlayerLostCoroutine();
         StartCoroutine(currentCoroutine);
     }
@@ -196,6 +193,9 @@ public class HUDController : MonoBehaviour
         float musicEQValue = 1f;
         string musicEQParameter = GM.AudioManager.MusicBank.MusicEQParameter;
 
+        EventInstance mainMusicInstance = GM.AudioManager.GetMusicInstance();
+        float currentPitch = 1;
+        float targetPitch = 0.1f;
         float canvasAlpha = 1f;
 
         while (elapsedTime < zoomTime)
@@ -204,7 +204,7 @@ public class HUDController : MonoBehaviour
 
             if (canvasAlpha <= 0)
                 canvasAlpha = 0;
-            
+
             upperHUDcanvasGroup.alpha = canvasAlpha;
             lowerHUDcanvasGroup.alpha = canvasAlpha;
             joystickCanvasGroup.alpha = canvasAlpha;
@@ -221,6 +221,8 @@ public class HUDController : MonoBehaviour
 
             elapsedTime += Time.deltaTime;
             currentZoom = Mathf.Lerp(startZoom, zoomTarget, elapsedTime / zoomTime);
+            currentPitch = Mathf.Lerp(1f, targetPitch, elapsedTime / zoomTime);
+            mainMusicInstance.setPitch(currentPitch); //this was originally done in AudioManager but for some reason a null reference was being thrown that even confused AI why it was happening
             transposer.m_CameraDistance = currentZoom;
 
             yield return null;
@@ -331,6 +333,12 @@ public class HUDController : MonoBehaviour
         if (GM.Timer > 1)
         {
             GM.Timer -= Time.deltaTime;
+
+            if (GM.Timer <= 1)
+            {
+                timerText.text = "0:00";
+                return;
+            }
 
             timeSpan = TimeSpan.FromSeconds(GM.Timer);
 
