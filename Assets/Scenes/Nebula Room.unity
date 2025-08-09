@@ -4383,10 +4383,6 @@ PrefabInstance:
       propertyPath: m_Alpha
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7236748738623311426, guid: f0caaf00eaee1644eaf62879a85e1d84, type: 3}
-      propertyPath: HUD
-      value: 
-      objectReference: {fileID: 6014040002522846326}
     - target: {fileID: 8410679749475639341, guid: f0caaf00eaee1644eaf62879a85e1d84, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -4482,17 +4478,6 @@ CanvasGroup:
   m_CorrespondingSourceObject: {fileID: 3722846749916435162, guid: f0caaf00eaee1644eaf62879a85e1d84, type: 3}
   m_PrefabInstance: {fileID: 6014040002522846317}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6014040002522846326 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1000230313797026559, guid: f0caaf00eaee1644eaf62879a85e1d84, type: 3}
-  m_PrefabInstance: {fileID: 6014040002522846317}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6014040002522846318}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0f33cc87ad338a489ea3c04b34b3ed1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &7154810626646508753
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4501,18 +4486,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4453750693286950586, guid: e75dc33db1bd14d46b16c8bcd7ef9d1f, type: 3}
-      propertyPath: <Level2ObjectCount>k__BackingField
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4453750693286950586, guid: e75dc33db1bd14d46b16c8bcd7ef9d1f, type: 3}
-      propertyPath: <Level3ObjectCount>k__BackingField
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 5749345420689933537, guid: e75dc33db1bd14d46b16c8bcd7ef9d1f, type: 3}
-      propertyPath: <TrackToPlayOnStart>k__BackingField
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6653158509427720509, guid: e75dc33db1bd14d46b16c8bcd7ef9d1f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -28.542501
@@ -4558,10 +4531,6 @@ PrefabInstance:
       value: Managers
       objectReference: {fileID: 0}
     - target: {fileID: 9004313672495025561, guid: e75dc33db1bd14d46b16c8bcd7ef9d1f, type: 3}
-      propertyPath: nebulaBG
-      value: 
-      objectReference: {fileID: 1126701357}
-    - target: {fileID: 9004313672495025561, guid: e75dc33db1bd14d46b16c8bcd7ef9d1f, type: 3}
       propertyPath: playerStar
       value: 
       objectReference: {fileID: 838909285}
@@ -4581,10 +4550,6 @@ PrefabInstance:
       propertyPath: playerBlackHole
       value: 
       objectReference: {fileID: 1937999814}
-    - target: {fileID: 9004313672495025561, guid: e75dc33db1bd14d46b16c8bcd7ef9d1f, type: 3}
-      propertyPath: nebulaBG.Array.size
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 9004313672495025561, guid: e75dc33db1bd14d46b16c8bcd7ef9d1f, type: 3}
       propertyPath: nebulaBG.Array.data[0]
       value: 

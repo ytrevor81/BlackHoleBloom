@@ -79,6 +79,7 @@ public class AudioManager : MonoBehaviour
     {
         if (musicIsChanging) return;
 
+        StopCurrentCoroutine();
         musicIsChanging = true;
 
         if (mainMusicInstance.isValid())
@@ -89,6 +90,34 @@ public class AudioManager : MonoBehaviour
         }
         else
             PlayMusicTrackImmediately(track);
+    }
+
+    private void StopCurrentCoroutine()
+    {
+        if (currentCoroutine != null)
+            StopCoroutine(currentCoroutine);
+    }
+
+    public void DecreaseMusicPitch(float pitchDecreaseTime)
+    {
+        StopCurrentCoroutine();
+        currentCoroutine = DecreaseMusicPitchCoroutine(pitchDecreaseTime);
+        StartCoroutine(currentCoroutine);
+    }
+    public IEnumerator DecreaseMusicPitchCoroutine(float pitchDecreaseTime)
+    {
+        float elapsedTime = 0;
+        float currentPitch = 1;
+        float targetPitch = 0.1f;
+
+        while (elapsedTime < pitchDecreaseTime)
+        {
+            elapsedTime += Time.deltaTime;
+            currentPitch = Mathf.Lerp(1f, targetPitch, elapsedTime / pitchDecreaseTime);
+            mainMusicInstance.setPitch(currentPitch);
+
+            yield return null;
+        }
     }
 
     private IEnumerator ChangeMusicTrackCoroutine(MusicTrack track)

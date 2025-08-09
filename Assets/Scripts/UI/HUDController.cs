@@ -13,8 +13,13 @@ public class HUDController : MonoBehaviour
     private GameManager GM;
     private PlayerController player;
 
-    [SerializeField] private CanvasGroup canvasGroup;
-    [SerializeField] private GameObject conclusionScreen;
+    [Header("MAIN REFS")]
+    [Space]
+
+    [SerializeField] private CanvasGroup overallHUDcanvasGroup;
+    [SerializeField] private CanvasGroup upperHUDcanvasGroup;
+    [SerializeField] private CanvasGroup lowerHUDcanvasGroup;
+    [SerializeField] private CanvasGroup joystickCanvasGroup;
 
     [Header("TIMER")]
     [Space]
@@ -66,7 +71,7 @@ public class HUDController : MonoBehaviour
     [SerializeField] private Animator boostAnimator;
     [SerializeField] private TMP_Text boostMultiplierText;
 
-    [Header("CHANGE ROOM CUTSCENE")]
+    [Header("CHANGE ROOM CUTSCENES")]
     [Space]
 
     [SerializeField] private CinemachineVirtualCamera mainCamera;
@@ -74,6 +79,7 @@ public class HUDController : MonoBehaviour
     [SerializeField] private float zoomTime;
     [SerializeField] private float fadeTimeUI;
     [SerializeField] private float musicEQFadeSpeed;
+    [SerializeField] private float pitchChangeTime;
 
     private CinemachineFramingTransposer transposer;
 
@@ -141,7 +147,7 @@ public class HUDController : MonoBehaviour
             boostMultiplierText.text = HandleBoostMultiplierNum();
 
         HandleGalaxyIconAndProgressBarVFX();
-        HandFadeInOrOut();
+        HandleHUDFadeInOrOut();
     }
 
     private string HandleBoostMultiplierNum()
@@ -166,6 +172,66 @@ public class HUDController : MonoBehaviour
         StartCoroutine(currentCoroutine);
     }
 
+    public void PlayerLost()
+    {
+        if (GM == null)
+            GM = GameManager.Instance;
+
+        StopCurrentCoroutine();
+
+        GM.InvokeCutsceneStarted();
+        isFadingOut = true;
+        timerAnimator.enabled = true;
+
+        GM.AudioManager.DecreaseMusicPitch(pitchChangeTime);
+        currentCoroutine = PlayerLostCoroutine();
+        StartCoroutine(currentCoroutine);
+    }
+
+    private IEnumerator PlayerLostCoroutine()
+    {
+        float elapsedTime = 0;
+        float startZoom = transposer.m_CameraDistance;
+        float currentZoom;
+        float musicEQValue = 1f;
+        string musicEQParameter = GM.AudioManager.MusicBank.MusicEQParameter;
+
+        float canvasAlpha = 1f;
+
+        while (elapsedTime < zoomTime)
+        {
+            canvasAlpha -= Time.deltaTime * fadeSpeed;
+
+            if (canvasAlpha <= 0)
+                canvasAlpha = 0;
+            
+            upperHUDcanvasGroup.alpha = canvasAlpha;
+            lowerHUDcanvasGroup.alpha = canvasAlpha;
+            joystickCanvasGroup.alpha = canvasAlpha;
+
+            musicEQValue -= Time.deltaTime * musicEQFadeSpeed;
+
+            if (musicEQValue <= 0)
+            {
+                musicEQValue = 0;
+                RuntimeManager.StudioSystem.setParameterByName(musicEQParameter, musicEQValue);
+            }
+            else
+                RuntimeManager.StudioSystem.setParameterByName(musicEQParameter, musicEQValue);
+
+            elapsedTime += Time.deltaTime;
+            currentZoom = Mathf.Lerp(startZoom, zoomTarget, elapsedTime / zoomTime);
+            transposer.m_CameraDistance = currentZoom;
+
+            yield return null;
+        }
+
+        GM.AudioManager.StopMusicFadeOut();
+
+        yield return delayOneSecond;
+
+        GM.BackToMainMenu();
+    }
     private IEnumerator BackToMainMenuCoroutine()
     {
         float elapsedTime = 0;
@@ -200,25 +266,25 @@ public class HUDController : MonoBehaviour
         GM.BackToMainMenu();
     }
 
-    private void HandFadeInOrOut()
+    private void HandleHUDFadeInOrOut()
     {
         if (isFadingIn)
         {
-            canvasGroup.alpha += fadeSpeed * Time.deltaTime;
+            overallHUDcanvasGroup.alpha += fadeSpeed * Time.deltaTime;
 
-            if (canvasGroup.alpha >= 1)
+            if (overallHUDcanvasGroup.alpha >= 1)
             {
-                canvasGroup.alpha = 1;
+                overallHUDcanvasGroup.alpha = 1;
                 isFadingIn = false;
             }
         }
         else if (isFadingOut)
         {
-            canvasGroup.alpha -= fadeSpeed * Time.deltaTime;
+            overallHUDcanvasGroup.alpha -= fadeSpeed * Time.deltaTime;
 
-            if (canvasGroup.alpha <= 0)
+            if (overallHUDcanvasGroup.alpha <= 0)
             {
-                canvasGroup.alpha = 0;
+                overallHUDcanvasGroup.alpha = 0;
                 isFadingOut = false;
             }
         }
@@ -262,7 +328,7 @@ public class HUDController : MonoBehaviour
         if (GM.SpecialAnimationPlaying || GM.CutscenePlaying)
             return;
 
-        if (GM.Timer > 0)
+        if (GM.Timer > 1)
         {
             GM.Timer -= Time.deltaTime;
 
@@ -278,7 +344,7 @@ public class HUDController : MonoBehaviour
             isTimerActive = false;
 
             if (GM.CurrentLevel != GameManager.Level.Level10)
-                conclusionScreen.SetActive(true);
+                PlayerLost();
         }
     }
 
@@ -397,7 +463,6 @@ public class HUDController : MonoBehaviour
     private void RoomCompleted()
     {
         isTimerActive = false;
-        conclusionScreen.SetActive(true);
     }
 
     private void UpdateObjectsToAbsorbText()

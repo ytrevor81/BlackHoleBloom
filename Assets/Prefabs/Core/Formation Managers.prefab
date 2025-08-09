@@ -84,6 +84,12 @@ MonoBehaviour:
   uiCanvasGroup: {fileID: 0}
   gravityArea: {fileID: 0}
   audioManager: {fileID: 5749345420689933537}
+  nebulaBG:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &3891162402216918152
 MonoBehaviour:
   m_ObjectHideFlags: 0
