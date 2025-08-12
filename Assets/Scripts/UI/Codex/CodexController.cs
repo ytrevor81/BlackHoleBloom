@@ -10,6 +10,7 @@ public class CodexController : MonoBehaviour
     [SerializeField] private float menuFadeTime;
     private IEnumerator currentCoroutine;
     private bool canInteract;
+    public CodexEntry CurrentCodexEntry { get; set; }
 
     void Awake()
     {
