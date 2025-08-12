@@ -7,6 +7,7 @@ public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
     protected Rigidbody2D rb;
     private Collider2D coll;
     [field: SerializeField] public CelestialBodyType Type { get; private set; }
+    [field: SerializeField] public CodexEntry.CodexEntryType EntryType { get; private set; }
     [SerializeField] private GameObject playerDetectionCollider;
     [SerializeField] private LineRenderer lineRenderer;
     private SpriteRenderer spriteRenderer;
@@ -367,7 +368,7 @@ public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
         player.AddMass(Manager.GetMass(Type));
         player.RemoveObjectFromOrbitingList(this);
         Manager.RemoveCelestialBodyFromActiveSet(this);
-        Manager.PlayAbsorbSFX(Type);
+        Manager.PerformAbsorbBehavior(Type, EntryType);
         inPlayerZone = false;
         shrinking = false;
         lineRenderer.positionCount = 0;

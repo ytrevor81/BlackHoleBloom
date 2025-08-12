@@ -21,6 +21,7 @@ public class HUDController : MonoBehaviour
     [SerializeField] private CanvasGroup upperHUDcanvasGroup;
     [SerializeField] private CanvasGroup lowerHUDcanvasGroup;
     [SerializeField] private CanvasGroup joystickCanvasGroup;
+    [SerializeField] private CodexPopupList codexPopupList;
 
     [Header("TIMER")]
     [Space]
@@ -290,6 +291,11 @@ public class HUDController : MonoBehaviour
                 isFadingOut = false;
             }
         }
+    }
+
+    public void CheckCodexEntry(CodexEntry.CodexEntryType _entryType)
+    {
+        codexPopupList.AddToCodex(_entryType);
     }
 
     public void FadeOutHUD()

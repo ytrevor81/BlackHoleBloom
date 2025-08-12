@@ -3,6 +3,22 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Codex Entry", menuName = "Codex Entry")]
 public class CodexEntry : ScriptableObject
 {
+    public enum CodexEntryType
+    {
+        Helium,
+        Hydrogen,
+        Oxygen,
+        CarbonChrondites,
+        Silica,
+        Ammonia,
+        Protoplanet,
+        DwarfPlanet,
+        Protostar,
+        BrownDwarf,
+        Comet,
+        WhiteHole,
+        BlackHole
+    }
     [field: SerializeField] public string Title { get; private set; }
     [field: SerializeField] public int Mass { get; private set; }
 
@@ -14,7 +30,7 @@ public class CodexEntry : ScriptableObject
 #if UNITY_EDITOR
     private void OnEnable()
     {
-        IsDiscovered = true;
+        IsDiscovered = false;
     }
 #endif
 }

@@ -77,8 +77,20 @@ public class CodexController : MonoBehaviour
         if (_canvasGroup == mainCanvasGroup)
             gameObject.SetActive(false);
     }
-    
+
     public void ResumeGame_Event()
+    {
+        if (canInteract)
+        {
+            StopCurrentCoroutine();
+
+            currentCoroutine = FadeOutMenu(mainCanvasGroup);
+            StartCoroutine(currentCoroutine);
+            canInteract = false;
+            Time.timeScale = 1;
+        }
+    }
+    public void BackButton_Event()
     {
         if (canInteract)
         {

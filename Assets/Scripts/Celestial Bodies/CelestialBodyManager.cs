@@ -7,6 +7,7 @@ public class CelestialBodyManager : MonoBehaviour
 {    
     private GameManager GM;
     private SFXBank SFXBank;
+    private HUDController HUD;
 
     [Header("Main References")]
     [Space]
@@ -104,6 +105,7 @@ public class CelestialBodyManager : MonoBehaviour
 
     void Start()
     {
+        HUD = HUDController.Instance;
         GM = GameManager.Instance;
         GM.OnCutsceneStarted += OnCutsceneStarted;
         GM.OnCutsceneEnded += OnCutsceneEnded;
@@ -355,7 +357,13 @@ public class CelestialBodyManager : MonoBehaviour
         }
     }
 
-    public void PlayAbsorbSFX(CelestialBodyType _type)
+    public void PerformAbsorbBehavior(CelestialBodyType _type, CodexEntry.CodexEntryType _entryType)
+    {
+        PlayAbsorbSFX(_type);
+        HUD.CheckCodexEntry(_entryType);
+    }
+
+    private void PlayAbsorbSFX(CelestialBodyType _type)
     {
         AmountOfBodiesPerLevel levelSpecificCelestialBodySettings = LevelSpecificCelestialBodySettings();
 
