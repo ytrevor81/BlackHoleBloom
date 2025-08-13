@@ -187,6 +187,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 4536776697406446826}
+          m_TargetAssemblyTypeName: CodexItem, Assembly-CSharp
+          m_MethodName: ViewCodexEntry_Event
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   - eventID: 15
     callback:
       m_PersistentCalls:
@@ -194,6 +206,18 @@ MonoBehaviour:
         - m_Target: {fileID: 7263137014032979939}
           m_TargetAssemblyTypeName: CommonButtonBehavior, Assembly-CSharp
           m_MethodName: PressedVFX_Event
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 4536776697406446826}
+          m_TargetAssemblyTypeName: CodexItem, Assembly-CSharp
+          m_MethodName: ViewCodexEntry_Event
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -427,4 +451,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d04e3a1354a96ae479fe0ea159a36a77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controller: {fileID: 0}
   <CodexEntry>k__BackingField: {fileID: 0}

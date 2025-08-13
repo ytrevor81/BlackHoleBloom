@@ -8,6 +8,7 @@ public class CodexPopup : MonoBehaviour
     [SerializeField] private float fadeOutTime;
 
     public CodexEntry EntryData { get; set; }
+    private bool isFadingIn;
     private bool isFadingOut;
     private float timer;
     private bool canInteract;
@@ -15,19 +16,30 @@ public class CodexPopup : MonoBehaviour
     void Awake()
     {
         canvasGroup = GetComponent<CanvasGroup>();
-        canvasGroup.alpha = 1f;
+        canvasGroup.alpha = 0f;
     }
 
     void OnEnable()
     {
+        isFadingIn = true;
         isFadingOut = false;
         canInteract = true;
-        timer = timeVisible;
     }
 
     void Update()
     {
-        if (isFadingOut)
+        if (isFadingIn)
+        {
+            timer += Time.deltaTime;
+            canvasGroup.alpha = Mathf.Lerp(0f, 1f, timer / fadeOutTime);
+
+            if (timer >= fadeOutTime)
+            {
+                isFadingIn = false;
+                timer = timeVisible;
+            }
+        }
+        else if (isFadingOut)
         {
             timer += Time.deltaTime;
             canvasGroup.alpha = Mathf.Lerp(1f, 0f, timer / fadeOutTime);

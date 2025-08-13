@@ -360,6 +360,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Type>k__BackingField: 2
+  entry: {fileID: 11400000, guid: d062f5edc346eae498ac66d2ba59f692, type: 2}
   playerDetectionCollider: {fileID: 220801531698660846}
   lineRenderer: {fileID: 6100086929621785300}
 --- !u!212 &2489342237832622388

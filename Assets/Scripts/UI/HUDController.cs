@@ -293,9 +293,18 @@ public class HUDController : MonoBehaviour
         }
     }
 
-    public void CheckCodexEntry(CodexEntry.CodexEntryType _entryType)
+    public void CheckCodexEntry(CodexEntry _entryData)
     {
-        codexPopupList.AddToCodex(_entryType);
+        codexPopupList.AddToCodex(_entryData);
+    }
+    public void CheckCometEntry()
+    {
+        codexPopupList.AddCometToCodex();
+    }
+
+    public void CheckWhiteHoleEntry()
+    {
+        codexPopupList.AddWhiteHoleToCodex();
     }
 
     public void FadeOutHUD()

@@ -357,10 +357,10 @@ public class CelestialBodyManager : MonoBehaviour
         }
     }
 
-    public void PerformAbsorbBehavior(CelestialBodyType _type, CodexEntry.CodexEntryType _entryType)
+    public void PerformAbsorbBehavior(CelestialBodyType _type, CodexEntry _entryData)
     {
         PlayAbsorbSFX(_type);
-        HUD.CheckCodexEntry(_entryType);
+        HUD.CheckCodexEntry(_entryData);
     }
 
     private void PlayAbsorbSFX(CelestialBodyType _type)

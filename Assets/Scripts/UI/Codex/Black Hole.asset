@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Title>k__BackingField: Black Hole
   <Mass>k__BackingField: 10000
-  <Description>k__BackingField: 
+  <Description>k__BackingField: This is a description
   <Icon>k__BackingField: {fileID: 0}
   <IsDiscovered>k__BackingField: 0

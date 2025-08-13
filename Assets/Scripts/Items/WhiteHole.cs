@@ -51,6 +51,7 @@ public class WhiteHole : MonoBehaviour, IGravityInteract
     private int currentTick;
     private Vector3 initialScale;
     private float scaleLerpStartTime;
+    private bool codexEntryChecked;
 
     [Header("Eject Into Player VFX")]
     [Space]
@@ -324,6 +325,13 @@ public class WhiteHole : MonoBehaviour, IGravityInteract
                 numOfObjectsToAbsorb = 1;
 
             player.AddWhiteHoleMass(massPerTick * MassPerTickMultiplier(), numOfObjectsToAbsorb);
+
+            if (!codexEntryChecked)
+            {
+                codexEntryChecked = true;
+                HUDController.Instance.CheckWhiteHoleEntry();
+            }
+            
             currentTick++;
             lastTickTime = Time.time;
         }

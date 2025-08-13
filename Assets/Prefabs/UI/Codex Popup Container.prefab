@@ -358,6 +358,7 @@ GameObject:
   - component: {fileID: 3744733343006882253}
   - component: {fileID: 5848392983703635453}
   - component: {fileID: 5768836196212090710}
+  - component: {fileID: 9130893323804524907}
   m_Layer: 5
   m_Name: Codex Popup Container
   m_TagString: Untagged
@@ -560,6 +561,18 @@ MonoBehaviour:
   controller: {fileID: 0}
   timeVisible: 2
   fadeOutTime: 0.75
+--- !u!225 &9130893323804524907
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6025219334665778402}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &8487889211629578516
 GameObject:
   m_ObjectHideFlags: 0

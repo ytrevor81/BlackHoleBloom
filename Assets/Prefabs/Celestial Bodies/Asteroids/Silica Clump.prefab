@@ -194,6 +194,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Type>k__BackingField: 1
+  entry: {fileID: 11400000, guid: 4337f2ef0a399c443838d5aab98b97ed, type: 2}
   playerDetectionCollider: {fileID: 5598358737703681005}
   lineRenderer: {fileID: 8865851839102233506}
 --- !u!212 &4892174266561763295

@@ -84,6 +84,7 @@ public class NewComet : MonoBehaviour, IGravityInteract, IBarrierInteract
                 elapsedTime = 0;
                 goToPlayerParticle.Stop();
                 HUD.FadeInHUD();
+                HUD.CheckCometEntry();
                 player.EnterBoostMode();
 
                 currentCoroutine = DelayDeactivatingObject();

@@ -116,6 +116,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Brown Dwarf
       objectReference: {fileID: 0}
+    - target: {fileID: 6464369979331203822, guid: c77961e58d1d5c140b941ed91c1968b6, type: 3}
+      propertyPath: entry
+      value: 
+      objectReference: {fileID: 11400000, guid: 855edbec1337e2744bb98ee0a5b74921, type: 2}
     - target: {fileID: 7007533860189216445, guid: c77961e58d1d5c140b941ed91c1968b6, type: 3}
       propertyPath: m_LocalScale.x
       value: 25

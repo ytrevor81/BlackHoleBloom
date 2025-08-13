@@ -4943,6 +4943,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Type>k__BackingField: 0
+  entry: {fileID: 11400000, guid: 188755b267bb6dd47ba53aa1227d1187, type: 2}
   playerDetectionCollider: {fileID: 3604603446120244073}
   lineRenderer: {fileID: 2288987458709610489}
   mainBodyTransform: {fileID: 2813100003969384993}

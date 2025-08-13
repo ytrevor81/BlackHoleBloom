@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Title>k__BackingField: Helium
   <Mass>k__BackingField: 100
-  <Description>k__BackingField: 
+  <Description>k__BackingField: This is a desciption
   <Icon>k__BackingField: {fileID: 21300000, guid: a176863ece6ce124888936876c29086c, type: 3}
   <IsDiscovered>k__BackingField: 1
