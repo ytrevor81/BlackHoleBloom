@@ -49,7 +49,7 @@ public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<Collider2D>();
 
-        if (Type != CelestialBodyType.Gas)
+        if (Type != CelestialBodyType.Tier1)
         {
             spriteRenderer = GetComponent<SpriteRenderer>();
             originalScale = transform.localScale;
@@ -59,7 +59,7 @@ public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
 
     protected virtual void OnEnable()
     {
-        if (Type != CelestialBodyType.Gas)
+        if (Type != CelestialBodyType.Tier1)
         {
             transform.localScale = originalScale;
             spriteRenderer.color = originalColor;

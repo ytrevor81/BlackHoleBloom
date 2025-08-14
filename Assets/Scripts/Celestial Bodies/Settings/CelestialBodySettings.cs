@@ -5,10 +5,10 @@ public class CelestialBodySettings : ScriptableObject
 {
     public enum CelestialBodyType
     {
-        Gas,
-        Asteroid,
-        Planet,
-        Star
+        Tier1,
+        Tier2,
+        Tier3,
+        Tier4
     }
 
     [field: SerializeField] public float Mass {  get; private set; }
@@ -42,25 +42,12 @@ public class CelestialBodySettings : ScriptableObject
     [field: SerializeField] public float TimeBetweenAbsorbSFXCalls { get; private set; }
 
     [field: Space]
-    [field: SerializeField] public GameObject Variant1Prefab { get; private set; }
-    [field: SerializeField] public GameObject Variant2Prefab { get; private set; }
-    [field: SerializeField] public GameObject Variant3Prefab { get; private set; }
+    [SerializeField] private GameObject[] celestialBodyPrefabs;
 
     public GameObject GetCelestialBodyPrefab()
     {
-        int randomNum = Random.Range(1, 4);
-
-        if (randomNum == 1)
-            return Variant1Prefab;
-        
-        else if (randomNum == 2)
-            return Variant2Prefab;
-        
-        else if (randomNum == 3)
-            return Variant3Prefab;
-        
-        else
-            return Variant1Prefab;
+        int randomNum = Random.Range(0, celestialBodyPrefabs.Length);
+        return celestialBodyPrefabs[randomNum];
     }
 
     public float NewOrbitMultiplier(GameManager _GM)

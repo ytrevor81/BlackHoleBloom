@@ -3887,6 +3887,10 @@ PrefabInstance:
       propertyPath: mainVC
       value: 
       objectReference: {fileID: 120669081}
+    - target: {fileID: 7304445671350150157, guid: cd381eb969f869344869caeef8a6fc33, type: 3}
+      propertyPath: shockwaveTime
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7437820139679411611, guid: cd381eb969f869344869caeef8a6fc33, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7

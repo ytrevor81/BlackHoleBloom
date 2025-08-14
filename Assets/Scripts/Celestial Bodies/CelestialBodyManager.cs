@@ -86,16 +86,16 @@ public class CelestialBodyManager : MonoBehaviour
 
             for (int i = 0; i < initialCelestialBodies.Length; i++)
             {
-                if (initialCelestialBodies[i].Type == CelestialBodyType.Gas)
+                if (initialCelestialBodies[i].Type == CelestialBodyType.Tier1)
                     activeGasSet.Remove(initialCelestialBodies[i]);
 
-                else if (initialCelestialBodies[i].Type == CelestialBodyType.Asteroid)
+                else if (initialCelestialBodies[i].Type == CelestialBodyType.Tier2)
                     activeAsteroidsSet.Remove(initialCelestialBodies[i]);
 
-                else if (initialCelestialBodies[i].Type == CelestialBodyType.Planet)
+                else if (initialCelestialBodies[i].Type == CelestialBodyType.Tier3)
                     activePlanetsSet.Remove(initialCelestialBodies[i]);
 
-                else if (initialCelestialBodies[i].Type == CelestialBodyType.Star)
+                else if (initialCelestialBodies[i].Type == CelestialBodyType.Tier4)
                     activeStarsSet.Remove(initialCelestialBodies[i]);
 
                 initialCelestialBodies[i].gameObject.SetActive(false);
@@ -112,6 +112,12 @@ public class CelestialBodyManager : MonoBehaviour
         GM.OnLevelChanged += UpdateSpawnInterval;
         SFXBank = GM.AudioManager.SFXBank;
         SFXBank.LoadCelestialBodies();
+    }
+
+    private void CacheHUDIfValid()
+    {
+        if (HUD == null)
+            HUD = HUDController.Instance;
     }
 
     void OnDisable()
@@ -140,25 +146,25 @@ public class CelestialBodyManager : MonoBehaviour
         {
             initialCelestialBodies[i].Manager = this;
             
-            if (initialCelestialBodies[i].Type == CelestialBodyType.Gas)
+            if (initialCelestialBodies[i].Type == CelestialBodyType.Tier1)
             {
                 gasSet.Add(initialCelestialBodies[i]);
                 activeGasSet.Add(initialCelestialBodies[i]);
                 initialCelestialBodies[i].InitialBoost(gasSettings);
             }
-            else if (initialCelestialBodies[i].Type == CelestialBodyType.Asteroid)
+            else if (initialCelestialBodies[i].Type == CelestialBodyType.Tier2)
             {
                 asteroidSet.Add(initialCelestialBodies[i]);
                 activeAsteroidsSet.Add(initialCelestialBodies[i]);
                 initialCelestialBodies[i].InitialBoost(asteroidSettings);
             }
-            else if (initialCelestialBodies[i].Type == CelestialBodyType.Planet)
+            else if (initialCelestialBodies[i].Type == CelestialBodyType.Tier3)
             {
                 planetSet.Add(initialCelestialBodies[i]);
                 activePlanetsSet.Add(initialCelestialBodies[i]);
                 initialCelestialBodies[i].InitialBoost(planetSettings);
             }
-            else if (initialCelestialBodies[i].Type == CelestialBodyType.Star)
+            else if (initialCelestialBodies[i].Type == CelestialBodyType.Tier4)
             {
                 starSet.Add(initialCelestialBodies[i]);
                 activeStarsSet.Add(initialCelestialBodies[i]);
@@ -209,13 +215,13 @@ public class CelestialBodyManager : MonoBehaviour
         {
             for (int i = 0; i < moveableCelestialBodiesSet.Count; i++)
             {
-                if (moveableCelestialBodiesSet[i].Type == CelestialBodyType.Gas)
+                if (moveableCelestialBodiesSet[i].Type == CelestialBodyType.Tier1)
                     ManageCelestialBody(moveableCelestialBodiesSet[i], gasSettings);
 
-                else if (moveableCelestialBodiesSet[i].Type == CelestialBodyType.Star)
+                else if (moveableCelestialBodiesSet[i].Type == CelestialBodyType.Tier2)
                     ManageCelestialBody(moveableCelestialBodiesSet[i], starSettings);
 
-                else if (moveableCelestialBodiesSet[i].Type == CelestialBodyType.Planet)
+                else if (moveableCelestialBodiesSet[i].Type == CelestialBodyType.Tier3)
                     ManageCelestialBody(moveableCelestialBodiesSet[i], planetSettings);
 
                 else
@@ -335,22 +341,22 @@ public class CelestialBodyManager : MonoBehaviour
         celestialBody.transform.position = GetRandomValidPosition();
         celestialBody.gameObject.SetActive(true);
 
-        if (celestialBody.Type == CelestialBodyType.Gas)
+        if (celestialBody.Type == CelestialBodyType.Tier1)
         {
             activeGasSet.Add(celestialBody);
             celestialBody.InitialBoost(gasSettings);
         }
-        else if (celestialBody.Type == CelestialBodyType.Asteroid)
+        else if (celestialBody.Type == CelestialBodyType.Tier2)
         {
             activeAsteroidsSet.Add(celestialBody);
             celestialBody.InitialBoost(asteroidSettings);
         }
-        else if (celestialBody.Type == CelestialBodyType.Star)
+        else if (celestialBody.Type == CelestialBodyType.Tier4)
         {
             activeStarsSet.Add(celestialBody);
             celestialBody.InitialBoost(starSettings);
         }
-        else if (celestialBody.Type == CelestialBodyType.Planet)
+        else if (celestialBody.Type == CelestialBodyType.Tier3)
         {
             activePlanetsSet.Add(celestialBody);
             celestialBody.InitialBoost(planetSettings);
@@ -359,6 +365,8 @@ public class CelestialBodyManager : MonoBehaviour
 
     public void PerformAbsorbBehavior(CelestialBodyType _type, CodexEntry _entryData)
     {
+        CacheHUDIfValid();
+
         PlayAbsorbSFX(_type);
         HUD.CheckCodexEntry(_entryData);
     }
@@ -367,22 +375,22 @@ public class CelestialBodyManager : MonoBehaviour
     {
         AmountOfBodiesPerLevel levelSpecificCelestialBodySettings = LevelSpecificCelestialBodySettings();
 
-        if (_type == CelestialBodyType.Gas && gasAbsorbSFXTimer <= 0)
+        if (_type == CelestialBodyType.Tier1 && gasAbsorbSFXTimer <= 0)
         {
             gasAbsorbSFXTimer = gasSettings.TimeBetweenAbsorbSFXCalls;
             BHBAudio.PlayOneShotAttachedFromLoadedSampleData(SFXBank.GasDescription, player, levelSpecificCelestialBodySettings.VolumeOfAbsorbSoundsPerLevel.x);
         }
-        else if (_type == CelestialBodyType.Asteroid && asteroidAbsorbSFXTimer <= 0)
+        else if (_type == CelestialBodyType.Tier2 && asteroidAbsorbSFXTimer <= 0)
         {
             asteroidAbsorbSFXTimer = asteroidSettings.TimeBetweenAbsorbSFXCalls;
             BHBAudio.PlayOneShotAttachedFromLoadedSampleData(SFXBank.AsteroidDescription, player, levelSpecificCelestialBodySettings.VolumeOfAbsorbSoundsPerLevel.y);
         }
-        else if (_type == CelestialBodyType.Planet && planetAbsorbSFXTimer <= 0)
+        else if (_type == CelestialBodyType.Tier3 && planetAbsorbSFXTimer <= 0)
         {
             planetAbsorbSFXTimer = planetSettings.TimeBetweenAbsorbSFXCalls;
             BHBAudio.PlayOneShotAttachedFromLoadedSampleData(SFXBank.PlanetDescription, player, levelSpecificCelestialBodySettings.VolumeOfAbsorbSoundsPerLevel.z);
         }
-        else if (_type == CelestialBodyType.Star && starAbsorbSFXTimer <= 0)
+        else if (_type == CelestialBodyType.Tier4 && starAbsorbSFXTimer <= 0)
         {
             starAbsorbSFXTimer = starSettings.TimeBetweenAbsorbSFXCalls;
             BHBAudio.PlayOneShotAttachedFromLoadedSampleData(SFXBank.StarDescription, player, levelSpecificCelestialBodySettings.VolumeOfAbsorbSoundsPerLevel.w);
@@ -391,13 +399,13 @@ public class CelestialBodyManager : MonoBehaviour
 
     public float GetMass(CelestialBodyType _type)
     {
-        if (_type == CelestialBodyType.Asteroid)
+        if (_type == CelestialBodyType.Tier2)
             return asteroidSettings.Mass;
 
-        else if (_type == CelestialBodyType.Star)
+        else if (_type == CelestialBodyType.Tier4)
             return starSettings.Mass;
 
-        else if (_type == CelestialBodyType.Gas)
+        else if (_type == CelestialBodyType.Tier1)
             return gasSettings.Mass;
 
         else
@@ -412,16 +420,16 @@ public class CelestialBodyManager : MonoBehaviour
 
     public void RemoveCelestialBodyFromActiveSet(CelestialBody celestialBody)
     {
-        if (celestialBody.Type == CelestialBodyType.Asteroid)
+        if (celestialBody.Type == CelestialBodyType.Tier2)
             activeAsteroidsSet.Remove(celestialBody);
 
-        else if (celestialBody.Type == CelestialBodyType.Star)
+        else if (celestialBody.Type == CelestialBodyType.Tier4)
             activeStarsSet.Remove(celestialBody);
         
-        else if (celestialBody.Type == CelestialBodyType.Gas)
+        else if (celestialBody.Type == CelestialBodyType.Tier1)
             activeGasSet.Remove(celestialBody);
         
-        else if (celestialBody.Type == CelestialBodyType.Planet)
+        else if (celestialBody.Type == CelestialBodyType.Tier3)
             activePlanetsSet.Remove(celestialBody);
 
         moveableCelestialBodiesSet.Remove(celestialBody);
@@ -429,13 +437,13 @@ public class CelestialBodyManager : MonoBehaviour
 
     public float NewOrbitMultiplier(CelestialBodyType _type)
     {
-        if (_type == CelestialBodyType.Asteroid)
+        if (_type == CelestialBodyType.Tier2)
             return asteroidSettings.NewOrbitMultiplier(GM);
         
-        else if (_type == CelestialBodyType.Star)
+        else if (_type == CelestialBodyType.Tier4)
             return starSettings.NewOrbitMultiplier(GM);
         
-        else if (_type == CelestialBodyType.Gas)
+        else if (_type == CelestialBodyType.Tier1)
             return gasSettings.NewOrbitMultiplier(GM);
         
         else
@@ -443,13 +451,13 @@ public class CelestialBodyManager : MonoBehaviour
     }
     public float TravelSpeed(CelestialBodyType _type)
     {
-        if (_type == CelestialBodyType.Asteroid)
+        if (_type == CelestialBodyType.Tier2)
             return asteroidSettings.SpeedToPlayer;
         
-        else if (_type == CelestialBodyType.Star)
+        else if (_type == CelestialBodyType.Tier4)
             return starSettings.SpeedToPlayer;
         
-        else if (_type == CelestialBodyType.Gas)
+        else if (_type == CelestialBodyType.Tier1)
             return gasSettings.SpeedToPlayer;
         
         else
@@ -457,13 +465,13 @@ public class CelestialBodyManager : MonoBehaviour
     }
     public float GetMinOrbitMultiplier(CelestialBodyType _type)
     {
-        if (_type == CelestialBodyType.Asteroid)
+        if (_type == CelestialBodyType.Tier2)
             return asteroidSettings.GetMinOrbitMultiplier(GM);
         
-        else if (_type == CelestialBodyType.Star)
+        else if (_type == CelestialBodyType.Tier4)
             return starSettings.GetMinOrbitMultiplier(GM);
         
-        else if (_type == CelestialBodyType.Gas)
+        else if (_type == CelestialBodyType.Tier1)
             return gasSettings.GetMinOrbitMultiplier(GM);
         
         else
@@ -471,13 +479,13 @@ public class CelestialBodyManager : MonoBehaviour
     }
     public float OrbitDeclineRate(CelestialBodyType _type)
     {
-        if (_type == CelestialBodyType.Asteroid)
+        if (_type == CelestialBodyType.Tier2)
             return asteroidSettings.OrbitDeclineRate;
         
-        else if (_type == CelestialBodyType.Star)
+        else if (_type == CelestialBodyType.Tier4)
             return starSettings.OrbitDeclineRate;
         
-        else if (_type == CelestialBodyType.Gas)
+        else if (_type == CelestialBodyType.Tier1)
             return gasSettings.OrbitDeclineRate;
         
         else
@@ -493,21 +501,21 @@ public class CelestialBodyManager : MonoBehaviour
         
         cumulativePercentage += percentages.x;
         if (randomValue <= cumulativePercentage)
-            return CelestialBodyType.Gas;
+            return CelestialBodyType.Tier1;
         
         cumulativePercentage += percentages.y;
         if (randomValue <= cumulativePercentage)
-            return CelestialBodyType.Asteroid;
-        
+            return CelestialBodyType.Tier2;
+
         cumulativePercentage += percentages.z;
         if (randomValue <= cumulativePercentage)
-            return CelestialBodyType.Planet;
-        
+            return CelestialBodyType.Tier3;
+
         cumulativePercentage += percentages.w;
         if (randomValue <= cumulativePercentage)
-            return CelestialBodyType.Star;
+            return CelestialBodyType.Tier4;
         
-        return CelestialBodyType.Asteroid;
+        return CelestialBodyType.Tier2;
     }
 
     private CelestialBodyType CelestialBodyTypeToSpawn()
@@ -540,10 +548,10 @@ public class CelestialBodyManager : MonoBehaviour
             return GetRandomCelestialBodyTypeByPercentage(amountOfBodiesLevel9.PercentageOfBodiesToSpawn);
         
         else if (GM.CurrentLevel == GameManager.Level.Level10)
-            return CelestialBodyType.Star;
+            return CelestialBodyType.Tier4;
 
         else
-            return CelestialBodyType.Asteroid;
+            return CelestialBodyType.Tier2;
     }
 
     private CelestialBody CelestialBody()
@@ -551,7 +559,7 @@ public class CelestialBodyManager : MonoBehaviour
         CelestialBody celestialBody = null;
         CelestialBodyType celestialBodyType = CelestialBodyTypeToSpawn();
 
-        if (celestialBodyType == CelestialBodyType.Asteroid)
+        if (celestialBodyType == CelestialBodyType.Tier2)
         {
             for (int i=0; i < asteroidSet.Count; i++)
             {
@@ -562,7 +570,7 @@ public class CelestialBodyManager : MonoBehaviour
                 }
             }
         }
-        else if (celestialBodyType == CelestialBodyType.Gas)
+        else if (celestialBodyType == CelestialBodyType.Tier1)
         {
             for (int i=0; i < gasSet.Count; i++)
             {
@@ -573,7 +581,7 @@ public class CelestialBodyManager : MonoBehaviour
                 }
             }
         }
-        else if (celestialBodyType == CelestialBodyType.Planet)
+        else if (celestialBodyType == CelestialBodyType.Tier3)
         {
             for (int i=0; i < planetSet.Count; i++)
             {
@@ -584,7 +592,7 @@ public class CelestialBodyManager : MonoBehaviour
                 }
             }
         }
-        else if (celestialBodyType == CelestialBodyType.Star)
+        else if (celestialBodyType == CelestialBodyType.Tier4)
         {
             for (int i=0; i < starSet.Count; i++)
             {
@@ -663,22 +671,22 @@ public class CelestialBodyManager : MonoBehaviour
         {
             initialCelestialBodies[i].gameObject.SetActive(true);
             
-            if (initialCelestialBodies[i].Type == CelestialBodyType.Gas)
+            if (initialCelestialBodies[i].Type == CelestialBodyType.Tier1)
             {
                 activeGasSet.Add(initialCelestialBodies[i]);
                 initialCelestialBodies[i].InitialBoost(gasSettings);
             }
-            else if (initialCelestialBodies[i].Type == CelestialBodyType.Asteroid)
+            else if (initialCelestialBodies[i].Type == CelestialBodyType.Tier2)
             {
                 activeAsteroidsSet.Add(initialCelestialBodies[i]);
                 initialCelestialBodies[i].InitialBoost(asteroidSettings);
             }
-            else if (initialCelestialBodies[i].Type == CelestialBodyType.Planet)
+            else if (initialCelestialBodies[i].Type == CelestialBodyType.Tier3)
             {
                 activePlanetsSet.Add(initialCelestialBodies[i]);
                 initialCelestialBodies[i].InitialBoost(planetSettings);
             }
-            else if (initialCelestialBodies[i].Type == CelestialBodyType.Star)
+            else if (initialCelestialBodies[i].Type == CelestialBodyType.Tier4)
             {
                 activeStarsSet.Add(initialCelestialBodies[i]);
                 initialCelestialBodies[i].InitialBoost(starSettings);
