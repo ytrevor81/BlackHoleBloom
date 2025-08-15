@@ -10,6 +10,7 @@ public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
     [SerializeField] private CodexEntry entry;
     [SerializeField] private GameObject playerDetectionCollider;
     [SerializeField] private LineRenderer lineRenderer;
+    [SerializeField] private bool omitAlphaDecrease;
     private SpriteRenderer spriteRenderer;
     
     public CelestialBodyManager Manager { get; set; }
@@ -205,7 +206,9 @@ public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
     protected virtual void Shrink(CelestialBodySettings _settings)
     {
         alpha -= _settings.FadeOutSpeed * Time.fixedDeltaTime;
-        spriteRenderer.color = new Color(1f, 1f, 1f, alpha);
+
+        if (!omitAlphaDecrease)
+            spriteRenderer.color = new Color(1f, 1f, 1f, alpha);
 
         transform.localScale = Vector3.Lerp(transform.localScale, targetScale, _settings.ShrinkSpeed * Time.fixedDeltaTime);
 

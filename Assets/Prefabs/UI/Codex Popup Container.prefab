@@ -559,7 +559,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 0}
-  timeVisible: 0.5
+  timeVisible: 1
   fadeOutTime: 0.5
 --- !u!225 &9130893323804524907
 CanvasGroup:
