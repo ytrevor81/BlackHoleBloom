@@ -13,7 +13,7 @@ public class WhiteHole : MonoBehaviour, IGravityInteract
     [SerializeField] private Transform beacon;
     [SerializeField] private float beaconFadeSpeed;
     [SerializeField] private float beaconExpandSpeed;
-    
+
     [SerializeField] private Animator vfxContainer;
     [SerializeField] private ParticleSystem gasParticle;
     [SerializeField] private ParticleSystem matterParticle;
@@ -61,12 +61,12 @@ public class WhiteHole : MonoBehaviour, IGravityInteract
     [SerializeField] private float animateSpeed;
     [SerializeField] private float finalSimSpeedMatterLine;
     [SerializeField] private float finalSimSpeedGasLine;
-    [SerializeField]private float maxLifetimeMatterLine;
-    [SerializeField]private float minLifetimeMatterLine;
-    [SerializeField]private float maxLifetimeGasLine;
-    [SerializeField]private float minLifetimeGasLine;
-    [SerializeField]private float maxDistanceVFX;
-    [SerializeField]private float minDistanceVFX;
+    [SerializeField] private float maxLifetimeMatterLine;
+    [SerializeField] private float minLifetimeMatterLine;
+    [SerializeField] private float maxLifetimeGasLine;
+    [SerializeField] private float minLifetimeGasLine;
+    [SerializeField] private float maxDistanceVFX;
+    [SerializeField] private float minDistanceVFX;
     private GameManager.Level levelOfInjection;
 
     private float newSimulationSpeedMatterLine1;
@@ -97,7 +97,7 @@ public class WhiteHole : MonoBehaviour, IGravityInteract
     [SerializeField] private int TrajectorySteps;
     [SerializeField] private float OrbitRadius;
     private SpriteRenderer spriteRenderer;
-    
+
     private PlayerController player;
     private Vector2 playerPos;
     private bool inPlayerZone;
@@ -110,7 +110,7 @@ public class WhiteHole : MonoBehaviour, IGravityInteract
     private Vector3 targetFinalScale = new Vector3(0.01f, 0.01f, 1f);
     private Vector3 particleInitialScale;
     private IEnumerator currentCoroutine;
-    
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -167,7 +167,7 @@ public class WhiteHole : MonoBehaviour, IGravityInteract
         {
             if (inPlayerZone)
                 EjectIntoBlackHole();
-            
+
             AnimateBeacon();
         }
     }
@@ -224,10 +224,10 @@ public class WhiteHole : MonoBehaviour, IGravityInteract
     {
         float r = _dirToPlayer.magnitude;
         Vector2 radialDir = _dirToPlayer / r;
-        Vector2 tangentDir= new Vector2(-radialDir.y, radialDir.x);
+        Vector2 tangentDir = new Vector2(-radialDir.y, radialDir.x);
 
         float vTangent = Vector2.Dot(_velocity, tangentDir);
-        float vRadial  = Vector2.Dot(_velocity, radialDir);
+        float vRadial = Vector2.Dot(_velocity, radialDir);
 
         float requiredSpeed = Mathf.Sqrt(Gravity / r);
 
@@ -249,17 +249,17 @@ public class WhiteHole : MonoBehaviour, IGravityInteract
     {
         rb.velocity = Vector2.zero;
         playerPos = player.transform.position;
-        directionToPlayer = playerPos - (Vector2)transform.position;            
+        directionToPlayer = playerPos - (Vector2)transform.position;
         // Apply gravitational force
         gravitationalForce = CalculateGravitationalForce(directionToPlayer);
         currentVelocity += gravitationalForce * Time.fixedDeltaTime;
-        
+
         // Apply orbital correction to maintain circular orbit
         currentVelocity = NudgeTowardsOrbit(currentVelocity, directionToPlayer, RadialGain, TangentGain, simulated: false);
         // Distance constraint: gently pull back if too far, push away if too close
         float currentDistance = directionToPlayer.magnitude;
         float distanceError = OrbitRadius - currentDistance;
-        
+
         if (Mathf.Abs(distanceError) > 0.5f) // Only apply correction if significantly off
         {
             Vector2 distanceCorrection = directionToPlayer.normalized * (distanceError * 0.1f); // Gentle correction
@@ -277,11 +277,11 @@ public class WhiteHole : MonoBehaviour, IGravityInteract
     private void EjectIntoBlackHole()
     {
         AdaptParticleVisualDistance();
-        
+
         Vector2 directionToPlayer = (player.transform.position - transform.position).normalized;
         float targetAngle = Mathf.Atan2(directionToPlayer.y, directionToPlayer.x) * Mathf.Rad2Deg;
         vfxContainer.transform.rotation = Quaternion.Euler(0, 0, targetAngle + 90);
-        
+
 
         if (!particlesAnimated)
         {
@@ -292,7 +292,7 @@ public class WhiteHole : MonoBehaviour, IGravityInteract
 
         if (ParticlesAnimated())
             particlesAnimated = true;
-        
+
         UpdateMassAndPointsToPlayer();
     }
 
@@ -331,11 +331,11 @@ public class WhiteHole : MonoBehaviour, IGravityInteract
                 codexEntryChecked = true;
                 HUDController.Instance.CheckWhiteHoleEntry();
             }
-            
+
             currentTick++;
             lastTickTime = Time.time;
         }
-    
+
         if (currentTick >= numOfTicks)
         {
             disappearing = true;
@@ -353,28 +353,28 @@ public class WhiteHole : MonoBehaviour, IGravityInteract
     {
         if (levelOfInjection == GameManager.Level.Level2)
             return 2;
-        
+
         else if (levelOfInjection == GameManager.Level.Level3)
             return 4;
-        
+
         else if (levelOfInjection == GameManager.Level.Level4)
             return 6;
-        
+
         else if (levelOfInjection == GameManager.Level.Level5)
             return 8;
-        
+
         else if (levelOfInjection == GameManager.Level.Level6)
             return 10;
-        
+
         else if (levelOfInjection == GameManager.Level.Level7)
             return 12;
-        
+
         else if (levelOfInjection == GameManager.Level.Level8)
             return 14;
-        
+
         else if (levelOfInjection == GameManager.Level.Level9)
             return 16;
-        
+
         else
             return 16;
     }
@@ -385,7 +385,7 @@ public class WhiteHole : MonoBehaviour, IGravityInteract
         float normalizedDistance = Mathf.Clamp01((distanceToPlayer - minDistanceVFX) / (maxDistanceVFX - minDistanceVFX));
         float newLifetimeMatterLine = Mathf.Lerp(minLifetimeMatterLine, maxLifetimeMatterLine, normalizedDistance);
         float newLifetimeGasLine = Mathf.Lerp(minLifetimeGasLine, maxLifetimeGasLine, normalizedDistance);
-        
+
         matterParticleMain.startLifetime = newLifetimeMatterLine;
         matterParticle2Main.startLifetime = newLifetimeMatterLine;
         gasParticleMain.startLifetime = newLifetimeGasLine;
@@ -425,7 +425,7 @@ public class WhiteHole : MonoBehaviour, IGravityInteract
                 newShapeRadiusGas = finalShapeRadius;
                 gasParticleShape.radius = newShapeRadiusGas;
             }
-        }   
+        }
 
         if (gasParticleMain.simulationSpeed < finalSimSpeedGasLine)
         {
@@ -437,7 +437,7 @@ public class WhiteHole : MonoBehaviour, IGravityInteract
                 newSimulationSpeedGasLine = finalSimSpeedGasLine;
                 gasParticleMain.simulationSpeed = newSimulationSpeedGasLine;
             }
-        }       
+        }
     }
 
     private void AnimateMatterParticle1()
@@ -464,7 +464,7 @@ public class WhiteHole : MonoBehaviour, IGravityInteract
                 newShapeRadiusMatter = finalShapeRadius;
                 matterParticleShape.radius = newShapeRadiusMatter;
             }
-        }   
+        }
 
         if (matterParticleMain.simulationSpeed < finalSimSpeedMatterLine)
         {
@@ -476,7 +476,7 @@ public class WhiteHole : MonoBehaviour, IGravityInteract
                 newSimulationSpeedMatterLine1 = finalSimSpeedMatterLine;
                 matterParticleMain.simulationSpeed = newSimulationSpeedMatterLine1;
             }
-        }  
+        }
     }
 
     private void AnimateMatterParticle2()
@@ -503,8 +503,8 @@ public class WhiteHole : MonoBehaviour, IGravityInteract
                 newShapeRadiusMatter2 = finalShapeRadius;
                 matterParticle2Shape.radius = newShapeRadiusMatter2;
             }
-        }   
-        
+        }
+
         if (matterParticle2Main.simulationSpeed < finalSimSpeedMatterLine)
         {
             newSimulationSpeedMatterLine2 += animateSpeed * Time.deltaTime;
@@ -515,7 +515,7 @@ public class WhiteHole : MonoBehaviour, IGravityInteract
                 newSimulationSpeedMatterLine2 = finalSimSpeedMatterLine;
                 matterParticle2Main.simulationSpeed = newSimulationSpeedMatterLine2;
             }
-        }   
+        }
     }
 
     private void ChangeSize()
@@ -524,7 +524,7 @@ public class WhiteHole : MonoBehaviour, IGravityInteract
             return;
 
         OrbitRadius += 5;
-        
+
         if (GM.CurrentLevel == GameManager.Level.Level2)
             ChangeScale(level2ScaleVectors);
 
@@ -568,11 +568,11 @@ public class WhiteHole : MonoBehaviour, IGravityInteract
         Vector3 currentScale = transform.localScale;
         Vector3 currentGasParticleScale = gasParticle.transform.localScale;
         Vector3 currentMatterParticleScale = matterParticle.transform.localScale;
-       
+
         Vector3 targetScale = new Vector3(scaleVectors.x, scaleVectors.x, 1f);
         Vector3 targetGasParticleScale = new Vector3(scaleVectors.y, scaleVectors.y, 1f);
         Vector3 targetMatterParticleScale = new Vector3(scaleVectors.y, scaleVectors.y, 1f);
-        
+
         while (elapsedTime < sameScaleAsPlayerTime)
         {
             elapsedTime += Time.deltaTime;
@@ -623,8 +623,8 @@ public class WhiteHole : MonoBehaviour, IGravityInteract
         else
             return GM.Level10ObjectCount;
     }
-    
-    public void EnterOrbit()
+
+    public void EnterOrbitOfPlayer()
     {
         levelOfInjection = GM.CurrentLevel;
         maxNumOfPoints = CalculatePoints();
@@ -635,7 +635,7 @@ public class WhiteHole : MonoBehaviour, IGravityInteract
         inPlayerZone = true;
 
         Vector2 toPlayer = player.transform.position - transform.position;
-        float  r = toPlayer.magnitude;
+        float r = toPlayer.magnitude;
         Vector2 radialDir = toPlayer / r;
         Vector2 tangentDir = new Vector2(-radialDir.y, radialDir.x);
 
@@ -643,10 +643,15 @@ public class WhiteHole : MonoBehaviour, IGravityInteract
         currentVelocity = tangentDir * orbitalSpeed;
 
         vfxContainer.enabled = true;
-        
+
         // Reset fill state
         fillStarted = false;
         currentTick = 0;
         lastTickTime = 0f;
+    }
+    public void EnterOrbitOfOtherCelestialBody(CelestialBody celestialBody, Collider2D _collider)
+    {
+        // This method is not used in WhiteHole, but must be implemented due to interface
+        // No specific behavior for entering orbit of another celestial body
     }
 }

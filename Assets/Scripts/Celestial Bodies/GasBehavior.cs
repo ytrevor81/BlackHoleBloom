@@ -28,9 +28,9 @@ public class GasBehavior : CelestialBody
         }
     }
 
-    public override void EnterOrbit()
+    public override void EnterOrbitOfPlayer()
     {
-        base.EnterOrbit();
+        base.EnterOrbitOfPlayer();
         trailParticle.gameObject.SetActive(true);
     }
 

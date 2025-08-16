@@ -11,6 +11,10 @@ public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
     [SerializeField] private GameObject playerDetectionCollider;
     [SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private bool omitAlphaDecrease;
+
+    [Space]
+
+    [SerializeField] private GameObject celestialBodyFinderCollider;
     private SpriteRenderer spriteRenderer;
     
     public CelestialBodyManager Manager { get; set; }
@@ -31,6 +35,7 @@ public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
     private float increaseSpeedThreshold;
     private float orbitDeclineRate;
     private float speedToPlayer;
+    private Transform targetOrbit;
     private ArraySegment<Vector3> simulatedPointsSlice;
     private int simCounter;
 
@@ -45,6 +50,7 @@ public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
     protected Vector3 targetScale = new Vector3(0.1f, 0.1f, 0.1f);
     protected float alpha;
     private Color originalColor;
+    private bool isInOrbit;
     protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -74,9 +80,15 @@ public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
         lineRenderer.gameObject.SetActive(false);
         currentVelocity = Vector2.zero;
         coll.enabled = true;
+        isInOrbit = false;
 
         gameObject.tag = BHBConstants.CELESTIAL_BODY;
         playerDetectionCollider.SetActive(true);
+
+        if (celestialBodyFinderCollider != null)
+        {
+            celestialBodyFinderCollider.SetActive(true);
+        }
     }
 
     private void CachePlayerIfValid()
@@ -139,10 +151,14 @@ public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
         else
         {
             effectiveDistance = r / orbitDistanceMultiplier;
-            orbitDistanceMultiplier -= Time.fixedDeltaTime * orbitDeclineRate;
 
-            if (orbitDistanceMultiplier < 0)
-                orbitDistanceMultiplier = 0;
+            if (inPlayerZone)
+            {
+                orbitDistanceMultiplier -= Time.fixedDeltaTime * orbitDeclineRate;
+
+                if (orbitDistanceMultiplier < 0)
+                    orbitDistanceMultiplier = 0;
+            }
         }
 
         float desiredSpeed;
@@ -178,7 +194,7 @@ public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
 
             rb.velocity = Vector2.zero;
             playerPos = player.transform.position;
-            directionToPlayer = playerPos - (Vector2)transform.position;            
+            directionToPlayer = playerPos - (Vector2)transform.position;
 
             if (shrinking)
             {
@@ -193,13 +209,25 @@ public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
             if (orbitDistanceMultiplier < increaseSpeedThreshold)
             {
                 speedToPlayer += settings.SpeedIncreaseRate * Time.fixedDeltaTime;
-                rb.MovePosition(rb.position + (currentVelocity * speedToPlayer) * Time.fixedDeltaTime);                
+                rb.MovePosition(rb.position + (currentVelocity * speedToPlayer) * Time.fixedDeltaTime);
             }
             else
             {
                 speedToPlayer = settings.SpeedToPlayer;
                 rb.MovePosition(rb.position + (currentVelocity * settings.SpeedToPlayer) * Time.fixedDeltaTime);
             }
+        }
+        else
+        {
+            rb.velocity = Vector2.zero;
+            directionToPlayer = (Vector2)targetOrbit.position - (Vector2)transform.position;
+
+            gravitationalForce = CalculateGravitationalForce(directionToPlayer);
+            currentVelocity += (gravitationalForce + directionToPlayer) * Time.fixedDeltaTime;
+            currentVelocity = NudgeTowardsOrbit(currentVelocity, directionToPlayer, settings.RadialGain, settings.TangentGain, simulated: false);
+
+            speedToPlayer = settings.SpeedToPlayer;
+            rb.MovePosition(rb.position + (currentVelocity * settings.SpeedToPlayer) * Time.fixedDeltaTime);
         }
     }
 
@@ -390,8 +418,13 @@ public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
         gameObject.SetActive(false);
     }
 
-    public virtual void EnterOrbit()
+    public virtual void EnterOrbitOfPlayer()
     {
+        if (celestialBodyFinderCollider != null)
+        {
+            celestialBodyFinderCollider.SetActive(true);
+        }
+
         CachePlayerIfValid();
 
         rb.isKinematic = true;
@@ -403,9 +436,36 @@ public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
         gameObject.tag = BHBConstants.NULL;
         coll.enabled = false;
         inPlayerZone = true;
+        isInOrbit = true;
         Manager.MakeCelestialBodyMoveable(this);
         rb.velocity = Vector2.zero;
         lineRenderer.gameObject.SetActive(true);
+    }
+
+    private bool OmitOrbitingOtherCelestialBody(CelestialBody _celestialBody)
+    {
+        return Type == CelestialBodyType.Tier1
+            || Type == CelestialBodyType.Tier4
+            || (Type == CelestialBodyType.Tier2 && _celestialBody.Type == CelestialBodyType.Tier4)
+            || (Type == CelestialBodyType.Tier3 && _celestialBody.Type == CelestialBodyType.Tier3)
+            || isInOrbit;
+    }
+    public void EnterOrbitOfOtherCelestialBody(CelestialBody celestialBody, Collider2D _collider)
+    {
+        if (OmitOrbitingOtherCelestialBody(celestialBody))
+            return;
+
+        CachePlayerIfValid();
+        targetOrbit = celestialBody.transform;
+        isInOrbit = true;
+
+        rb.isKinematic = true;
+        orbitDistanceMultiplier = Manager.MaxOrbitMultiplier(Type);
+        playerGravitationalForce = player.GravitationalForce;
+
+        increaseSpeedThreshold = Manager.GetMinOrbitMultiplier(Type);
+        Manager.MakeCelestialBodyMoveable(this);
+        rb.velocity = Vector2.zero;
     }
 
     public void HitBarrier(Vector2 contactPoint)

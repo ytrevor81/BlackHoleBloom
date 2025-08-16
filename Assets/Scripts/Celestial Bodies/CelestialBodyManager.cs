@@ -449,17 +449,31 @@ public class CelestialBodyManager : MonoBehaviour
         else
             return planetSettings.NewOrbitMultiplier(GM);
     }
+    public float MaxOrbitMultiplier(CelestialBodyType _type)
+    {
+        if (_type == CelestialBodyType.Tier2)
+            return asteroidSettings.GetMaxOribtRange();
+        
+        else if (_type == CelestialBodyType.Tier4)
+            return starSettings.GetMaxOribtRange();
+        
+        else if (_type == CelestialBodyType.Tier1)
+            return gasSettings.GetMaxOribtRange();
+        
+        else
+            return planetSettings.GetMaxOribtRange();
+    }
     public float TravelSpeed(CelestialBodyType _type)
     {
         if (_type == CelestialBodyType.Tier2)
             return asteroidSettings.SpeedToPlayer;
-        
+
         else if (_type == CelestialBodyType.Tier4)
             return starSettings.SpeedToPlayer;
-        
+
         else if (_type == CelestialBodyType.Tier1)
             return gasSettings.SpeedToPlayer;
-        
+
         else
             return planetSettings.SpeedToPlayer;
     }

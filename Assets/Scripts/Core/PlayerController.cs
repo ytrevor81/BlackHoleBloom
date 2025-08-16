@@ -307,7 +307,7 @@ public class PlayerController : MonoBehaviour
         objectsInOrbitGameObjects.Add(_collider.gameObject);
 
         CelestialBody celestialBody = _collider.GetComponent<CelestialBody>();
-        celestialBody.EnterOrbit();
+        celestialBody.EnterOrbitOfPlayer();
         objectsInOrbit.Add(celestialBody);
     }
     public void RemoveObjectFromOrbitingList(CelestialBody _celestialBody)

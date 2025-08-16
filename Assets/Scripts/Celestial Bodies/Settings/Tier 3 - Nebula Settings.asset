@@ -22,8 +22,8 @@ MonoBehaviour:
   Level7OrbitRange: {x: 40, y: 45}
   Level8OrbitRange: {x: 40, y: 45}
   Level9OrbitRange: {x: 40, y: 45}
-  <InitialSpeedRange>k__BackingField: {x: 10, y: 15}
-  <InitialRotationRange>k__BackingField: {x: 20, y: 25}
+  <InitialSpeedRange>k__BackingField: {x: 20, y: 25}
+  <InitialRotationRange>k__BackingField: {x: 30, y: 40}
   <SpeedToPlayer>k__BackingField: 3
   <ShrinkSpeedToPlayer>k__BackingField: 350
   <OrbitDeclineRate>k__BackingField: 10

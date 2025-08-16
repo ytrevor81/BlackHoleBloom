@@ -93,7 +93,7 @@ public class NewComet : MonoBehaviour, IGravityInteract, IBarrierInteract
         }
     }
 
-    public void EnterOrbit()
+    public void EnterOrbitOfPlayer()
     {
         if (GM.CutscenePlaying)
             return;
@@ -127,6 +127,10 @@ public class NewComet : MonoBehaviour, IGravityInteract, IBarrierInteract
 
         currentCoroutine = DelayStartingAnimation();
         StartCoroutine(currentCoroutine);
+    }
+    public void EnterOrbitOfOtherCelestialBody(CelestialBody celestialBody, Collider2D _collider)
+    {
+        //do nothing, this comet does not interact with other celestial bodies
     }
 
     private IEnumerator DelayStartingAnimation()

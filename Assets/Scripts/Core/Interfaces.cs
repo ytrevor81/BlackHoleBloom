@@ -1,8 +1,10 @@
 using System.Numerics;
+using UnityEngine;
 
 public interface IGravityInteract
 {
-    public void EnterOrbit();
+    public void EnterOrbitOfPlayer();
+    public void EnterOrbitOfOtherCelestialBody(CelestialBody celestialBody, Collider2D _collider);
 }
 
 public interface IBarrierInteract

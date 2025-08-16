@@ -112,6 +112,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: d8fdabf3887141d4c9df367d74091e4d, type: 2}
+    - target: {fileID: 375570324895943080, guid: c77961e58d1d5c140b941ed91c1968b6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5548889924607858425, guid: c77961e58d1d5c140b941ed91c1968b6, type: 3}
       propertyPath: m_Name
       value: Brown Dwarf

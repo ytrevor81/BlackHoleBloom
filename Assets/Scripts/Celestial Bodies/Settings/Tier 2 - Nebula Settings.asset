@@ -37,6 +37,6 @@ MonoBehaviour:
   <FadeOutSpeed>k__BackingField: 4
   <TimeBetweenAbsorbSFXCalls>k__BackingField: 0.25
   celestialBodyPrefabs:
-  - {fileID: 5951752585226776034, guid: 14b43c2aca6c34a459769388b7cd7a91, type: 3}
+  - {fileID: 4741097916108011843, guid: 5a2e7d6bc3a6cfa42a8aae61894b911f, type: 3}
   - {fileID: 4741097916108011843, guid: 5a2e7d6bc3a6cfa42a8aae61894b911f, type: 3}
   - {fileID: 5480359874791114730, guid: 2b1c09e7cf9b0e04fa9d0b66075aa212, type: 3}

@@ -82,36 +82,40 @@ public class CelestialBodySettings : ScriptableObject
         else
             return Level9OrbitRange.y;        
     }
+    public float GetMaxOribtRange()
+    {        
+        return Level9OrbitRange.y;        
+    }
     public float GetMinOrbitMultiplier(GameManager _GM)
     {
         if (_GM.CurrentLevel == GameManager.Level.Level1)
             return Level1OrbitRange.x;
-        
+
         else if (_GM.CurrentLevel == GameManager.Level.Level2)
             return Level2OrbitRange.x;
-        
+
         else if (_GM.CurrentLevel == GameManager.Level.Level3)
             return Level3OrbitRange.x;
-        
+
         else if (_GM.CurrentLevel == GameManager.Level.Level4)
             return Level4OrbitRange.x;
-        
+
         else if (_GM.CurrentLevel == GameManager.Level.Level5)
             return Level5OrbitRange.x;
-        
+
         else if (_GM.CurrentLevel == GameManager.Level.Level6)
             return Level6OrbitRange.x;
-        
+
         else if (_GM.CurrentLevel == GameManager.Level.Level7)
             return Level7OrbitRange.x;
-        
+
         else if (_GM.CurrentLevel == GameManager.Level.Level8)
             return Level8OrbitRange.x;
-        
+
         else if (_GM.CurrentLevel == GameManager.Level.Level9)
             return Level9OrbitRange.x;
-        
+
         else
-            return Level9OrbitRange.x;        
+            return Level9OrbitRange.x;
     }
 }

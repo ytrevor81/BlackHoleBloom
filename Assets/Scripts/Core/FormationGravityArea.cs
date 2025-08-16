@@ -16,7 +16,7 @@ public class FormationGravityArea : MonoBehaviour
         else if (collision.CompareTag(BHBConstants.BOOST) || collision.CompareTag(BHBConstants.WHITE_HOLE))
         {
             if (collision.TryGetComponent(out IGravityInteract _gravityInteract))
-                _gravityInteract.EnterOrbit();
+                _gravityInteract.EnterOrbitOfPlayer();
         }
     }
 }

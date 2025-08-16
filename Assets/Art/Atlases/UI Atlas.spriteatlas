@@ -1,0 +1,109 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: UI Atlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 0
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_IgnorePlatformSupport: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 8
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: a28cf6e7c4964194a86c4280436d900d, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+    packedSpriteRenderDataKeys:
+    - 1e091740de1cd5d489f1af363aa444b9: 21300000
+    - 1b1bbd90fcd65cb49a9932ea713bc8c4: 21300000
+    - c9866941646926844a385587e4c9b3af: 21300000
+    - f4846f32210780d4c855bf23c2b8b099: 21300000
+    - 010a6e5305fa7004f89c5d317b7b47d4: 21300000
+    - 91c2b7634cbb8a84191246cb2f0730a8: 21300000
+    - 8db74ba4431d7dc41b7e79ef7b4ff55c: 21300000
+    - 24444165a9ea22643835ae66448d9e72: 21300000
+    - d3bb6676a2896fe42bb93bdfbb728d4a: 21300000
+    - 1b4a68d66b8ca464bbb3503ca97cad18: 21300000
+    - 34ef54b7b0217c34d993a0049020c4f5: 21300000
+    - 5b56d9fa0e8bd6e409ed188db38a692c: 21300000
+    - fbe6c5bb0c342b840bb5762122496b0b: 21300000
+    - 4d76641ca20c05549aad3ccf7e35cc31: 21300000
+    - 2606df0d823793044880a1f00c4d2cd8: 21300000
+    - 8c6a582d2d9375d47bf7a881872c9a27: 21300000
+    - a176863ece6ce124888936876c29086c: 21300000
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 1e091740de1cd5d489f1af363aa444b9, type: 3}
+  - {fileID: 21300000, guid: 1b1bbd90fcd65cb49a9932ea713bc8c4, type: 3}
+  - {fileID: 21300000, guid: c9866941646926844a385587e4c9b3af, type: 3}
+  - {fileID: 21300000, guid: f4846f32210780d4c855bf23c2b8b099, type: 3}
+  - {fileID: 21300000, guid: 010a6e5305fa7004f89c5d317b7b47d4, type: 3}
+  - {fileID: 21300000, guid: 91c2b7634cbb8a84191246cb2f0730a8, type: 3}
+  - {fileID: 21300000, guid: 8db74ba4431d7dc41b7e79ef7b4ff55c, type: 3}
+  - {fileID: 21300000, guid: 24444165a9ea22643835ae66448d9e72, type: 3}
+  - {fileID: 21300000, guid: d3bb6676a2896fe42bb93bdfbb728d4a, type: 3}
+  - {fileID: 21300000, guid: 1b4a68d66b8ca464bbb3503ca97cad18, type: 3}
+  - {fileID: 21300000, guid: 34ef54b7b0217c34d993a0049020c4f5, type: 3}
+  - {fileID: 21300000, guid: 5b56d9fa0e8bd6e409ed188db38a692c, type: 3}
+  - {fileID: 21300000, guid: fbe6c5bb0c342b840bb5762122496b0b, type: 3}
+  - {fileID: 21300000, guid: 4d76641ca20c05549aad3ccf7e35cc31, type: 3}
+  - {fileID: 21300000, guid: 2606df0d823793044880a1f00c4d2cd8, type: 3}
+  - {fileID: 21300000, guid: 8c6a582d2d9375d47bf7a881872c9a27, type: 3}
+  - {fileID: 21300000, guid: a176863ece6ce124888936876c29086c, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - pause_icon_transparent
+  - hydrogen icon
+  - transparent box bg ui
+  - Codex icon
+  - Handle_Plain
+  - double_chevron_transparent
+  - Chevron back button
+  - progress_bar_white
+  - Codex popup
+  - offscreen_arrow_UI
+  - underline
+  - AllAxis_Outline
+  - YesOrNoUI
+  - double_chevron_outlined
+  - rounded_rect_button_updated
+  - new galaxy icon
+  - helium icon
+  m_RenderDataMap: {}
+  m_Tag: UI Atlas
+  m_IsVariant: 0
