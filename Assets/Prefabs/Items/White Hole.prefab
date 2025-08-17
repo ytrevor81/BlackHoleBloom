@@ -9741,7 +9741,7 @@ SpriteRenderer:
   m_Size: {x: 5.12, y: 5.12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &5791732318921399371
@@ -14674,6 +14674,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6c552e2d403f5746942a4cbed0e540b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  codexEntry: {fileID: 11400000, guid: 735fae78c3265bb4e8ac689ea2c98c14, type: 2}
   beacon: {fileID: 1979455641346078562}
   beaconFadeSpeed: 0.2
   beaconExpandSpeed: 2

@@ -21,7 +21,8 @@ public class HUDController : MonoBehaviour
     [SerializeField] private CanvasGroup upperHUDcanvasGroup;
     [SerializeField] private CanvasGroup lowerHUDcanvasGroup;
     [SerializeField] private CanvasGroup joystickCanvasGroup;
-    [SerializeField] private CodexPopupList codexPopupList;
+    // [SerializeField] private CodexPopupList codexPopupList;
+    [SerializeField] private GameObject codexExclaimationPoint;
 
     [Header("TIMER")]
     [Space]
@@ -295,17 +296,22 @@ public class HUDController : MonoBehaviour
 
     public void CheckCodexEntry(CodexEntry _entryData)
     {
-        codexPopupList.AddToCodex(_entryData);
-    }
-    public void CheckCometEntry()
-    {
-        codexPopupList.AddCometToCodex();
-    }
+        //codexPopupList.AddToCodex(_entryData);
+        if (_entryData.IsDiscovered)
+            return;
 
-    public void CheckWhiteHoleEntry()
-    {
-        codexPopupList.AddWhiteHoleToCodex();
+        _entryData.IsDiscovered = true;
+        codexExclaimationPoint.SetActive(true);
     }
+    // public void CheckCometEntry()
+    // {
+    //     codexPopupList.AddCometToCodex();
+    // }
+
+    // public void CheckWhiteHoleEntry()
+    // {
+    //     codexPopupList.AddWhiteHoleToCodex();
+    // }
 
     public void FadeOutHUD()
     {

@@ -15,6 +15,7 @@ public class NewComet : MonoBehaviour, IGravityInteract, IBarrierInteract
 
     [Header("MAIN REFS")]
     [Space]
+    [SerializeField] private CodexEntry codexEntry;
     [SerializeField] private TrailRenderer trail;
     [SerializeField] private GameObject explodeParticle;
     [SerializeField] private ParticleSystem goToPlayerParticle;
@@ -84,7 +85,7 @@ public class NewComet : MonoBehaviour, IGravityInteract, IBarrierInteract
                 elapsedTime = 0;
                 goToPlayerParticle.Stop();
                 HUD.FadeInHUD();
-                HUD.CheckCometEntry();
+                HUD.CheckCodexEntry(codexEntry);
                 player.EnterBoostMode();
 
                 currentCoroutine = DelayDeactivatingObject();

@@ -7,9 +7,10 @@ public class WhiteHole : MonoBehaviour, IGravityInteract
     protected Rigidbody2D rb;
     private Collider2D coll;
 
-    [Header("Main References")]
+    [Header("MAIN REFS")]
     [Space]
 
+    [SerializeField] private CodexEntry codexEntry;
     [SerializeField] private Transform beacon;
     [SerializeField] private float beaconFadeSpeed;
     [SerializeField] private float beaconExpandSpeed;
@@ -329,7 +330,7 @@ public class WhiteHole : MonoBehaviour, IGravityInteract
             if (!codexEntryChecked)
             {
                 codexEntryChecked = true;
-                HUDController.Instance.CheckWhiteHoleEntry();
+                HUDController.Instance.CheckCodexEntry(codexEntry);
             }
 
             currentTick++;

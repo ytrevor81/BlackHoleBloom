@@ -9994,6 +9994,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 072590cce28016f41a3b4053b7082311, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  codexEntry: {fileID: 11400000, guid: 6a10075a970ee384eb782f258b150721, type: 2}
   trail: {fileID: 1433078837224389574}
   explodeParticle: {fileID: 7203365441331568575}
   goToPlayerParticle: {fileID: 5449224553536595335}
