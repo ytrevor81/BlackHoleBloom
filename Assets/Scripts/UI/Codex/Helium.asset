@@ -14,6 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Title>k__BackingField: Helium
   <Mass>k__BackingField: 100
-  <Description>k__BackingField: This is a desciption
+  <Description>k__BackingField: "- Helium is the second most abundant element in
+    the universe. It makes up about 24% of the universe\u2019s mass, second only
+    to hydrogen. \n\n- Helium was first discovered in the Sun before it was found
+    on Earth. A yellow spectral line observed during a solar eclipse in 1868 led
+    to its detection\u2014hence the name from Greek Helios (sun). Its presence on
+    Earth wasn\u2019t confirmed until decades later. \n\n- Nebulae are composed primarily
+    of hydrogen and helium. \n\n- Helium in nebulae often originates from dying stars.
+    Many nebulae are the aftermath of supernovae, expelling helium produced in the
+    star\u2019s core."
   <Icon>k__BackingField: {fileID: 21300000, guid: a176863ece6ce124888936876c29086c, type: 3}
-  <IsDiscovered>k__BackingField: 1
+  <IsDiscovered>k__BackingField: 0
+  <ReadInCodex>k__BackingField: 0

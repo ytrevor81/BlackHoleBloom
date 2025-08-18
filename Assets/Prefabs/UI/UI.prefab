@@ -109,8 +109,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 286.4043, y: 329.1484}
+  m_AnchoredPosition: {x: -0.7686, y: 0.3844}
+  m_SizeDelta: {x: 335.5947, y: 291.4867}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4824836246896900713
 CanvasRenderer:
@@ -140,7 +140,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8292c147bc3693744b778e190935db6d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 119344926a05fb14ba96cecc65a52f03, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -422,8 +422,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 227.91464, y: 0}
-  m_SizeDelta: {x: 455.8293, y: 430.2382}
+  m_AnchoredPosition: {x: 167.6, y: 0}
+  m_SizeDelta: {x: 400, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2964494731563426201
 CanvasRenderer:
@@ -453,7 +453,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Ammonia Crystal
+  m_text: Carbonaceous Chondrites
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2bbd80ad5c369b54ab597a1c98b1c627, type: 2}
   m_sharedMaterial: {fileID: -7014474588118001570, guid: 2bbd80ad5c369b54ab597a1c98b1c627, type: 2}
@@ -480,14 +480,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 100
+  m_fontSize: 74.25
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 100
+  m_fontSizeMax: 90
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -556,8 +556,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -0.0020447, y: -272.75732}
-  m_SizeDelta: {x: 1079.6, y: 545.9152}
+  m_AnchoredPosition: {x: -0.0020447, y: -206.65747}
+  m_SizeDelta: {x: 1079.6, y: 413.7157}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2399332438816305863
 GameObject:
@@ -2573,10 +2573,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 3012752315705677320}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 563.08923, y: -901.5809}
-  m_SizeDelta: {x: 972.566, y: 1282.2566}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -707.9752}
+  m_SizeDelta: {x: 972.5659, y: 1304.1741}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1984333693481970886
 CanvasRenderer:
@@ -2606,13 +2606,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '- This is a fact.
-
-
-    - This is a fact'
+  m_text: "- Helium is the second most abundant element in the universe. It makes
+    up about 24% of the universe\u2019s mass, second only to hydrogen. \n\n- Helium
+    was first discovered in the Sun before it was found on Earth. A yellow spectral
+    line observed during a solar eclipse in 1868 led to its detection\u2014hence
+    the name from Greek Helios (sun). Its presence on Earth wasn\u2019t confirmed
+    until decades later. \n\n- Nebulae are composed primarily of hydrogen and helium.
+    \n\n- Helium in nebulae often originates from dying stars. Many nebulae are the
+    aftermath of supernovae, expelling helium produced in the star\u2019s core."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2bbd80ad5c369b54ab597a1c98b1c627, type: 2}
-  m_sharedMaterial: {fileID: -7014474588118001570, guid: 2bbd80ad5c369b54ab597a1c98b1c627, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3112ac4d2cc1b574c8060f7f643e9aac, type: 2}
+  m_sharedMaterial: {fileID: -7084577817304355399, guid: 3112ac4d2cc1b574c8060f7f643e9aac, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2636,12 +2640,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60
+  m_fontSize: 43.6
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 60
+  m_fontSizeMax: 50
   m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
@@ -2860,7 +2864,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0.0021362305, y: -0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1307.695, y: 480.5061}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4701315267530705659
@@ -2918,7 +2922,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &135298065626812948
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3973,8 +3977,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -243.8, y: -0.0009212494}
-  m_SizeDelta: {x: 487.59, y: 430.24}
+  m_AnchoredPosition: {x: -250, y: 1.1521}
+  m_SizeDelta: {x: 487.59, y: 335.7018}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2906251897745370639
 CanvasRenderer:
@@ -4376,8 +4380,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -0.0020447, y: -1338.2}
-  m_SizeDelta: {x: 1079.6, y: 1584.4}
+  m_AnchoredPosition: {x: -0.0020447, y: -1272}
+  m_SizeDelta: {x: 1079.6, y: 1716.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &9116217671269701677
 GameObject:

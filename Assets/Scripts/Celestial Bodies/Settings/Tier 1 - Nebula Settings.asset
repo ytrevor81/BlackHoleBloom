@@ -25,7 +25,7 @@ MonoBehaviour:
   <InitialSpeedRange>k__BackingField: {x: 5, y: 10}
   <InitialRotationRange>k__BackingField: {x: 0.5, y: 1}
   <SpeedToPlayer>k__BackingField: 3
-  <ShrinkSpeedToPlayer>k__BackingField: 100
+  <ShrinkSpeedToPlayer>k__BackingField: 0
   <OrbitDeclineRate>k__BackingField: 5
   <SpeedIncreaseRate>k__BackingField: 5
   <TrajectorySteps>k__BackingField: 20

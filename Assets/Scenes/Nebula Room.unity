@@ -324,10 +324,11 @@ MonoBehaviour:
   - {fileID: 1733094176}
   - {fileID: 1757008961511195354}
   - {fileID: 1999053309}
-  gasSettings: {fileID: 11400000, guid: 9e36576aeb87c8d4391fdd586d3fd249, type: 2}
-  asteroidSettings: {fileID: 11400000, guid: 0f5764574a818454698a182dc9ef1f71, type: 2}
-  planetSettings: {fileID: 11400000, guid: 319c645f9b896f6439e4cb0b251685da, type: 2}
-  starSettings: {fileID: 11400000, guid: a276faa61a4c0fd40b7a647f0ba17242, type: 2}
+  - {fileID: 886954797}
+  tier1Settings: {fileID: 11400000, guid: 9e36576aeb87c8d4391fdd586d3fd249, type: 2}
+  tier2Settings: {fileID: 11400000, guid: 0f5764574a818454698a182dc9ef1f71, type: 2}
+  tier3Settings: {fileID: 11400000, guid: 319c645f9b896f6439e4cb0b251685da, type: 2}
+  tier4Settings: {fileID: 11400000, guid: a276faa61a4c0fd40b7a647f0ba17242, type: 2}
   spawnInterval: 0.05
   higherLevelSpawnInterval: 0.02
   minDistanceFromCamera: 20
@@ -2035,6 +2036,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6532514271489247533, guid: d3395b9f8c7c7084da59fa373999c3b4, type: 3}
   m_PrefabInstance: {fileID: 876828890}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &886954797 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3276287244066536350, guid: 2b1c09e7cf9b0e04fa9d0b66075aa212, type: 3}
+  m_PrefabInstance: {fileID: 1896167596}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdd01550244ea9b45867c39b8fa84b01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &891427532
 GameObject:
   m_ObjectHideFlags: 0
@@ -3550,6 +3562,63 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &1896167596
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5480359874791114730, guid: 2b1c09e7cf9b0e04fa9d0b66075aa212, type: 3}
+      propertyPath: m_Name
+      value: Silica Clump
+      objectReference: {fileID: 0}
+    - target: {fileID: 6886345424070860409, guid: 2b1c09e7cf9b0e04fa9d0b66075aa212, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 65.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6886345424070860409, guid: 2b1c09e7cf9b0e04fa9d0b66075aa212, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 98.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6886345424070860409, guid: 2b1c09e7cf9b0e04fa9d0b66075aa212, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6886345424070860409, guid: 2b1c09e7cf9b0e04fa9d0b66075aa212, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6886345424070860409, guid: 2b1c09e7cf9b0e04fa9d0b66075aa212, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6886345424070860409, guid: 2b1c09e7cf9b0e04fa9d0b66075aa212, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6886345424070860409, guid: 2b1c09e7cf9b0e04fa9d0b66075aa212, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6886345424070860409, guid: 2b1c09e7cf9b0e04fa9d0b66075aa212, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6886345424070860409, guid: 2b1c09e7cf9b0e04fa9d0b66075aa212, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6886345424070860409, guid: 2b1c09e7cf9b0e04fa9d0b66075aa212, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2b1c09e7cf9b0e04fa9d0b66075aa212, type: 3}
 --- !u!1001 &1905687141
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4939,3 +5008,4 @@ SceneRoots:
   - {fileID: 7154810626646508753}
   - {fileID: 360612659}
   - {fileID: 3003026122784603292}
+  - {fileID: 1896167596}
