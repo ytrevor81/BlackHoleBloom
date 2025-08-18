@@ -105,14 +105,16 @@ public class HUDController : MonoBehaviour
         transposer = mainCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
     }
 
-    void Start()
+    IEnumerator Start()
     {
-        GM = GameManager.Instance;
         player = PlayerController.Instance;
         levelBar.fillAmount = 0;
-
-        GM.Timer = GM.RoomTime;
         isTimerActive = true;
+
+        yield return null;
+
+        GM = GameManager.Instance;
+        GM.Timer = GM.RoomTime;
 
         timeSpan = TimeSpan.FromSeconds(GM.Timer);
 
@@ -186,6 +188,7 @@ public class HUDController : MonoBehaviour
         currentCoroutine = PlayerLostCoroutine();
         StartCoroutine(currentCoroutine);
     }
+    
 
     private IEnumerator PlayerLostCoroutine()
     {
@@ -303,15 +306,6 @@ public class HUDController : MonoBehaviour
         _entryData.IsDiscovered = true;
         codexExclaimationPoint.SetActive(true);
     }
-    // public void CheckCometEntry()
-    // {
-    //     codexPopupList.AddCometToCodex();
-    // }
-
-    // public void CheckWhiteHoleEntry()
-    // {
-    //     codexPopupList.AddWhiteHoleToCodex();
-    // }
 
     public void FadeOutHUD()
     {
@@ -492,6 +486,15 @@ public class HUDController : MonoBehaviour
     private void RoomCompleted()
     {
         isTimerActive = false;
+        StopCurrentCoroutine();
+
+        GM.InvokeCutsceneStarted();
+        isFadingOut = true;
+        timerAnimator.enabled = true;
+        timerAnimator.SetBool("victory", true);
+
+        currentCoroutine = BackToMainMenuCoroutine();
+        StartCoroutine(currentCoroutine);
     }
 
     private void UpdateObjectsToAbsorbText()

@@ -20,10 +20,27 @@ public class ItemsManager : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera virtualCamera;
     [SerializeField] private CinemachineVirtualCamera boostAnimationCamera;
     [SerializeField] private float minDistanceFromCamera;
-    [SerializeField] private Transform westBound;
-    [SerializeField] private Transform eastBound;
-    [SerializeField] private Transform northBound;
-    [SerializeField] private Transform southBound;
+
+    [Space]
+    [SerializeField] private Transform lesserLevelWestBound;
+    [SerializeField] private Transform lesserLevelEastBound;
+    [SerializeField] private Transform lesserLevelNorthBound;
+    [SerializeField] private Transform lesserLevelSouthBound;
+
+    [Space]
+
+    [SerializeField] private Transform midLevelWestBound;
+    [SerializeField] private Transform midLevelEastBound;
+    [SerializeField] private Transform midLevelNorthBound;
+    [SerializeField] private Transform midLevelSouthBound;
+
+    [Space]
+
+    [SerializeField] private Transform maxLevelWestBound;
+    [SerializeField] private Transform maxLevelEastBound;
+    [SerializeField] private Transform maxLevelNorthBound;
+    [SerializeField] private Transform maxLevelSouthBound;
+    
 
     private float cameraAspect;
 
@@ -93,8 +110,88 @@ public class ItemsManager : MonoBehaviour
         }
     }
 
+    private bool PlayerIsAtLesserLevel()
+    {
+        return GM.CurrentLevel == GameManager.Level.Level1 ||
+               GM.CurrentLevel == GameManager.Level.Level2 ||
+               GM.CurrentLevel == GameManager.Level.Level3;
+    }
+    private bool PlayerIsAtMidLevel()
+    {
+        return GM.CurrentLevel == GameManager.Level.Level4 ||
+               GM.CurrentLevel == GameManager.Level.Level5 ||
+               GM.CurrentLevel == GameManager.Level.Level6;
+    }
+
+    private Transform GetDirectionalBoundary(int _dir) //0 = west, 1 = east, 2 = north, 3 = south
+    {
+        if (PlayerIsAtLesserLevel())
+        {
+            if (_dir == 0)
+                return lesserLevelWestBound;
+
+            else if (_dir == 1)
+                return lesserLevelEastBound;
+
+            else if (_dir == 2)
+                return lesserLevelNorthBound;
+
+            else
+                return lesserLevelSouthBound;
+        }
+        else if (PlayerIsAtMidLevel())
+        {
+            if (_dir == 0)
+                return midLevelWestBound;
+
+            else if (_dir == 1)
+                return midLevelEastBound;
+
+            else if (_dir == 2)
+                return midLevelNorthBound;
+
+            else
+                return midLevelSouthBound;
+        }
+        else
+        {
+
+            if (_dir == 0)
+                return maxLevelWestBound;
+
+            else if (_dir == 1)
+                return maxLevelEastBound;
+
+            else if (_dir == 2)
+                return maxLevelNorthBound;
+
+            else
+                return maxLevelSouthBound;
+        }
+    }
+
     private Vector3 GetRandomValidPosition(bool isWhiteHole)
     {
+        Transform westBound;
+        Transform eastBound;
+        Transform northBound;
+        Transform southBound;
+
+        if (isWhiteHole)
+        {
+            westBound = maxLevelWestBound;
+            eastBound = maxLevelEastBound;
+            northBound = maxLevelNorthBound;
+            southBound = maxLevelSouthBound;
+        }
+        else
+        {
+            westBound = GetDirectionalBoundary(0);
+            eastBound = GetDirectionalBoundary(1);
+            northBound = GetDirectionalBoundary(2);
+            southBound = GetDirectionalBoundary(3);
+        }
+
         Vector2 newPosition = new Vector2(Random.Range(westBound.position.x, eastBound.position.x), Random.Range(southBound.position.y, northBound.position.y));
         bool isInCameraView = IsPositionInCameraView(newPosition, isWhiteHole);
 

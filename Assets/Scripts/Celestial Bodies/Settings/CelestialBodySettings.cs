@@ -40,6 +40,7 @@ public class CelestialBodySettings : ScriptableObject
     [field: Space]
 
     [field: SerializeField] public float TimeBetweenAbsorbSFXCalls { get; private set; }
+    [field: SerializeField] public float MinSpawnDistanceFromCamera { get; private set; }
 
     [field: Space]
     [SerializeField] private GameObject[] celestialBodyPrefabs;

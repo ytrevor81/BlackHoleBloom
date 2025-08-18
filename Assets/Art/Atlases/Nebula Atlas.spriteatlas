@@ -20,7 +20,20 @@ SpriteAtlas:
       readable: 0
       crunchedCompression: 0
       sRGB: 1
-    platformSettings: []
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 1024
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_IgnorePlatformSupport: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
     packingSettings:
       serializedVersion: 2
       padding: 4
@@ -46,6 +59,7 @@ SpriteAtlas:
     - 69c729254730cbe44a7f6be1d2401dfc: 21300000
     - 8292c147bc3693744b778e190935db6d: 21300000
     - ea88acd72f2898c4398a4e07c74535b4: 21300000
+    - 2fb72359039efa84f87a3766014855e3: 21300000
     - 5ae2308a615517745a7e6c9a8dbdf14e: 21300000
     - f70ff09c9264d314a9f85e48f846a02c: 21300000
     - d9978dec5b06cc24daee4c5a1cdf8b92: 21300000
@@ -59,6 +73,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 69c729254730cbe44a7f6be1d2401dfc, type: 3}
   - {fileID: 21300000, guid: 8292c147bc3693744b778e190935db6d, type: 3}
   - {fileID: 21300000, guid: ea88acd72f2898c4398a4e07c74535b4, type: 3}
+  - {fileID: 21300000, guid: 2fb72359039efa84f87a3766014855e3, type: 3}
   - {fileID: 21300000, guid: 5ae2308a615517745a7e6c9a8dbdf14e, type: 3}
   - {fileID: 21300000, guid: f70ff09c9264d314a9f85e48f846a02c, type: 3}
   - {fileID: 21300000, guid: d9978dec5b06cc24daee4c5a1cdf8b92, type: 3}
@@ -71,6 +86,7 @@ SpriteAtlas:
   - icy dwarf planet
   - Ammonia Crystal
   - molten outline
+  - rocky dwarf planet
   - Nebula BG
   - carbonaceous chondrites 2
   - Silica Dust Clump g

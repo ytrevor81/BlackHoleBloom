@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    private GameManager GM;
+    [SerializeField] private GameManager GM;
     public enum MusicTrack
     {
         Nebula,
@@ -36,7 +36,6 @@ public class AudioManager : MonoBehaviour
 
     void Start()
     {
-        GM = GameManager.Instance;
         initialized = true;
 
         if (HUDController.Instance != null) //if it's not null, it means we're in editor playing a specific setup. Do NOT wrap this in #if UNITY_EDITOR

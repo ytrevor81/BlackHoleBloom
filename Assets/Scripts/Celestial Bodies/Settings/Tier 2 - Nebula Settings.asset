@@ -36,6 +36,7 @@ MonoBehaviour:
   <ShrinkSpeed>k__BackingField: 10
   <FadeOutSpeed>k__BackingField: 4
   <TimeBetweenAbsorbSFXCalls>k__BackingField: 0.25
+  <MinSpawnDistanceFromCamera>k__BackingField: 25
   celestialBodyPrefabs:
   - {fileID: 4741097916108011843, guid: 5a2e7d6bc3a6cfa42a8aae61894b911f, type: 3}
   - {fileID: 4741097916108011843, guid: 5a2e7d6bc3a6cfa42a8aae61894b911f, type: 3}

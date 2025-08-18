@@ -43,7 +43,6 @@ public class CelestialBodyManager : MonoBehaviour
     
     [SerializeField] private float spawnInterval;
     [SerializeField] private float higherLevelSpawnInterval;
-    [SerializeField] private float minDistanceFromCamera;
 
     [Space]
 
@@ -338,7 +337,7 @@ public class CelestialBodyManager : MonoBehaviour
     {
         CelestialBody celestialBody = CelestialBody();
 
-        celestialBody.transform.position = GetRandomValidPosition();
+        celestialBody.transform.position = GetRandomValidPosition(celestialBody);
         celestialBody.gameObject.SetActive(true);
 
         if (celestialBody.Type == CelestialBodyType.Tier1)
@@ -621,10 +620,10 @@ public class CelestialBodyManager : MonoBehaviour
         return celestialBody;
     }
 
-    private Vector3 GetRandomValidPosition()
+    private Vector3 GetRandomValidPosition(CelestialBody _celestialBody)
     {
         Vector2 newPosition = new Vector2(Random.Range(spawnBoxWestBound.position.x, spawnBoxEastBound.position.x), Random.Range(spawnBoxSouthBound.position.y, spawnBoxNorthBound.position.y));
-        bool isInCameraView = IsPositionInCameraView(newPosition);
+        bool isInCameraView = IsPositionInCameraView(newPosition, _celestialBody);
         bool isInRoom = IsPositionInRoom(newPosition);
 
         if (!isInCameraView && isInRoom)
@@ -635,7 +634,7 @@ public class CelestialBodyManager : MonoBehaviour
             while (!(!isInCameraView && isInRoom))
             {
                 newPosition = new Vector2(Random.Range(spawnBoxWestBound.position.x, spawnBoxEastBound.position.x), Random.Range(spawnBoxSouthBound.position.y, spawnBoxNorthBound.position.y));
-                isInCameraView = IsPositionInCameraView(newPosition);
+                isInCameraView = IsPositionInCameraView(newPosition, _celestialBody);
                 isInRoom = IsPositionInRoom(newPosition);
             }
 
@@ -647,30 +646,46 @@ public class CelestialBodyManager : MonoBehaviour
     {
         return position.x > roomWestBound.position.x && position.x < roomEastBound.position.x && position.y > roomSouthBound.position.y && position.y < roomNorthBound.position.y;
     }
+
+    private float MinDistanceFromCamera(CelestialBody _celestialBody)
+    {
+        if (_celestialBody.Type == CelestialBodyType.Tier1)
+            return tier1Settings.MinSpawnDistanceFromCamera;
+        
+        else if (_celestialBody.Type == CelestialBodyType.Tier2)
+            return tier2Settings.MinSpawnDistanceFromCamera;
+        
+        else if (_celestialBody.Type == CelestialBodyType.Tier3)
+            return tier3Settings.MinSpawnDistanceFromCamera;
+        
+        else
+            return tier4Settings.MinSpawnDistanceFromCamera;
+    }
     
-    private bool IsPositionInCameraView(Vector3 position)
+    private bool IsPositionInCameraView(Vector3 position, CelestialBody _celestialBody)
     {
         if (vcHelper == null)
             return false;
-            
+
         VCHelperVectors vcVectors = vcHelper.GetVCVectorsAtRuntime();
-        
+
         // Calculate camera view bounds using VCHelperVectors
         float cameraLeft = vcVectors.center.x - (vcVectors.bounds.x / 2f);
         float cameraRight = vcVectors.center.x + (vcVectors.bounds.x / 2f);
         float cameraBottom = vcVectors.center.y - (vcVectors.bounds.y / 2f);
         float cameraTop = vcVectors.center.y + (vcVectors.bounds.y / 2f);
-        
+
         // Add padding for minimum distance
+        float minDistanceFromCamera = MinDistanceFromCamera(_celestialBody);
         cameraLeft -= minDistanceFromCamera;
         cameraRight += minDistanceFromCamera;
         cameraBottom -= minDistanceFromCamera;
         cameraTop += minDistanceFromCamera;
-        
+
         // Check if position is within extended camera bounds
         bool isInView = position.x >= cameraLeft && position.x <= cameraRight &&
                        position.y >= cameraBottom && position.y <= cameraTop;
-                       
+
         return isInView;
     }
 

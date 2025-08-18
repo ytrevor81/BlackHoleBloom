@@ -127,6 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3542c5279ad35145b2088e3d3c03cac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GM: {fileID: 4453750693286950586}
   <TrackToPlayOnStart>k__BackingField: 0
   <MusicBank>k__BackingField: {fileID: 11400000, guid: 28924c8b2df8d644fa2224a32fddb6bb, type: 2}
   <SFXBank>k__BackingField: {fileID: 11400000, guid: 37c7cd3e6df9c5e4da1e3c5ff683f18c, type: 2}

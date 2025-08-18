@@ -35,6 +35,8 @@ public class NewComet : MonoBehaviour, IGravityInteract, IBarrierInteract
     private bool particleTravellingToPlayer;
     private WaitForSeconds delayAnimation = new WaitForSeconds(0.5f);
     private IEnumerator currentCoroutine;
+    private Vector2 cachedVelocity;
+    private bool paused;
     
     void Awake()
     {
@@ -59,10 +61,11 @@ public class NewComet : MonoBehaviour, IGravityInteract, IBarrierInteract
         offscreenArrow = OffscreenArrow.Instance;
         offscreenArrow.InitializeTargetForOffscreenArrow(transform);
 
-        Vector2 randomDir = new Vector2(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f)).normalized;
-        rb.AddForce(randomDir * travelSpeed, ForceMode2D.Impulse);
+        //Vector2 randomDir = new Vector2(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f)).normalized;
+        Vector2 dirToPlayer = (player.transform.position - transform.position).normalized;
+        rb.AddForce(dirToPlayer * travelSpeed, ForceMode2D.Impulse);
 
-        float targetRotation = Mathf.Atan2(randomDir.y, randomDir.x) * Mathf.Rad2Deg;
+        float targetRotation = Mathf.Atan2(dirToPlayer.y, dirToPlayer.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, targetRotation);
     }
 
@@ -92,6 +95,23 @@ public class NewComet : MonoBehaviour, IGravityInteract, IBarrierInteract
                 StartCoroutine(currentCoroutine);
             }
         }
+
+        HandlePausedStateDuringSpecialAnimations();
+    }
+
+    private void HandlePausedStateDuringSpecialAnimations()
+    {
+        if (!paused && !inPlayerZone && GM.CutscenePlaying)
+        {
+            cachedVelocity = rb.velocity;
+            rb.velocity = Vector2.zero;
+            paused = true;
+        }
+        else if (paused && !inPlayerZone && !GM.CutscenePlaying)
+        {
+            rb.velocity = cachedVelocity;
+            paused = false;
+        }
     }
 
     public void EnterOrbitOfPlayer()
@@ -102,12 +122,12 @@ public class NewComet : MonoBehaviour, IGravityInteract, IBarrierInteract
         if (currentCoroutine != null)
             StopCoroutine(currentCoroutine);
 
+        inPlayerZone = true;
         rb.velocity = Vector2.zero;
         rb.isKinematic = true;
         Used = true;
         GM.SpecialAnimationPlaying = true;
         offscreenArrow.RemoveTargetFromOffscreenArrow(transform);
-        inPlayerZone = true;
         gameObject.tag = BHBConstants.NULL;
 
         float difference = player.transform.position.x - transform.position.x;
