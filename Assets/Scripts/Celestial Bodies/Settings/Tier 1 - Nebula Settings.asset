@@ -13,19 +13,19 @@ MonoBehaviour:
   m_Name: Tier 1 - Nebula Settings
   m_EditorClassIdentifier: 
   <Mass>k__BackingField: 100
-  Level1OrbitRange: {x: 1, y: 5}
-  Level2OrbitRange: {x: 1.5, y: 5.5}
-  Level3OrbitRange: {x: 2, y: 6}
-  Level4OrbitRange: {x: 2.5, y: 6.5}
-  Level5OrbitRange: {x: 3, y: 7}
-  Level6OrbitRange: {x: 3.5, y: 7.5}
-  Level7OrbitRange: {x: 4, y: 8}
-  Level8OrbitRange: {x: 4.5, y: 8.5}
-  Level9OrbitRange: {x: 5, y: 9}
+  Level1OrbitRange: {x: 3, y: 5}
+  Level2OrbitRange: {x: 5, y: 7}
+  Level3OrbitRange: {x: 7, y: 9}
+  Level4OrbitRange: {x: 9, y: 11}
+  Level5OrbitRange: {x: 11, y: 13}
+  Level6OrbitRange: {x: 13, y: 15}
+  Level7OrbitRange: {x: 15, y: 17}
+  Level8OrbitRange: {x: 17, y: 19}
+  Level9OrbitRange: {x: 19, y: 21}
   <InitialSpeedRange>k__BackingField: {x: 5, y: 10}
   <InitialRotationRange>k__BackingField: {x: 0.5, y: 1}
   <SpeedToPlayer>k__BackingField: 3
-  <ShrinkSpeedToPlayer>k__BackingField: 0
+  <ShrinkSpeedToPlayer>k__BackingField: 100
   <OrbitDeclineRate>k__BackingField: 5
   <SpeedIncreaseRate>k__BackingField: 5
   <TrajectorySteps>k__BackingField: 20
