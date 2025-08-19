@@ -21,6 +21,7 @@ public class CelestialBodySettings : ScriptableObject
     [SerializeField] private Vector2 Level7OrbitRange;
     [SerializeField] private Vector2 Level8OrbitRange;
     [SerializeField] private Vector2 Level9OrbitRange;
+    [field: SerializeField] public float OrbitRadiusForOtherCelestialBodies { get; private set; }
     
     [field: Space]
     [field: SerializeField] public Vector2 InitialSpeedRange { get; private set; }
@@ -82,10 +83,6 @@ public class CelestialBodySettings : ScriptableObject
         
         else
             return Level9OrbitRange.y;        
-    }
-    public float GetMaxOribtRange()
-    {        
-        return Level9OrbitRange.y;        
     }
     public float GetMinOrbitMultiplier(GameManager _GM)
     {

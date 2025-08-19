@@ -102,6 +102,9 @@ public class ItemsManager : MonoBehaviour
 
     private void AddCometToScene() 
     {
+        if (GM.CurrentLevel == GameManager.Level.Level4)
+            numOfCometsToSpawnPerLevelChange += 1;
+            
         for (int i = 0; i < numOfCometsToSpawnPerLevelChange; i++)
         {
             GameObject comet = GetComet();

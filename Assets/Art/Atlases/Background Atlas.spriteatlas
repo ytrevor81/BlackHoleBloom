@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Background Atlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 1024
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_IgnorePlatformSupport: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: cf638e5e4b60fd74bad1bf34c6de843f, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+    packedSpriteRenderDataKeys:
+    - eb656e14d23a12740946452ef2216598: 21300000
+    - 5ae2308a615517745a7e6c9a8dbdf14e: 21300000
+    - ab31f05d2e6d5b2439e413476348a668: 21300000
+    - e830a61e16e868640b3da2d694a9fc14: 21300000
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: eb656e14d23a12740946452ef2216598, type: 3}
+  - {fileID: 21300000, guid: 5ae2308a615517745a7e6c9a8dbdf14e, type: 3}
+  - {fileID: 21300000, guid: ab31f05d2e6d5b2439e413476348a668, type: 3}
+  - {fileID: 21300000, guid: e830a61e16e868640b3da2d694a9fc14, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Black Background
+  - Nebula BG
+  - Nebula 2
+  - LEGACY Background
+  m_RenderDataMap: {}
+  m_Tag: Background Atlas
+  m_IsVariant: 0

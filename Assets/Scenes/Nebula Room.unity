@@ -383,19 +383,19 @@ MonoBehaviour:
     VolumeOfAbsorbSoundsPerLevel: {x: 0.9, y: 0.9, z: 0.9, w: 0.9}
   amountOfBodiesLevel6:
     PercentageOfBodiesToSpawn: {x: 0, y: 20, z: 60, w: 20}
-    MaxNumOfBodiesToSpawn: 500
+    MaxNumOfBodiesToSpawn: 450
     VolumeOfAbsorbSoundsPerLevel: {x: 0.75, y: 0.75, z: 0.75, w: 0.75}
   amountOfBodiesLevel7:
     PercentageOfBodiesToSpawn: {x: 0, y: 0, z: 75, w: 25}
-    MaxNumOfBodiesToSpawn: 500
+    MaxNumOfBodiesToSpawn: 450
     VolumeOfAbsorbSoundsPerLevel: {x: 0.75, y: 0.75, z: 0.75, w: 0.75}
   amountOfBodiesLevel8:
     PercentageOfBodiesToSpawn: {x: 0, y: 0, z: 50, w: 50}
-    MaxNumOfBodiesToSpawn: 500
+    MaxNumOfBodiesToSpawn: 450
     VolumeOfAbsorbSoundsPerLevel: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
   amountOfBodiesLevel9:
     PercentageOfBodiesToSpawn: {x: 0, y: 0, z: 30, w: 70}
-    MaxNumOfBodiesToSpawn: 500
+    MaxNumOfBodiesToSpawn: 450
     VolumeOfAbsorbSoundsPerLevel: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
 --- !u!1001 &93686827
 PrefabInstance:
@@ -707,7 +707,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &242261065
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -728,7 +728,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1492,7 +1492,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1865,7 +1865,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1992,7 +1992,7 @@ MonoBehaviour:
   - {fileID: 330088092}
   - {fileID: 1158325588}
   player: {fileID: 1937999816}
-  numOfCometsToSpawnPerLevelChange: 2
+  numOfCometsToSpawnPerLevelChange: 1
   mainCamera: {fileID: 519420031}
   virtualCamera: {fileID: 120669081}
   boostAnimationCamera: {fileID: 2085707462}
@@ -2281,7 +2281,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2563,7 +2563,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7572740573342142830, guid: 8bc5249716d25e946a20d67a61c997d4, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2741,7 +2741,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1126701358
 Transform:
   m_ObjectHideFlags: 0
@@ -2777,7 +2777,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3103,7 +3103,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1360862024
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3124,7 +3124,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3249,7 +3249,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1485264771
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3270,7 +3270,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3800,7 +3800,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1864341012
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3821,7 +3821,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3920,7 +3920,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4521,7 +4521,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2525044162586639073, guid: cd381eb969f869344869caeef8a6fc33, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3851269356383997635, guid: cd381eb969f869344869caeef8a6fc33, type: 3}
       propertyPath: joystick
@@ -4531,6 +4531,18 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 120669081}
+    - target: {fileID: 3851269356383997635, guid: cd381eb969f869344869caeef8a6fc33, type: 3}
+      propertyPath: level2Stats.CameraShakeValue
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3851269356383997635, guid: cd381eb969f869344869caeef8a6fc33, type: 3}
+      propertyPath: level3Stats.CameraShakeValue
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3851269356383997635, guid: cd381eb969f869344869caeef8a6fc33, type: 3}
+      propertyPath: level4Stats.CameraShakeValue
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5553669832529927883, guid: cd381eb969f869344869caeef8a6fc33, type: 3}
       propertyPath: m_LocalScale.x
       value: 75
@@ -4577,7 +4589,7 @@ PrefabInstance:
       objectReference: {fileID: 1360862023}
     - target: {fileID: 6835707247510681421, guid: cd381eb969f869344869caeef8a6fc33, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7304445671350150157, guid: cd381eb969f869344869caeef8a6fc33, type: 3}
       propertyPath: mainVC
@@ -4645,11 +4657,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8024123783381914032, guid: cd381eb969f869344869caeef8a6fc33, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8459574449249249769, guid: cd381eb969f869344869caeef8a6fc33, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9184293059341867467, guid: cd381eb969f869344869caeef8a6fc33, type: 3}
       propertyPath: m_IsActive
@@ -4772,7 +4784,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 379337250927459436, guid: 3136a1fb3ceef7046998587bc5199133, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1642824148666011484, guid: 3136a1fb3ceef7046998587bc5199133, type: 3}
       propertyPath: mainVC
@@ -4892,7 +4904,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6950728854972774941, guid: 3136a1fb3ceef7046998587bc5199133, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7759112497685338366, guid: 3136a1fb3ceef7046998587bc5199133, type: 3}
       propertyPath: m_AnchorMax.y
@@ -5045,6 +5057,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: White Hole
       objectReference: {fileID: 0}
+    - target: {fileID: 7128404489853991101, guid: 657d0db634514704b8b083e4456e02b2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5073,7 +5089,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1666122044760165866, guid: f0caaf00eaee1644eaf62879a85e1d84, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1700660046701999501, guid: f0caaf00eaee1644eaf62879a85e1d84, type: 3}
       propertyPath: mainCamera
@@ -5081,7 +5097,7 @@ PrefabInstance:
       objectReference: {fileID: 519420031}
     - target: {fileID: 3722846749916435162, guid: f0caaf00eaee1644eaf62879a85e1d84, type: 3}
       propertyPath: m_Alpha
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8410679749475639341, guid: f0caaf00eaee1644eaf62879a85e1d84, type: 3}
       propertyPath: m_Pivot.x
@@ -5338,14 +5354,6 @@ PrefabInstance:
     - target: {fileID: 6532514271489247533, guid: d3395b9f8c7c7084da59fa373999c3b4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 23.82
-      objectReference: {fileID: 0}
-    - target: {fileID: 7912822212190861614, guid: d3395b9f8c7c7084da59fa373999c3b4, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7912822212190861614, guid: d3395b9f8c7c7084da59fa373999c3b4, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8735116891917372369, guid: d3395b9f8c7c7084da59fa373999c3b4, type: 3}
       propertyPath: m_Name

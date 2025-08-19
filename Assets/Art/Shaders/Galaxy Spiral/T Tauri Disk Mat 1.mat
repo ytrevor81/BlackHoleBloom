@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Protostar Disk Mat 2
-  m_Shader: {fileID: -6465566751694194690, guid: b7d07ca21d645dc42838d3daa613d704, type: 3}
+  m_Name: T Tauri Disk Mat 1
+  m_Shader: {fileID: -6465566751694194690, guid: 851824602b0a14b43a701e635f0544e0, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -41,24 +41,23 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _ArmThickness: 4.17
+    - _ArmThickness: 35
     - _ArmsAlpha: 3
     - _ArmsCount: 1
     - _BrightnessExponent: 2
-    - _ColorIntensity: 120
+    - _ColorIntensity: 110.55
     - _EdgeBrightness: 0
     - _NoiseScale: 27.42
-    - _NoiseSpeed: 0.5
     - _NoiseStrength: 31.3
     - _QueueControl: 0
     - _QueueOffset: 0
     - _RadiusFalloff: 1.21
-    - _TwistStrength: 10
+    - _TwistStrength: 15
     m_Colors:
-    - _ColorArm: {r: 1, g: 0.5411765, b: 0.22745098, a: 1}
+    - _ColorArm: {r: 0.7764706, g: 0.49411765, b: 1, a: 1}
     - _ColorCore: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
---- !u!114 &3900855334180982777
+--- !u!114 &451796696014527443
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

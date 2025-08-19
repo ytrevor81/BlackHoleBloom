@@ -359,7 +359,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: bce81b06e4bbce94b8b9f4f1abb90edf, type: 2}
+  - {fileID: 2100000, guid: 1d2f8b562495a8d4a872c6a5b7edf150, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -381,7 +381,7 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: ea88acd72f2898c4398a4e07c74535b4, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.20870203, b: 0.1603772, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -447,6 +447,7 @@ MonoBehaviour:
   playerDetectionCollider: {fileID: 220801531698660846}
   lineRenderer: {fileID: 6100086929621785300}
   omitAlphaDecrease: 1
+  CelestialBodyFinderCollider: {fileID: 383556259962943576}
 --- !u!212 &2489342237832622388
 SpriteRenderer:
   m_ObjectHideFlags: 0

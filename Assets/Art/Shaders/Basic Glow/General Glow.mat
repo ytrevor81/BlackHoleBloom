@@ -7,13 +7,13 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: T Tauri Disk Mat
-  m_Shader: {fileID: -6465566751694194690, guid: b7d07ca21d645dc42838d3daa613d704, type: 3}
+  m_Name: General Glow
+  m_Shader: {fileID: -6465566751694194690, guid: 7ff8336483767f341ba1fe6c71b6becd, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
-  m_LightmapFlags: 2
+  m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -41,24 +41,13 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _ArmThickness: 35
-    - _ArmsAlpha: 3
-    - _ArmsCount: 1
-    - _BrightnessExponent: 2
-    - _ColorIntensity: 110.55
-    - _EdgeBrightness: 0
-    - _NoiseScale: 27.42
-    - _NoiseSpeed: 0.5
-    - _NoiseStrength: 31.3
+    - _GlowStrength: 2
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _RadiusFalloff: 1.21
-    - _TwistStrength: 15
     m_Colors:
-    - _ColorArm: {r: 0.7764706, g: 0.49411765, b: 1, a: 1}
-    - _ColorCore: {r: 1, g: 1, b: 1, a: 1}
+    - _GlowColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
---- !u!114 &3900855334180982777
+--- !u!114 &2685171312262523114
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

@@ -362,6 +362,7 @@ MonoBehaviour:
   playerDetectionCollider: {fileID: 1222656954137002596}
   lineRenderer: {fileID: 7504183743598889031}
   omitAlphaDecrease: 1
+  CelestialBodyFinderCollider: {fileID: 375570324895943080}
 --- !u!212 &363634644428745122
 SpriteRenderer:
   m_ObjectHideFlags: 0

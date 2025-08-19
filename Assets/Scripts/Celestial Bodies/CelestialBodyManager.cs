@@ -332,10 +332,41 @@ public class CelestialBodyManager : MonoBehaviour
         tier3AbsorbSFXTimer -= Time.deltaTime;
         tier4AbsorbSFXTimer -= Time.deltaTime;
     }
+
+    private void ManageEnablingOrbitingColliderOfOtherBodies(CelestialBody _celestialBody)
+    {
+        if (_celestialBody.Type != CelestialBodyType.Tier3)
+        {
+            if (_celestialBody.CelestialBodyFinderCollider != null)
+            {
+                _celestialBody.CelestialBodyFinderCollider.SetActive(true);
+                return;
+            }
+        }
+        else
+        {
+            if (GM.CurrentLevel == GameManager.Level.Level7
+            || GM.CurrentLevel == GameManager.Level.Level8
+            || GM.CurrentLevel == GameManager.Level.Level9
+            || GM.CurrentLevel == GameManager.Level.Level10)
+            {
+                if (_celestialBody.CelestialBodyFinderCollider != null)
+                    _celestialBody.CelestialBodyFinderCollider.SetActive(false);
+            }
+            else
+            {
+
+                if (_celestialBody.CelestialBodyFinderCollider != null)
+                    _celestialBody.CelestialBodyFinderCollider.SetActive(true);
+            }
+        }
+    }
     
     private void SpawnCelestialBody()
     {
         CelestialBody celestialBody = CelestialBody();
+
+        ManageEnablingOrbitingColliderOfOtherBodies(celestialBody);
 
         celestialBody.transform.position = GetRandomValidPosition(celestialBody);
         celestialBody.gameObject.SetActive(true);
@@ -448,19 +479,19 @@ public class CelestialBodyManager : MonoBehaviour
         else
             return tier4Settings.NewOrbitMultiplier(GM);
     }
-    public float MaxOrbitMultiplier(CelestialBodyType _type)
+    public float GetOrbitRadiusForOtherCelestialBodies(CelestialBodyType _type)
     {
         if (_type == CelestialBodyType.Tier1)
-            return tier1Settings.GetMaxOribtRange();
+            return tier1Settings.OrbitRadiusForOtherCelestialBodies;
         
         else if (_type == CelestialBodyType.Tier2)
-            return tier2Settings.GetMaxOribtRange();
+            return tier2Settings.OrbitRadiusForOtherCelestialBodies;
         
         else if (_type == CelestialBodyType.Tier3)
-            return tier3Settings.GetMaxOribtRange();
+            return tier3Settings.OrbitRadiusForOtherCelestialBodies;
         
         else
-            return tier4Settings.GetMaxOribtRange();
+            return tier4Settings.OrbitRadiusForOtherCelestialBodies;
     }
     public float TravelSpeed(CelestialBodyType _type)
     {

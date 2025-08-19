@@ -16,4 +16,5 @@ MonoBehaviour:
   <Mass>k__BackingField: 100
   <Description>k__BackingField: This is a desciption
   <Icon>k__BackingField: {fileID: 21300000, guid: 1b1bbd90fcd65cb49a9932ea713bc8c4, type: 3}
-  <IsDiscovered>k__BackingField: 1
+  <IsDiscovered>k__BackingField: 0
+  <ReadInCodex>k__BackingField: 0

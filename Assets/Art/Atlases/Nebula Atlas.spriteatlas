@@ -46,9 +46,8 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: c9a8e4424695cf24088b873fb337a2fd, type: 3}
-    - {fileID: 102900000, guid: 7ca2950afed253a45891e859856e8ac0, type: 3}
-    - {fileID: 102900000, guid: 151e3e87662c47b4a8c53635eca3e881, type: 3}
     - {fileID: 102900000, guid: 54356c154457e9642bb61ff586db70fa, type: 3}
+    - {fileID: 102900000, guid: 151e3e87662c47b4a8c53635eca3e881, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -60,10 +59,8 @@ SpriteAtlas:
     - 8292c147bc3693744b778e190935db6d: 21300000
     - ea88acd72f2898c4398a4e07c74535b4: 21300000
     - 2fb72359039efa84f87a3766014855e3: 21300000
-    - 5ae2308a615517745a7e6c9a8dbdf14e: 21300000
     - f70ff09c9264d314a9f85e48f846a02c: 21300000
     - d9978dec5b06cc24daee4c5a1cdf8b92: 21300000
-    - ab31f05d2e6d5b2439e413476348a668: 21300000
     - b4c52abf2a24f9f46a3b6504860fabdc: 21300000
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -74,10 +71,8 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 8292c147bc3693744b778e190935db6d, type: 3}
   - {fileID: 21300000, guid: ea88acd72f2898c4398a4e07c74535b4, type: 3}
   - {fileID: 21300000, guid: 2fb72359039efa84f87a3766014855e3, type: 3}
-  - {fileID: 21300000, guid: 5ae2308a615517745a7e6c9a8dbdf14e, type: 3}
   - {fileID: 21300000, guid: f70ff09c9264d314a9f85e48f846a02c, type: 3}
   - {fileID: 21300000, guid: d9978dec5b06cc24daee4c5a1cdf8b92, type: 3}
-  - {fileID: 21300000, guid: ab31f05d2e6d5b2439e413476348a668, type: 3}
   - {fileID: 21300000, guid: b4c52abf2a24f9f46a3b6504860fabdc, type: 3}
   m_PackedSpriteNamesToIndex:
   - Carbonaceous chondrites Light
@@ -87,10 +82,8 @@ SpriteAtlas:
   - Ammonia Crystal
   - molten outline
   - rocky dwarf planet
-  - Nebula BG
   - carbonaceous chondrites 2
   - Silica Dust Clump g
-  - Nebula 2
   - brown dwarf
   m_RenderDataMap: {}
   m_Tag: Nebula Atlas

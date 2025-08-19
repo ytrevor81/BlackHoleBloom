@@ -342,7 +342,7 @@ public class HUDController : MonoBehaviour
 
     private void UpdateTimer()
     {
-        if (GM.SpecialAnimationPlaying || GM.CutscenePlaying)
+        if (GM == null || GM.SpecialAnimationPlaying || GM.CutscenePlaying)
             return;
 
         if (GM.Timer > 1)

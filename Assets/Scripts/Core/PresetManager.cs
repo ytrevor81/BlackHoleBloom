@@ -24,6 +24,10 @@ public class PresetManager : MonoBehaviour
     [SerializeField] private GameObject gravityArea;
     [SerializeField] private AudioManager audioManager;
     [SerializeField] private GameObject[] nebulaBG;
+
+    [Space]
+
+    [SerializeField] private CodexEntry[] entries;
 #if UNITY_EDITOR
     public void RealGameStartup_Editor()
     {
@@ -70,6 +74,8 @@ public class PresetManager : MonoBehaviour
             nebulaBG[i].SetActive(false);
             EditorUtility.SetDirty(nebulaBG[i]);
         }
+
+        ResetCodexEntries();
     }
     public void Room1Viewer_Editor()
     {
@@ -97,7 +103,7 @@ public class PresetManager : MonoBehaviour
         EditorUtility.SetDirty(playerBlackHole);
         gravityArea.SetActive(true);
         EditorUtility.SetDirty(gravityArea);
-        
+
         audioManager.TrackToPlayOnStart = AudioManager.MusicTrack.Nebula;
         EditorUtility.SetDirty(audioManager);
 
@@ -105,6 +111,18 @@ public class PresetManager : MonoBehaviour
         {
             nebulaBG[i].SetActive(true);
             EditorUtility.SetDirty(nebulaBG[i]);
+        }
+
+        ResetCodexEntries();
+    }
+
+    private void ResetCodexEntries()
+    {
+        for (int i=0; i < entries.Length; i++)
+        {
+            entries[i].IsDiscovered = false;
+            entries[i].ReadInCodex = false;
+            EditorUtility.SetDirty(entries[i]);
         }
     }
 #endif
