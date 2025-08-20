@@ -14,7 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Title>k__BackingField: Hydrogen
   <Mass>k__BackingField: 100
-  <Description>k__BackingField: This is a desciption
+  <Description>k__BackingField: "- Hydrogen is the simplest and most abundant element
+    in the universe. It's the first element on the periodic table, consisting of
+    just one proton and one electron.\n\n- About 75% of the universe\u2019s mass
+    comprises hydrogen. Along with helium, it dominates cosmic composition.\n\n-
+    In nebulae, hydrogen is the key driver behind glowing, star-forming regions.\n\n-
+    Hydrogen is colorless and odorless. Despite its cosmic significance, it\u2019s
+    indistinct in its pure form to our senses."
   <Icon>k__BackingField: {fileID: 21300000, guid: 1b1bbd90fcd65cb49a9932ea713bc8c4, type: 3}
-  <IsDiscovered>k__BackingField: 0
+  <IsDiscovered>k__BackingField: 1
   <ReadInCodex>k__BackingField: 0

@@ -14,7 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Title>k__BackingField: White Hole
   <Mass>k__BackingField: 10000
-  <Description>k__BackingField: This is a desciption
+  <Description>k__BackingField: "- White holes are purely theoretical\u2014opposite
+    of black holes. According to general relativity, white holes are regions of spacetime
+    that cannot be entered from the outside but from which matter, energy, and light
+    can emerge\u2014making them the time-reversed counterpart of black holes.\n\n-
+    They likely violate physical laws and are unstable. White holes defy the second
+    law of thermodynamics\u2014since spontaneous ejection of matter would decrease
+    entropy. Additionally, any attempt to form or perturb a white hole would likely
+    cause it to collapse into a black hole."
   <Icon>k__BackingField: {fileID: 21300000, guid: 4b40fc0f65c85f14fbc9c7c5f40ca686, type: 3}
   <IsDiscovered>k__BackingField: 0
   <ReadInCodex>k__BackingField: 0

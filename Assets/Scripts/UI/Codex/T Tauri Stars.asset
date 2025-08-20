@@ -14,7 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Title>k__BackingField: T Tauri Star
   <Mass>k__BackingField: 10000
-  <Description>k__BackingField: This is a description
+  <Description>k__BackingField: "- T Tauri stars are very young, pre\u2011main\u2011sequence
+    stars\u2014often less than about 10 million years old\u2014representing a transitional
+    stage between protostars and mature main-sequence stars. They\u2019re still contracting
+    and powered by gravitational energy, not nuclear fusion.\n\n- These young stars
+    exhibit irregular fluctuations in brightness and strong emission lines. Many
+    show intense magnetic activity\u2014bright in X-rays and radio\u2014up to 1,000
+    times more energetic than our Sun, with powerful stellar winds and eruptions.\n\n-
+    Roughly half of T Tauri stars are surrounded by protoplanetary disks\u2014crucial
+    birthplaces of planets.\n\n- T Tauri stars typically form deep within dusty molecular
+    clouds and nebulae."
   <Icon>k__BackingField: {fileID: 21300000, guid: b4c52abf2a24f9f46a3b6504860fabdc, type: 3}
   <IsDiscovered>k__BackingField: 0
   <ReadInCodex>k__BackingField: 0

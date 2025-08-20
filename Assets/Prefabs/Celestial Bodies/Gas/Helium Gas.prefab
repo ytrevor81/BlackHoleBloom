@@ -222,8 +222,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 1, g: 0.70980394, b: 0, a: 0.8117647}
-      maxColor: {r: 1, g: 0.70980394, b: 0, a: 0.45882353}
+      minColor: {r: 1, g: 0.7490196, b: 0.32941177, a: 0.8117647}
+      maxColor: {r: 1, g: 0.7490196, b: 0.32941177, a: 0.45882353}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -1308,7 +1308,7 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 0.70980394, b: 0, a: 1}
+        key0: {r: 1, g: 0.7490196, b: 0.32941177, a: 1}
         key1: {r: 1, g: 0.70980394, b: 0, a: 0}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
@@ -4947,7 +4947,7 @@ MonoBehaviour:
   playerDetectionCollider: {fileID: 3604603446120244073}
   lineRenderer: {fileID: 2288987458709610489}
   omitAlphaDecrease: 0
-  celestialBodyFinderCollider: {fileID: 0}
+  CelestialBodyFinderCollider: {fileID: 0}
   mainBodyTransform: {fileID: 2813100003969384993}
   trailParticle: {fileID: 8559808330486259516}
 --- !u!1 &3509869267134052699
@@ -5172,8 +5172,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 1, g: 0.70980394, b: 0, a: 0.5019608}
-      maxColor: {r: 1, g: 0.70980394, b: 0, a: 0.2}
+      minColor: {r: 1, g: 0.7490196, b: 0.32941177, a: 0.4}
+      maxColor: {r: 1, g: 0.7490196, b: 0.32941177, a: 0.2}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -6258,9 +6258,9 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 0.70980394, b: 0, a: 0}
-        key1: {r: 1, g: 0.70980394, b: 0, a: 1}
-        key2: {r: 0, g: 0, b: 0, a: 1}
+        key0: {r: 1, g: 0.7490196, b: 0.32941177, a: 0}
+        key1: {r: 1, g: 0.7490196, b: 0.32941177, a: 0.7058824}
+        key2: {r: 0, g: 0, b: 0, a: 0.7058824}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}

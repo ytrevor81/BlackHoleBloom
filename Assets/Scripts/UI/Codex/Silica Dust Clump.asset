@@ -14,7 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Title>k__BackingField: Silica Dust Clump
   <Mass>k__BackingField: 10000
-  <Description>k__BackingField: This is a desciption
+  <Description>k__BackingField: "- Silicates are a key component of cosmic dust in
+    nebulae. Interstellar dust often contains silicate materials\u2014compounds of
+    silicon and oxygen (collectively referred to as \"silicates\")\u2014which play
+    a vital role in cooling astrophysical gas and enabling star formation in nebulae.\n\n-
+    Silica dust can form clusters that contribute to planet formation.\n\n- Silica
+    (SiO\u2082) is abundant in the Earth\u2019s crust. Found in forms like quartz,
+    sand, and many types of rock, silica is one of Earth's most common minerals.\n\n-
+    Silicate dust grains in nebulae often act as chemical reaction sites. In dense,
+    cold nebular environments, silicate dust grains become coated with icy mantles
+    (such as water, methane, and ammonia), creating surfaces where complex organic
+    molecules can form.\n\n- Silica in protoplanetary disks often exists in high-temperature
+    crystal forms."
   <Icon>k__BackingField: {fileID: 21300000, guid: 7e189c84950f4ca4aba0b857859a9d7c, type: 3}
-  <IsDiscovered>k__BackingField: 0
+  <IsDiscovered>k__BackingField: 1
   <ReadInCodex>k__BackingField: 0

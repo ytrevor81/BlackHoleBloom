@@ -14,7 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Title>k__BackingField: Protoplanet
   <Mass>k__BackingField: 1500
-  <Description>k__BackingField: This is a desciption
+  <Description>k__BackingField: '- Protoplanets are planetary embryos formed within
+    protoplanetary disks. They originate as moon-sized bodies within the dense gas
+    and dust disks surrounding young stars, and over time can evolve into full-fledged
+    planets.
+
+
+    - Protoplanets undergo internal melting and differentiation. As
+    they accumulate more mass, their interiors can heat up, causing heavier materials
+    (like metals) to sink and lighter ones to rise, creating layered structures.
+
+
+    -
+    They are often found in stellar nurseries like nebulae.'
   <Icon>k__BackingField: {fileID: 0}
   <IsDiscovered>k__BackingField: 0
   <ReadInCodex>k__BackingField: 0

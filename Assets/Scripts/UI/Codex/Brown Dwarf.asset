@@ -14,7 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Title>k__BackingField: Brown Dwarf
   <Mass>k__BackingField: 10000
-  <Description>k__BackingField: This is a description
+  <Description>k__BackingField: "- Brown dwarfs occupy a middle ground between stars
+    and gas giants.They are substellar objects\u2014more massive than the largest
+    gas giant planets but not heavy enough to sustain regular fusion like true stars.\n\n-
+    Brown dwarfs don\u2019t maintain steady luminosity. Instead, they radiate heat
+    from gravitational contraction and gradually cool.\n\n- They can host wild, planet-like
+    weather. Observations show that some brown dwarfs display extreme weather patterns,
+    including silicate clouds akin to hot, desert-style dust storms."
   <Icon>k__BackingField: {fileID: 21300000, guid: b4c52abf2a24f9f46a3b6504860fabdc, type: 3}
   <IsDiscovered>k__BackingField: 0
   <ReadInCodex>k__BackingField: 0

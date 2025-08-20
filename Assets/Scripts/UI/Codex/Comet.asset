@@ -14,7 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Title>k__BackingField: Comet
   <Mass>k__BackingField: 10000
-  <Description>k__BackingField: This is a desciption
+  <Description>k__BackingField: "- Comets are ancient \u201Cdirty snowballs.\u201D
+    They\u2019re remnants from the solar system\u2019s formation around 4.6 billion
+    years ago, composed of ice mixed with dark organic material\u2014dust, rock,
+    and volatile compounds.\n\n- Comets originate from distant icy reservoirs. Most
+    come from either the Kuiper Belt, a disk beyond Neptune, or the far-flung spherical
+    Oort Cloud\u2014both reservoirs hold primordial leftovers from our solar nebula."
   <Icon>k__BackingField: {fileID: 21300000, guid: 68396bf542abdde428857c9fa4f06a42, type: 3}
   <IsDiscovered>k__BackingField: 0
   <ReadInCodex>k__BackingField: 0
