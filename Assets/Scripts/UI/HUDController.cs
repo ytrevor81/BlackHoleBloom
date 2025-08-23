@@ -61,11 +61,13 @@ public class HUDController : MonoBehaviour
 
     private StringBuilder stringBuilder = new StringBuilder();
 
+    [SerializeField] private SpawnedNumberManager spawnedTimeAdditionNumbers;
+
 
     [Header("MASS SCORE")]
     [Space]
 
-    [SerializeField] private SpawnedNumberManager spawnedNumbers;
+    [SerializeField] private SpawnedNumberManager spawnedMassNumbers;
     [SerializeField] private TMP_Text scoreText;
 
     [Header("BOOST")]
@@ -371,6 +373,12 @@ public class HUDController : MonoBehaviour
         }
     }
 
+    public void AddTime()
+    {
+        GM.Timer += GM.TimeAddition;
+        spawnedTimeAdditionNumbers.SpawnTimeAdditionNumber(GM.TimeAddition);
+    }
+
     private string LevelText()
     {
         if (GM.CurrentLevel == GameManager.Level.Level1)
@@ -409,7 +417,7 @@ public class HUDController : MonoBehaviour
     {
         scoreText.text = GM.Score.ToString("N0");
         UpdateLevelBar();
-        spawnedNumbers.AddNumToQueue((int)mass);
+        spawnedMassNumbers.AddNumToQueue((int)mass);
     }
     private void UpdateLevelBar()
     {

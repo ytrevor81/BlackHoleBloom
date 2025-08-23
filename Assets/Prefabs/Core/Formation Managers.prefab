@@ -51,6 +51,7 @@ MonoBehaviour:
   <HapticsManager>k__BackingField: {fileID: 9108639968282900800}
   <AudioManager>k__BackingField: {fileID: 5749345420689933537}
   <RoomTime>k__BackingField: 300
+  <TimeAddition>k__BackingField: 10
   <Level2ObjectCount>k__BackingField: 10
   <Level3ObjectCount>k__BackingField: 25
   <Level4ObjectCount>k__BackingField: 50

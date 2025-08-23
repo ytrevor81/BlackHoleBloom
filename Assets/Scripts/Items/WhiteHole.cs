@@ -100,7 +100,6 @@ public class WhiteHole : MonoBehaviour, IGravityInteract
     private SpriteRenderer spriteRenderer;
 
     private PlayerController player;
-    private Vector2 playerPos;
     private bool inPlayerZone;
     private Vector2 directionToPlayer;
     private Vector2 currentVelocity;
@@ -249,8 +248,7 @@ public class WhiteHole : MonoBehaviour, IGravityInteract
     private void OrbitPlayer()
     {
         rb.velocity = Vector2.zero;
-        playerPos = player.transform.position;
-        directionToPlayer = playerPos - (Vector2)transform.position;
+        Vector3 directionToPlayer = player.transform.position - transform.position;
         // Apply gravitational force
         gravitationalForce = CalculateGravitationalForce(directionToPlayer);
         currentVelocity += gravitationalForce * Time.fixedDeltaTime;

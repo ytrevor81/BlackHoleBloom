@@ -9,8 +9,7 @@ TagManager:
   - Barrier
   - CelestialBody
   - Null
-  - Boost
-  - WhiteHole
+  - Item
   layers:
   - Default
   - TransparentFX

@@ -2,18 +2,15 @@ using UnityEngine;
 
 public class FormationGravityArea : MonoBehaviour
 {
-    private PlayerController playerController;
+    [SerializeField] private PlayerController playerController;
 
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag(BHBConstants.CELESTIAL_BODY))
         {
-            if (playerController == null)
-                playerController = PlayerController.Instance;
-
             playerController.AddObjectToOrbitingList(collision);
         }
-        else if (collision.CompareTag(BHBConstants.BOOST) || collision.CompareTag(BHBConstants.WHITE_HOLE))
+        else if (collision.CompareTag(BHBConstants.ITEM))
         {
             if (collision.TryGetComponent(out IGravityInteract _gravityInteract))
                 _gravityInteract.EnterOrbitOfPlayer();

@@ -7,8 +7,7 @@ public class BHBConstants
     public const string BARRIER = "Barrier";
     public const string PROJECTILE = "Projectile";
     public const string CELESTIAL_BODY = "CelestialBody";
-    public const string WHITE_HOLE = "WhiteHole";
-    public const string BOOST = "Boost";
+    public const string ITEM = "Item";
     public const string NULL = "Null";
     public const string DEFAULT_LAYER = "Default";
 }

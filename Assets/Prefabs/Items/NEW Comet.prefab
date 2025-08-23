@@ -9959,7 +9959,7 @@ GameObject:
   - component: {fileID: 6843504883578370319}
   m_Layer: 12
   m_Name: NEW Comet
-  m_TagString: Boost
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

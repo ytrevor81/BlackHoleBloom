@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     [field: SerializeField] public HapticsManager HapticsManager { get; private set; }
     [field: SerializeField] public AudioManager AudioManager { get; private set; }
     [field: SerializeField] public float RoomTime { get; private set; }
+    [field: SerializeField] public float TimeAddition { get; private set; }
     
     [field: Space]
 

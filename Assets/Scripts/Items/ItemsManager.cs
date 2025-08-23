@@ -10,12 +10,14 @@ public class ItemsManager : MonoBehaviour
     [Space]
     [SerializeField] private GameObject whiteHole;
     [SerializeField] private NewComet[] comets;
+    [SerializeField] private GameObject[] darkMatter;
     [SerializeField] private PlayerController player;
 
     [Header("Spawning Settings")]
     [Space]
 
     [SerializeField] private int numOfCometsToSpawnPerLevelChange;
+    [SerializeField] private int numOfDarkMatterToSpawnPerLevelChange;
     [SerializeField] private Camera mainCamera;
     [SerializeField] private CinemachineVirtualCamera virtualCamera;
     [SerializeField] private CinemachineVirtualCamera boostAnimationCamera;
@@ -54,7 +56,7 @@ public class ItemsManager : MonoBehaviour
         GM = GameManager.Instance;
         cameraAspect = mainCamera.aspect;
 
-        GM.OnLevelChanged += AddCometToScene;
+        GM.OnLevelChanged += AddItemsToScene;
         GM.OnCutsceneEnded += IntroCutsceneEnded;
 
         if (player.gameObject.activeInHierarchy)
@@ -63,7 +65,7 @@ public class ItemsManager : MonoBehaviour
 
             whiteHole.transform.position = GetRandomValidPosition(true);
             whiteHole.SetActive(true);
-            AddCometToScene();
+            AddItemsToScene();
         }
     }
 
@@ -71,7 +73,7 @@ public class ItemsManager : MonoBehaviour
     {
         if (GM != null)
         {
-            GM.OnLevelChanged -= AddCometToScene;
+            GM.OnLevelChanged -= AddItemsToScene;
             GM.OnCutsceneEnded -= IntroCutsceneEnded;
         }
     }
@@ -80,7 +82,7 @@ public class ItemsManager : MonoBehaviour
     {
         whiteHole.transform.position = GetRandomValidPosition(true);
         whiteHole.SetActive(true);
-        AddCometToScene();
+        AddItemsToScene();
     }
 
     private GameObject GetComet() 
@@ -99,17 +101,39 @@ public class ItemsManager : MonoBehaviour
 
         return comet;
     }
+    private GameObject GetDarkMatter() 
+    {
+        GameObject darkMatterObject = null;
 
-    private void AddCometToScene() 
+        for (int i = 0; i < darkMatter.Length; i++)
+        {
+            if (!darkMatter[i].activeInHierarchy)
+            {
+                darkMatterObject = darkMatter[i];
+                break;
+            }
+        }
+
+        return darkMatterObject;
+    }
+
+    private void AddItemsToScene()
     {
         if (GM.CurrentLevel == GameManager.Level.Level4)
             numOfCometsToSpawnPerLevelChange += 1;
-            
+
         for (int i = 0; i < numOfCometsToSpawnPerLevelChange; i++)
         {
             GameObject comet = GetComet();
             comet.transform.position = GetRandomValidPosition(false);
             comet.SetActive(true);
+        }
+
+        for (int i = 0; i < numOfDarkMatterToSpawnPerLevelChange; i++)
+        {
+            GameObject darkMatterObject = GetDarkMatter();
+            darkMatterObject.transform.position = GetRandomValidPosition(false);
+            darkMatterObject.SetActive(true);
         }
     }
 
