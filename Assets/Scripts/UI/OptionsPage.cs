@@ -42,10 +42,10 @@ public class OptionsPage : MonoBehaviour
         GM = GameManager.Instance;
         AM = GM.AudioManager;
 
-        vibrationSwitch.InitializeSwitch(!GM.HapticsManager.HapticsDisabled);
-        masterVolumeSlider.InitializeSlider(AM.MasterVolume);
-        musicVolumeSlider.InitializeSlider(AM.MusicVolume);
-        sfxVolumeSlider.InitializeSlider(AM.SFXVolume);
+        vibrationSwitch.InitializeSwitch(!GM.Settings.HapticsDisabled);
+        masterVolumeSlider.InitializeSlider(GM.Settings.MasterVolume);
+        musicVolumeSlider.InitializeSlider(GM.Settings.MusicVolume);
+        sfxVolumeSlider.InitializeSlider(GM.Settings.SFXVolume);
 
         initialized = true;
 
@@ -107,7 +107,7 @@ public class OptionsPage : MonoBehaviour
         if (!initialized) return;
 
         if (settingType == SettingType.Vibration)
-            GM.HapticsManager.HapticsDisabled = !isOn;
+            GM.Settings.HapticsDisabled = !isOn;
     }
     public void SliderValueChanged(SettingType settingType, float _value)
     {

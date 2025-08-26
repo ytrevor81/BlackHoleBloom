@@ -147,7 +147,7 @@ public class AudioManager : MonoBehaviour
     public void ChangeMusicVolume(float _value)
     {
         MusicVolume = _value;
-       musicController.setVolume(MusicVolume);
+        musicController.setVolume(MusicVolume);
     }
     public void ChangeSFXVolume(float _value)
     {

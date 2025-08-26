@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class HapticsManager : MonoBehaviour
 {
-    public bool HapticsDisabled { get; set; }
+    [SerializeField] private PlayerSettings settings;
 
     public void SmallVibration()
     {
-        if (HapticsDisabled)
+        if (settings.HapticsDisabled)
             return;
 
 #if !UNITY_EDITOR
@@ -19,7 +19,7 @@ public class HapticsManager : MonoBehaviour
 
     public void MediumVibration()
     {
-        if (HapticsDisabled)
+        if (settings.HapticsDisabled)
             return;
 
 #if !UNITY_EDITOR
@@ -29,7 +29,7 @@ public class HapticsManager : MonoBehaviour
 
     public void HeavyVibration()
     {
-        if (HapticsDisabled)
+        if (settings.HapticsDisabled)
             return;
             
 #if !UNITY_EDITOR

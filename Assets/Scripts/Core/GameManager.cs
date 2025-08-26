@@ -19,8 +19,8 @@ public class GameManager : MonoBehaviour
         Level10
     }
 
-    public bool SpecialAnimationPlaying { get; set; }
     public Level CurrentLevel { get; private set; }
+    [field: SerializeField] public PlayerSettings Settings { get; private set; }
     [field: SerializeField] public HapticsManager HapticsManager { get; private set; }
     [field: SerializeField] public AudioManager AudioManager { get; private set; }
     [field: SerializeField] public float RoomTime { get; private set; }
@@ -51,6 +51,7 @@ public class GameManager : MonoBehaviour
     public event GameManagerHandler OnCutsceneEnded;
 
     private bool isRoomCompleted;
+    public bool CometAnimationPlayedFirstTime { get; set; }
 
     void Awake()
     {
@@ -77,7 +78,7 @@ public class GameManager : MonoBehaviour
 
     public void ChangeLevelIfValid()
     {
-        if (!SpecialAnimationPlaying && CanLevelUp())
+        if (CanLevelUp())
         {
             if (CurrentLevel == Level.Level1)
                 CurrentLevel = Level.Level2;
@@ -138,6 +139,7 @@ public class GameManager : MonoBehaviour
 
     public void BackToMainMenu()
     {
+        isRoomCompleted = false;
         Time.timeScale = 1;
         CurrentLevel = Level.Level1;
         Score = 0;

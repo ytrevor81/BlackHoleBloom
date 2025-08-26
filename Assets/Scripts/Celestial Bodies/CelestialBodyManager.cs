@@ -200,14 +200,9 @@ public class CelestialBodyManager : MonoBehaviour
         }
     }
 
-    private bool CannotMove()
-    {
-        return GM.SpecialAnimationPlaying || GM.CutscenePlaying;
-    }
-
     void FixedUpdate()
     {
-        if (CannotMove())
+        if (GM.CutscenePlaying)
             return;
 
         if (moveableCelestialBodiesSet.Count > 0)
@@ -240,7 +235,7 @@ public class CelestialBodyManager : MonoBehaviour
     {
         return (activeTier1Set.Count + activeTier2Set.Count + activeTier3Set.Count + activeTier4Set.Count) < MaxOfBodiesToSpawn()
             && !overrideSpawning
-            && !GM.SpecialAnimationPlaying;
+            && !GM.CutscenePlaying;
     }
 
     private int MaxOfBodiesToSpawn()

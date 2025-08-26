@@ -229,7 +229,7 @@ public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
         }
         else
         {
-            if (targetLogic.inPlayerZone)
+            if (targetLogic == null || targetLogic.inPlayerZone)
             {
                 EnterOrbitOfPlayer();
                 return;

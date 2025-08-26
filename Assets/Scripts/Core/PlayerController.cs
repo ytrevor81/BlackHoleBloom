@@ -109,23 +109,18 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (GM.SpecialAnimationPlaying)
+        if (GM.CutscenePlaying)
             return;
 
         if (updateSizeAndView)
             UpdateScaleAndCameraSize();
     }
 
-    private bool CannotMove()
-    {
-        return GM.SpecialAnimationPlaying || GM.CutscenePlaying;
-    }
-
     private void FixedUpdate()
     {
         rb.velocity = Vector2.zero;
 
-        if (CannotMove())
+        if (GM.CutscenePlaying)
             return;
 
         Vector2 playerInputForce = CalculatePlayerInputForce();

@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f14dd0398251c94a90cc1067bf902b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <Settings>k__BackingField: {fileID: 11400000, guid: 7879d8c2f62280f489dbf367bb8d2143, type: 2}
   <HapticsManager>k__BackingField: {fileID: 9108639968282900800}
   <AudioManager>k__BackingField: {fileID: 5749345420689933537}
   <RoomTime>k__BackingField: 300
@@ -131,6 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b467b3c58054c0245b9912a8ba4b1003, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  settings: {fileID: 11400000, guid: 7879d8c2f62280f489dbf367bb8d2143, type: 2}
 --- !u!114 &5749345420689933537
 MonoBehaviour:
   m_ObjectHideFlags: 0

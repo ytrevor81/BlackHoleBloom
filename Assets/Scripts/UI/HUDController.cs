@@ -311,12 +311,18 @@ public class HUDController : MonoBehaviour
 
     public void FadeOutHUD()
     {
+        if (overallHUDcanvasGroup.alpha == 0)
+            return;
+
         isFadingOut = true;
         isFadingIn = false;
     }
 
     public void FadeInHUD()
     {
+        if (overallHUDcanvasGroup.alpha == 1)
+            return;
+
         isFadingIn = true;
         isFadingOut = false;
     }
@@ -344,7 +350,7 @@ public class HUDController : MonoBehaviour
 
     private void UpdateTimer()
     {
-        if (GM == null || GM.SpecialAnimationPlaying || GM.CutscenePlaying)
+        if (GM == null || GM.CutscenePlaying)
             return;
 
         if (GM.Timer > 1)

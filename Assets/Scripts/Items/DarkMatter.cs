@@ -25,6 +25,8 @@ public class DarkMatter : MonoBehaviour, IGravityInteract
     [SerializeField] private Vector2 level8ScaleVectors;
     [SerializeField] private Vector2 level9ScaleVectors;
 
+    private Vector2 targetScaleVectors;
+
     [Space]
 
     [SerializeField] private float scaleLerpTime;
@@ -62,6 +64,7 @@ public class DarkMatter : MonoBehaviour, IGravityInteract
             return;
 
         StopCurrentCoroutine();
+        targetScaleVectors = GetCurrentScaleVectors();
         currentCoroutine = StartCoroutine(ScaleCoroutine());
     }
 
@@ -99,7 +102,7 @@ public class DarkMatter : MonoBehaviour, IGravityInteract
         if (GM.CurrentLevel == GameManager.Level.Level1)
             return;
 
-        Vector2 targetScaleVectors = GetCurrentScaleVectors();
+        targetScaleVectors = GetCurrentScaleVectors();
         transform.localScale = new Vector3(targetScaleVectors.x, targetScaleVectors.x, 1f);
         coreParticles.localScale = new Vector3(targetScaleVectors.x, targetScaleVectors.x, 1f);
         cloudParticles.localScale = new Vector3(targetScaleVectors.y, targetScaleVectors.y, 1f);
@@ -116,7 +119,6 @@ public class DarkMatter : MonoBehaviour, IGravityInteract
     private IEnumerator ScaleCoroutine()
     {
         float elaspedTime = 0f;
-        Vector2 targetScaleVectors = GetCurrentScaleVectors();
         Vector3 startingScaleMainAndCoreParticles = transform.localScale;
         Vector3 startingScaleCloudParticles = cloudParticles.localScale;
 
@@ -164,7 +166,7 @@ public class DarkMatter : MonoBehaviour, IGravityInteract
             cloudParticles.localScale = Vector3.Lerp(startingScaleCloudParticles, targetShrinkScaleForEverything, t);
 
             transform.position = playerPos.position;
-            
+
             yield return null;
         }
 

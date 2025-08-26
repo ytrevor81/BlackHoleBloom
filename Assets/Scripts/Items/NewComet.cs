@@ -37,6 +37,7 @@ public class NewComet : MonoBehaviour, IGravityInteract, IBarrierInteract
     private IEnumerator currentCoroutine;
     private Vector2 cachedVelocity;
     private bool paused;
+    private bool triggeredFirstCometAnimation;
     
     void Awake()
     {
@@ -61,7 +62,6 @@ public class NewComet : MonoBehaviour, IGravityInteract, IBarrierInteract
         offscreenArrow = OffscreenArrow.Instance;
         offscreenArrow.InitializeTargetForOffscreenArrow(transform);
 
-        //Vector2 randomDir = new Vector2(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f)).normalized;
         Vector2 dirToPlayer = (player.transform.position - transform.position).normalized;
         rb.AddForce(dirToPlayer * travelSpeed, ForceMode2D.Impulse);
 
@@ -116,9 +116,6 @@ public class NewComet : MonoBehaviour, IGravityInteract, IBarrierInteract
 
     public void EnterOrbitOfPlayer()
     {
-        if (GM.CutscenePlaying)
-            return;
-
         if (currentCoroutine != null)
             StopCoroutine(currentCoroutine);
 
@@ -126,28 +123,40 @@ public class NewComet : MonoBehaviour, IGravityInteract, IBarrierInteract
         rb.velocity = Vector2.zero;
         rb.isKinematic = true;
         Used = true;
-        GM.SpecialAnimationPlaying = true;
+
         offscreenArrow.RemoveTargetFromOffscreenArrow(transform);
         gameObject.tag = BHBConstants.NULL;
+        trail.emitting = false;
 
-        float difference = player.transform.position.x - transform.position.x;
-
-        if (difference > 0)
+        if (!GM.CometAnimationPlayedFirstTime)
         {
-            BoostAnimationCamera.m_Lens.Dutch = 50f;
+            triggeredFirstCometAnimation = true;
+            HUD.FadeOutHUD();
+            GM.CometAnimationPlayedFirstTime = true;
+            GM.CutscenePlaying = true;
+            
+            float difference = player.transform.position.x - transform.position.x;
+
+            if (difference > 0)
+            {
+                BoostAnimationCamera.m_Lens.Dutch = 50f;
+            }
+            else
+            {
+                BoostAnimationCamera.m_Lens.Dutch = -50f;
+            }
+
+            BoostAnimationCamera.Follow = transform;
+            BoostAnimationCamera.gameObject.SetActive(true);
+
+            currentCoroutine = DelayStartingAnimation();
+            StartCoroutine(currentCoroutine);
         }
         else
         {
-            BoostAnimationCamera.m_Lens.Dutch = -50f;
+            animator.speed = 1.5f;
+            animator.enabled = true;
         }
-
-        BoostAnimationCamera.Follow = transform;
-        BoostAnimationCamera.gameObject.SetActive(true);
-        trail.emitting = false;
-        HUD.FadeOutHUD();
-
-        currentCoroutine = DelayStartingAnimation();
-        StartCoroutine(currentCoroutine);
     }
     public void EnterOrbitOfOtherCelestialBody(CelestialBody celestialBody, Collider2D _collider)
     {
@@ -162,7 +171,10 @@ public class NewComet : MonoBehaviour, IGravityInteract, IBarrierInteract
     private IEnumerator DelayDeactivatingObject()
     {
         yield return delayAnimation;
-        GM.SpecialAnimationPlaying = false;
+
+        if (triggeredFirstCometAnimation)
+            GM.CutscenePlaying = false;
+            
         gameObject.SetActive(false);
     }
 
