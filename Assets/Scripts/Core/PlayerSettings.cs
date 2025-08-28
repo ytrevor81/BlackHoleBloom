@@ -6,6 +6,16 @@ public class PlayerSettings : ScriptableObject
     [field: SerializeField] public float MasterVolume { get; set; } = 1f;
     [field: SerializeField] public float MusicVolume { get; set; } = 1f;
     [field: SerializeField] public float SFXVolume { get; set; } = 1f;
+    [field: SerializeField] public bool HideJoystick { get; set; } = false;
+
+    public delegate void SettingsChangedHandler();
+    public event SettingsChangedHandler OnJoystickVisibilityChanged;
+
+    public void ToggleJoystickVisibility(bool _hide)
+    {
+        HideJoystick = _hide;
+        OnJoystickVisibilityChanged?.Invoke();
+    }
 
     private void ResetSettingsToDefault()
     {
@@ -13,6 +23,7 @@ public class PlayerSettings : ScriptableObject
         MasterVolume = 1f;
         MusicVolume = 1f;
         SFXVolume = 1f;
+        HideJoystick = false;
     }
 #if UNITY_EDITOR
     void OnEnable()
@@ -20,4 +31,9 @@ public class PlayerSettings : ScriptableObject
         ResetSettingsToDefault();
     }
 #endif
+
+    void OnDisable()
+    {
+        OnJoystickVisibilityChanged = null;
+    }
 }

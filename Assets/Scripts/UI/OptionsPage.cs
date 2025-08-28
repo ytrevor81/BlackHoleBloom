@@ -12,7 +12,8 @@ public class OptionsPage : MonoBehaviour
         MasterVolume,
         MusicVolume,
         SFXVolume,
-        Vibration
+        Vibration,
+        HideJoystick
     }
 
     [SerializeField] private OptionsSlider masterVolumeSlider;
@@ -108,6 +109,9 @@ public class OptionsPage : MonoBehaviour
 
         if (settingType == SettingType.Vibration)
             GM.Settings.HapticsDisabled = !isOn;
+        
+        else if (settingType == SettingType.HideJoystick)
+            GM.Settings.ToggleJoystickVisibility(isOn);
     }
     public void SliderValueChanged(SettingType settingType, float _value)
     {
