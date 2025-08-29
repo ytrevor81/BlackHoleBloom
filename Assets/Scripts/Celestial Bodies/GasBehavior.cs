@@ -34,7 +34,7 @@ public class GasBehavior : CelestialBody
         trailParticle.gameObject.SetActive(true);
     }
 
-    protected override void Shrink(CelestialBodySettings _settings)
+    protected override void Shrink()
     {
         if (trailParticle.isPlaying) 
         {
@@ -43,10 +43,14 @@ public class GasBehavior : CelestialBody
             trailParticleMain.simulationSpeed = 3f;
         }
 
-        alpha -= _settings.FadeOutSpeed * Time.fixedDeltaTime;
-        mainBodyTransform.localScale = Vector3.Lerp(mainBodyTransform.localScale, targetScale, _settings.ShrinkSpeed * Time.fixedDeltaTime);
+        elaspedTime += Time.fixedDeltaTime;
+        float lerpedProgress = elaspedTime / BHBConstants.SHRINK_TO_SINGULARITY_TIME;
+        
+        mainBodyTransform.localScale = Vector3.Lerp(originalScale, targetScale, lerpedProgress);
+        rb.position = Vector3.Lerp(startingPos, playerPos, lerpedProgress);
 
-        if (alpha <= 0f)
+
+        if (elaspedTime >= BHBConstants.SHRINK_TO_SINGULARITY_TIME)
             base.AbsorbIntoPlayer();
     }
 }

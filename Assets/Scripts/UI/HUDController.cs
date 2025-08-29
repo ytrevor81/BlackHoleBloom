@@ -126,6 +126,9 @@ public class HUDController : MonoBehaviour
 
         GM.OnLevelChanged += LevelUp;
         GM.OnRoomCompleted += RoomCompleted;
+        GM.Settings.OnJoystickVisibilityChanged += HandleJoystickVisibility;
+
+        HandleJoystickVisibility();
     }
 
     void OnDisable()
@@ -134,6 +137,7 @@ public class HUDController : MonoBehaviour
         {
             GM.OnLevelChanged -= LevelUp;
             GM.OnRoomCompleted -= RoomCompleted;
+            GM.Settings.OnJoystickVisibilityChanged -= HandleJoystickVisibility;
         }
 
         StopCurrentCoroutine();
@@ -377,6 +381,15 @@ public class HUDController : MonoBehaviour
             if (GM.CurrentLevel != GameManager.Level.Level10)
                 PlayerLost();
         }
+    }
+
+    private void HandleJoystickVisibility()
+    {
+        if (GM.Settings.HideJoystick)
+            joystickCanvasGroup.alpha = 0;
+
+        else
+            joystickCanvasGroup.alpha = 1;
     }
 
     public void AddTime()

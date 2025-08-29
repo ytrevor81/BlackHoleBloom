@@ -27,7 +27,7 @@ public class CelestialBodySettings : ScriptableObject
     [field: SerializeField] public Vector2 InitialSpeedRange { get; private set; }
     [field: SerializeField] public Vector2 InitialRotationRange { get; private set; }
     [field: SerializeField] public float SpeedToPlayer { get; private set; }
-    [field: SerializeField] public float ShrinkSpeedToPlayer { get; private set; }
+    //[field: SerializeField] public float ShrinkSpeedToPlayer { get; private set; }
     [field: SerializeField] public float OrbitDeclineRate { get; private set; }
     [field: SerializeField] public float SpeedIncreaseRate { get; private set; }
     [field: SerializeField] public int TrajectorySteps { get; private set; }
@@ -35,8 +35,6 @@ public class CelestialBodySettings : ScriptableObject
     [field: SerializeField] public float RadialGain { get; private set; }
     [field: SerializeField] public float TangentGain { get; private set; }
     [field: SerializeField] public float PathSpeed { get; private set; }
-    [field: SerializeField] public float ShrinkSpeed { get; private set; }
-    [field: SerializeField] public float FadeOutSpeed { get; private set; }
 
     [field: Space]
 

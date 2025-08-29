@@ -20,7 +20,7 @@ public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
     public CelestialBodyManager Manager { get; set; }
     private Vector3[] simulatedPoints;
     private PlayerController player;
-    private Vector2 playerPos;
+    protected Vector2 playerPos;
     private bool inPlayerZone;
     private Vector2 directionToPlayer;
     private Vector2 currentVelocity;
@@ -49,9 +49,12 @@ public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
     private bool shrinking;
     protected Vector3 originalScale;
     protected Vector3 targetScale = new Vector3(0.1f, 0.1f, 0.1f);
-    protected float alpha;
+    //private float alpha;
     private Color originalColor;
     private bool isInOrbit;
+    protected float elaspedTime;
+    private Color targetColor;
+    protected Vector3 startingPos;
     protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -62,6 +65,7 @@ public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
             spriteRenderer = GetComponent<SpriteRenderer>();
             originalScale = transform.localScale;
             originalColor = spriteRenderer.color;
+            targetColor = new Color(originalColor.r, originalColor.g, originalColor.b, 0f);
         }
     }
 
@@ -76,8 +80,9 @@ public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
         targetLogic = null;
         targetOrbit = null;
 
+        elaspedTime = 0f;
         pathProgress = 0f;
-        alpha = 1f;
+        //alpha = 1f;
         shrinking = false;
         rb.isKinematic = false;
         inPlayerZone = false;
@@ -103,9 +108,8 @@ public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
 
     private void CachePlayerIfValid()
     {
-        if (player == null)
+        if (player == null){}
             player = PlayerController.Instance;
-
     }
 
     public void InitialBoost(CelestialBodySettings settings)
@@ -204,14 +208,14 @@ public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
 
             rb.velocity = Vector2.zero;
             playerPos = player.transform.position;
-            directionToPlayer = playerPos - (Vector2)transform.position;
 
             if (shrinking)
             {
-                rb.MovePosition(rb.position + (directionToPlayer.normalized * settings.ShrinkSpeedToPlayer) * Time.fixedDeltaTime);
+                Shrink();
                 return;
             }
 
+            directionToPlayer = playerPos - (Vector2)transform.position;
             gravitationalForce = CalculateGravitationalForce(directionToPlayer);
             currentVelocity += (gravitationalForce + directionToPlayer) * Time.fixedDeltaTime;
             currentVelocity = NudgeTowardsOrbit(currentVelocity, directionToPlayer, settings.RadialGain, settings.TangentGain, simulated: false);
@@ -247,31 +251,27 @@ public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
         }
     }
 
-    protected virtual void Shrink(CelestialBodySettings _settings)
+    protected virtual void Shrink()
     {
-        alpha -= _settings.FadeOutSpeed * Time.fixedDeltaTime;
+        elaspedTime += Time.fixedDeltaTime;
+        float lerpedProgress = elaspedTime / BHBConstants.SHRINK_TO_SINGULARITY_TIME;
 
         if (!omitAlphaDecrease)
-            spriteRenderer.color = new Color(1f, 1f, 1f, alpha);
+            spriteRenderer.color = Color.Lerp(originalColor, targetColor, lerpedProgress);
 
-        transform.localScale = Vector3.Lerp(transform.localScale, targetScale, _settings.ShrinkSpeed * Time.fixedDeltaTime);
+        transform.localScale = Vector3.Lerp(originalScale, targetScale, lerpedProgress);
+        rb.position = Vector3.Lerp(startingPos, playerPos, lerpedProgress);
 
-        if (alpha <= 0f)
+        if (elaspedTime >= BHBConstants.SHRINK_TO_SINGULARITY_TIME)
             AbsorbIntoPlayer();
     }
 
 
     public void AnimateLine(CelestialBodySettings settings)
     {
-        if (shrinking)
-        {
-            Shrink(settings);
-            return;
-        }
-        else if (!inPlayerZone) // || Type == CelestialBodyType.Gas
+        if ((!inPlayerZone && !shrinking)) //Type == CelestialBodyType.Gas
             return;
 
-        // If we have fewer than 2 points, nothing to draw/animate
         if (simCounter <= 1)
         {
             lineRenderer.positionCount = 0;
@@ -407,6 +407,7 @@ public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
     {
         playerDetectionCollider.SetActive(false);
         lineRenderer.gameObject.SetActive(false);
+        startingPos = rb.position;
         shrinking = true;
     }
 

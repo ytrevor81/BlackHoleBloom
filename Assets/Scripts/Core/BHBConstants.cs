@@ -10,4 +10,5 @@ public class BHBConstants
     public const string ITEM = "Item";
     public const string NULL = "Null";
     public const string DEFAULT_LAYER = "Default";
+    public const float SHRINK_TO_SINGULARITY_TIME = 0.25f;
 }
