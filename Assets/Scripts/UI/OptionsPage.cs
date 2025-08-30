@@ -20,6 +20,7 @@ public class OptionsPage : MonoBehaviour
     [SerializeField] private OptionsSlider musicVolumeSlider;
     [SerializeField] private OptionsSlider sfxVolumeSlider;
     [SerializeField] private OptionsOnOffSwitch vibrationSwitch;
+    [SerializeField] private OptionsOnOffSwitch hideJoystickSwitch;
 
     [Space]
 
@@ -43,6 +44,7 @@ public class OptionsPage : MonoBehaviour
         GM = GameManager.Instance;
         AM = GM.AudioManager;
 
+        hideJoystickSwitch.InitializeSwitch(GM.Settings.HideJoystick);
         vibrationSwitch.InitializeSwitch(!GM.Settings.HapticsDisabled);
         masterVolumeSlider.InitializeSlider(GM.Settings.MasterVolume);
         musicVolumeSlider.InitializeSlider(GM.Settings.MusicVolume);

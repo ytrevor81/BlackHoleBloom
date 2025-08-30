@@ -6,6 +6,7 @@ public class NewComet : MonoBehaviour, IGravityInteract, IBarrierInteract
 {
     private GameManager GM;
     private HUDController HUD;
+    private Collider2D coll;
     private Animator animator;
     private Rigidbody2D rb;
     private OffscreenArrow offscreenArrow;
@@ -43,6 +44,7 @@ public class NewComet : MonoBehaviour, IGravityInteract, IBarrierInteract
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        coll = GetComponent<Collider2D>();
     }
 
     void OnDisable()
@@ -123,6 +125,7 @@ public class NewComet : MonoBehaviour, IGravityInteract, IBarrierInteract
         rb.velocity = Vector2.zero;
         rb.isKinematic = true;
         Used = true;
+        coll.enabled = false;
 
         offscreenArrow.RemoveTargetFromOffscreenArrow(transform);
         gameObject.tag = BHBConstants.NULL;
