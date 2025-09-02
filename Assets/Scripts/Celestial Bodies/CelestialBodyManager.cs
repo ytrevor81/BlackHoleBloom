@@ -388,12 +388,15 @@ public class CelestialBodyManager : MonoBehaviour
         }
     }
 
-    public void PerformAbsorbBehavior(CelestialBodyType _type, CodexEntry _entryData)
+    public void PerformAbsorbBehavior(CelestialBodyType _type, CodexEntry _entryData, bool playSFX)
     {
         CacheHUDIfValid();
 
-        PlayAbsorbSFX(_type);
-        HUD.CheckCodexEntry(_entryData);
+        if (playSFX)
+            PlayAbsorbSFX(_type);
+
+        if (_entryData != null)
+            HUD.CheckCodexEntry(_entryData);
     }
 
     private void PlayAbsorbSFX(CelestialBodyType _type)
@@ -445,19 +448,20 @@ public class CelestialBodyManager : MonoBehaviour
 
     public void RemoveCelestialBodyFromActiveSet(CelestialBody celestialBody)
     {
-        if (celestialBody.Type == CelestialBodyType.Tier1)
+        if (celestialBody.Type == CelestialBodyType.Tier1 && activeTier1Set.Contains(celestialBody))
             activeTier1Set.Remove(celestialBody);
 
-        else if (celestialBody.Type == CelestialBodyType.Tier2)
+        else if (celestialBody.Type == CelestialBodyType.Tier2 && activeTier2Set.Contains(celestialBody))
             activeTier2Set.Remove(celestialBody);
-        
-        else if (celestialBody.Type == CelestialBodyType.Tier3)
+
+        else if (celestialBody.Type == CelestialBodyType.Tier3 && activeTier3Set.Contains(celestialBody))
             activeTier3Set.Remove(celestialBody);
-        
-        else if (celestialBody.Type == CelestialBodyType.Tier4)
+
+        else if (celestialBody.Type == CelestialBodyType.Tier4 && activeTier4Set.Contains(celestialBody))
             activeTier4Set.Remove(celestialBody);
 
-        moveableCelestialBodiesSet.Remove(celestialBody);
+        if (moveableCelestialBodiesSet.Contains(celestialBody))
+            moveableCelestialBodiesSet.Remove(celestialBody);
     }
 
     public float NewOrbitMultiplier(CelestialBodyType _type)

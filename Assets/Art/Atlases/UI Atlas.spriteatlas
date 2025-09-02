@@ -53,6 +53,7 @@ SpriteAtlas:
     - 1e091740de1cd5d489f1af363aa444b9: 21300000
     - 1b1bbd90fcd65cb49a9932ea713bc8c4: 21300000
     - c9866941646926844a385587e4c9b3af: 21300000
+    - 40ebe912922c2014f979405e3c831ffd: 21300000
     - f4846f32210780d4c855bf23c2b8b099: 21300000
     - 010a6e5305fa7004f89c5d317b7b47d4: 21300000
     - 91c2b7634cbb8a84191246cb2f0730a8: 21300000
@@ -72,6 +73,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 1e091740de1cd5d489f1af363aa444b9, type: 3}
   - {fileID: 21300000, guid: 1b1bbd90fcd65cb49a9932ea713bc8c4, type: 3}
   - {fileID: 21300000, guid: c9866941646926844a385587e4c9b3af, type: 3}
+  - {fileID: 21300000, guid: 40ebe912922c2014f979405e3c831ffd, type: 3}
   - {fileID: 21300000, guid: f4846f32210780d4c855bf23c2b8b099, type: 3}
   - {fileID: 21300000, guid: 010a6e5305fa7004f89c5d317b7b47d4, type: 3}
   - {fileID: 21300000, guid: 91c2b7634cbb8a84191246cb2f0730a8, type: 3}
@@ -90,6 +92,7 @@ SpriteAtlas:
   - pause_icon_transparent
   - hydrogen icon
   - transparent box bg ui
+  - lightning bolt ui
   - Codex icon
   - Handle_Plain
   - double_chevron_transparent

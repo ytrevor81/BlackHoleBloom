@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 public class PlayerController : MonoBehaviour
 {
     private GameManager GM;
@@ -61,6 +65,11 @@ public class PlayerController : MonoBehaviour
     public float BoostMultiplier { get; private set; } = 1f;
     private float boostTimer;
     public bool inBoostMode { get; private set; }
+
+    [Header("Abilities")]
+    [Space]
+
+    [SerializeField] private LightningAbility lightning;
 
     private Rigidbody2D rb;
 
@@ -147,8 +156,8 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
-        
-        return joystick.Direction * (speed * BoostMultiplier);;
+
+        return joystick.Direction * (speed * BoostMultiplier); ;
     }
 
     private void UpdateScaleAndCameraSize()
@@ -188,7 +197,7 @@ public class PlayerController : MonoBehaviour
     {
         if (GM.CutscenePlaying)
             return;
-            
+
         CacheHUDIfNull();
         GM.Score += mass;
         GM.NumOfObjectsAbsorbed += 1;
@@ -276,7 +285,7 @@ public class PlayerController : MonoBehaviour
             speed = level9Stats.Speed;
             targetSparklesScale = level9Stats.SparklesScale;
         }
-        
+
         updateSizeAndView = true;
     }
 
@@ -355,6 +364,12 @@ public class PlayerController : MonoBehaviour
 
         return level2Stats.CameraShakeValue;
     }
+
+    public void ActivateLightningStrike_Editor()
+    {
+        lightning.transform.position = transform.position;
+        lightning.gameObject.SetActive(true);
+    }
 }
 [System.Serializable]
 public struct LevelStats
@@ -365,3 +380,22 @@ public struct LevelStats
     public float CameraShakeValue;
     public float SparklesScale;
 }
+
+#if UNITY_EDITOR
+
+[CustomEditor(typeof(PlayerController))]
+public class PlayerControllerInspector : Editor
+{
+    public override void OnInspectorGUI()
+    {
+        DrawDefaultInspector();
+
+        PlayerController player = (PlayerController)target;
+
+        // if (GUILayout.Button("Lightning Strike"))
+        // {
+        //     player.ActivateLightningStrike_Editor();
+        // }
+    }
+}
+#endif

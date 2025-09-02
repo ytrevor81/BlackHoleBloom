@@ -411,12 +411,25 @@ public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
         shrinking = true;
     }
 
-    protected virtual void AbsorbIntoPlayer()
+    public virtual void AbsorbIntoPlayer()
     {
         player.AddMass(Manager.GetMass(Type));
         player.RemoveObjectFromOrbitingList(this);
         Manager.RemoveCelestialBodyFromActiveSet(this);
-        Manager.PerformAbsorbBehavior(Type, entry);
+        Manager.PerformAbsorbBehavior(Type, entry, playSFX: true);
+        inPlayerZone = false;
+        isInOrbit = false;
+        shrinking = false;
+        lineRenderer.positionCount = 0;
+        lineRenderer.gameObject.SetActive(false);
+
+        gameObject.SetActive(false);
+    }
+    public void HitByLightning()
+    {
+        CachePlayerIfValid();
+        player.RemoveObjectFromOrbitingList(this);
+        Manager.RemoveCelestialBodyFromActiveSet(this);
         inPlayerZone = false;
         isInOrbit = false;
         shrinking = false;
