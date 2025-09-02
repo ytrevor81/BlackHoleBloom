@@ -50,16 +50,40 @@ MonoBehaviour:
   celestialBodyManager: {fileID: 0}
   lightningVFXExplosion: {fileID: 0}
   lightningVFXTravelToPlayer: {fileID: 0}
-  travelToPlayerTime: 0.4
   lightningParticle: {fileID: 568480554213764293}
-  cooldownTime: 2
-  visualChargeUpTime: 2
-  visualChargeDownTime: 0.2
-  detectRadius: 200
   layerMask:
     serializedVersion: 2
     m_Bits: 512
   vcHelper: {fileID: 0}
+  travelToPlayerTime: 0.4
+  cooldownTime: 2
+  visualChargeUpTime: 2
+  visualChargeDownTime: 0.2
+  detectRadius: 200
+  level2StatsChange:
+    targetScale: 9
+    searchRadius: 332.5
+  level3StatsChange:
+    targetScale: 13
+    searchRadius: 468.6
+  level4StatsChange:
+    targetScale: 16
+    searchRadius: 600.2
+  level5StatsChange:
+    targetScale: 20
+    searchRadius: 765.7
+  level6StatsChange:
+    targetScale: 23
+    searchRadius: 900.9
+  level7StatsChange:
+    targetScale: 26
+    searchRadius: 1021.5
+  level8StatsChange:
+    targetScale: 29
+    searchRadius: 1201
+  level9StatsChange:
+    targetScale: 32
+    searchRadius: 1313
 --- !u!120 &1001427180907922685
 LineRenderer:
   serializedVersion: 2

@@ -11,6 +11,7 @@ public class LightningAbility : MonoBehaviour
     }
     private CurrentState currentState;
     private LineRenderer lineRenderer;
+    private GameManager GM;
 
     [Header("MAIN REFS")]
     [Space]
@@ -29,6 +30,20 @@ public class LightningAbility : MonoBehaviour
     [SerializeField] private float visualChargeUpTime;
     [SerializeField] private float visualChargeDownTime;
     [SerializeField] private float detectRadius;
+
+    [Header("LEVEL SCALE")]
+    [Space]
+
+    [SerializeField] private LevelUpLightningStats level2StatsChange;
+    [SerializeField] private LevelUpLightningStats level3StatsChange;
+    [SerializeField] private LevelUpLightningStats level4StatsChange;
+    [SerializeField] private LevelUpLightningStats level5StatsChange;
+    [SerializeField] private LevelUpLightningStats level6StatsChange;
+    [SerializeField] private LevelUpLightningStats level7StatsChange;
+    [SerializeField] private LevelUpLightningStats level8StatsChange;
+    [SerializeField] private LevelUpLightningStats level9StatsChange;
+
+
     private bool particleReachedPlayer;
     private ParticleSystem lightningVFXTravelToPlayerPS;
     private Collider2D[] objectsDetected = new Collider2D[10];
@@ -61,12 +76,64 @@ public class LightningAbility : MonoBehaviour
         lightningParticleTrans.localScale = startingScale;
     }
 
-    void OnEnable()
+    void Start()
     {
+        GM = GameManager.Instance;
         lightningParticleTrans.localScale = startingScale;
         lightningParticleMain.startColor = originalStartColor;
         currentState = CurrentState.Cooldown;
         timer = cooldownTime;
+
+        GM.OnLevelChanged += ChangeStatsAccordingToLevel;
+    }
+
+    void OnDisable()
+    {
+        if (GM != null)
+            GM.OnLevelChanged -= ChangeStatsAccordingToLevel;
+    }
+    private void ChangeStatsAccordingToLevel()
+    {
+        if (GM.CurrentLevel == GameManager.Level.Level2)
+        {
+            targetScale = new Vector3(level2StatsChange.targetScale, level2StatsChange.targetScale, 1f);
+            detectRadius = level2StatsChange.searchRadius;
+        }
+        else if (GM.CurrentLevel == GameManager.Level.Level3)
+        {
+            targetScale = new Vector3(level3StatsChange.targetScale, level3StatsChange.targetScale, 1f);
+            detectRadius = level3StatsChange.searchRadius;
+        }
+        else if (GM.CurrentLevel == GameManager.Level.Level4)
+        {
+            targetScale = new Vector3(level4StatsChange.targetScale, level4StatsChange.targetScale, 1f);
+            detectRadius = level4StatsChange.searchRadius;
+        }
+        else if (GM.CurrentLevel == GameManager.Level.Level5)
+        {
+            targetScale = new Vector3(level5StatsChange.targetScale, level5StatsChange.targetScale, 1f);
+            detectRadius = level5StatsChange.searchRadius;
+        }
+        else if (GM.CurrentLevel == GameManager.Level.Level6)
+        {
+            targetScale = new Vector3(level6StatsChange.targetScale, level6StatsChange.targetScale, 1f);
+            detectRadius = level6StatsChange.searchRadius;
+        }
+        else if (GM.CurrentLevel == GameManager.Level.Level7)
+        {
+            targetScale = new Vector3(level7StatsChange.targetScale, level7StatsChange.targetScale, 1f);
+            detectRadius = level7StatsChange.searchRadius;
+        }
+        else if (GM.CurrentLevel == GameManager.Level.Level8)
+        {
+            targetScale = new Vector3(level8StatsChange.targetScale, level8StatsChange.targetScale, 1f);
+            detectRadius = level8StatsChange.searchRadius;
+        }
+        else if (GM.CurrentLevel == GameManager.Level.Level9)
+        {
+            targetScale = new Vector3(level9StatsChange.targetScale, level9StatsChange.targetScale, 1f);
+            detectRadius = level9StatsChange.searchRadius;
+        }
     }
 
     private void ManageCooldown()
@@ -79,6 +146,7 @@ public class LightningAbility : MonoBehaviour
             elaspedTime = 0;
         }
     }
+
     private void ManageChargeUp()
     {
         elaspedTime += Time.deltaTime;
@@ -133,7 +201,7 @@ public class LightningAbility : MonoBehaviour
             targetLogic.HitByLightning();
             particleTravelElaspedTime = 0f;
             particleReachedPlayer = false;
-        }   
+        }
     }
 
     private void ParticleTravelToPlayer()
@@ -225,4 +293,11 @@ public class LightningAbility : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, detectRadius);
     }
+}
+
+[System.Serializable]
+public struct LevelUpLightningStats
+{
+    public float targetScale;
+    public float searchRadius;
 }
