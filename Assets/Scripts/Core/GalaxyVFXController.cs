@@ -127,6 +127,12 @@ public class GalaxyVFXController : MonoBehaviour
 
         accretionDiskContainer.rotation = Quaternion.Euler(0, 0, accretionDiskRotation);
         spiralArms.rotation = Quaternion.Euler(0, 0, spiralArmsRotation);
+
+        if (splitCloneContainer.activeInHierarchy)
+        {
+            cloneAccretionDiskContainer.rotation = Quaternion.Euler(0, 0, accretionDiskRotation);
+            cloneSpiralArms.rotation = Quaternion.Euler(0, 0, spiralArmsRotation);
+        }
     }
 
     private void StopCurrentCoroutine()
@@ -228,7 +234,6 @@ public class GalaxyVFXController : MonoBehaviour
             currentShaderValues = sprialShaderValues_Level5;
 
             sparklesEmission.rateOverTime = sprialShaderValues_Level5.SparklesEmissionIntensity;
-
             
             previousArmColor = sprialMaterial.GetColor(COLOR_ARM);
             targetColorArm = spiralVioletColor;
@@ -281,6 +286,9 @@ public class GalaxyVFXController : MonoBehaviour
         {
             currentArmsAlpha = Mathf.Lerp(0, currentShaderValues.ArmsAlpha, shaderElaspedTime / lerpTimeToShaderValues);
             sprialMaterial.SetFloat(ARMS_ALPHA, currentArmsAlpha);
+
+            if (splitCloneContainer != null && splitCloneContainer.activeInHierarchy)
+                cloneSpiralMaterial.SetFloat(ARMS_ALPHA, currentArmsAlpha);
         }
         else
         {
@@ -306,11 +314,31 @@ public class GalaxyVFXController : MonoBehaviour
             sprialMaterial.SetFloat(EDGE_BRIGHTNESS, currentEdgeBrightness);
             sprialMaterial.SetFloat(ARMS_ALPHA, currentArmsAlpha);
 
+            if (splitCloneContainer != null && splitCloneContainer.activeInHierarchy)
+            {
+                cloneSpiralMaterial.SetFloat(TWIST_STRENGTH, currentTwistStrength);
+                cloneSpiralMaterial.SetFloat(ARM_THICKNESS, currentArmThickness);
+                cloneSpiralMaterial.SetFloat(NOISE_SCALE, currentNoiseScale);
+                cloneSpiralMaterial.SetFloat(NOISE_STRENGTH, currentNoiseStrength);
+                cloneSpiralMaterial.SetFloat(RADIUS_FALLOFF, currentRadiusFalloff);
+                cloneSpiralMaterial.SetFloat(NOISE_SPEED, currentNoiseSpeed);
+                cloneSpiralMaterial.SetFloat(COLOR_INTENSITY, currentColorIntensity);
+                cloneSpiralMaterial.SetFloat(BRIGHTNESS_EXPONENT, currentBrightnessExponent);
+                cloneSpiralMaterial.SetFloat(EDGE_BRIGHTNESS, currentEdgeBrightness);
+                cloneSpiralMaterial.SetFloat(ARMS_ALPHA, currentArmsAlpha);
+            }
+
             if (lerpColor)
             {
                 currentColorArm = Color.Lerp(previousArmColor, targetColorArm, shaderElaspedTime / lerpTimeToShaderValues);
                 sprialMaterial.SetColor(COLOR_ARM, currentColorArm);
                 accretionDiskMaterial.SetColor(COLOR_DISK, currentColorArm);
+
+                if (splitCloneContainer != null && splitCloneContainer.activeInHierarchy)
+                {
+                    cloneSpiralMaterial.SetColor(COLOR_ARM, currentColorArm);
+                    cloneDiskMaterial.SetColor(COLOR_DISK, currentColorArm);
+                }
             }
         }
     }
@@ -339,11 +367,31 @@ public class GalaxyVFXController : MonoBehaviour
         sprialMaterial.SetFloat(EDGE_BRIGHTNESS, currentEdgeBrightness);
         sprialMaterial.SetFloat(ARMS_ALPHA, currentArmsAlpha);
 
+        if (splitCloneContainer != null && splitCloneContainer.activeInHierarchy)
+        {
+            cloneSpiralMaterial.SetFloat(TWIST_STRENGTH, currentTwistStrength);
+            cloneSpiralMaterial.SetFloat(ARM_THICKNESS, currentArmThickness);
+            cloneSpiralMaterial.SetFloat(NOISE_SCALE, currentNoiseScale);
+            cloneSpiralMaterial.SetFloat(NOISE_STRENGTH, currentNoiseStrength);
+            cloneSpiralMaterial.SetFloat(RADIUS_FALLOFF, currentRadiusFalloff);
+            cloneSpiralMaterial.SetFloat(NOISE_SPEED, currentNoiseSpeed);
+            cloneSpiralMaterial.SetFloat(COLOR_INTENSITY, currentColorIntensity);
+            cloneSpiralMaterial.SetFloat(BRIGHTNESS_EXPONENT, currentBrightnessExponent);
+            cloneSpiralMaterial.SetFloat(EDGE_BRIGHTNESS, currentEdgeBrightness);
+            cloneSpiralMaterial.SetFloat(ARMS_ALPHA, currentArmsAlpha);
+        }
+
         if (lerpColor)
         {
             sprialMaterial.SetColor(COLOR_ARM, targetColorArm);
             accretionDiskMaterial.SetColor(COLOR_DISK, targetColorArm);
             lerpColor = false;
+
+            if (splitCloneContainer != null && splitCloneContainer.activeInHierarchy)
+            {
+                cloneSpiralMaterial.SetColor(COLOR_ARM, targetColorArm);
+                cloneDiskMaterial.SetColor(COLOR_DISK, targetColorArm);
+            }
         }
     }
     private void SetShaderValuesInEditor(SprialShaderValues shaderValues, Color _spiralColor, bool isLevel1)

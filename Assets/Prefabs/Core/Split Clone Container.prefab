@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &273522026316117918
 Transform:
   m_ObjectHideFlags: 0
@@ -111,7 +111,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8891072840389501106}
@@ -225,7 +225,6 @@ GameObject:
   - component: {fileID: 8891072840389501106}
   - component: {fileID: 74805583397410006}
   - component: {fileID: 7805198414735110946}
-  - component: {fileID: 9084743045460912238}
   - component: {fileID: 6174059951066813886}
   m_Layer: 3
   m_Name: Split Clone
@@ -338,77 +337,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &9084743045460912238
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3121887753742567439}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 609eb4c5ba5af9a47a2676a2f39d6120, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <GravitationalForce>k__BackingField: 10000
-  initialSpeed: 50
-  joystick: {fileID: 0}
-  mainCamera: {fileID: 0}
-  gravityArea: {fileID: 6179441209481528307}
-  levelUpAndGammaRay: {fileID: 0}
-  level2Stats:
-    Scale: 35
-    CameraDistance: 590
-    Speed: 75
-    CameraShakeValue: 3
-    SparklesScale: 1
-  level3Stats:
-    Scale: 50
-    CameraDistance: 820
-    Speed: 100
-    CameraShakeValue: 3
-    SparklesScale: 1
-  level4Stats:
-    Scale: 65
-    CameraDistance: 1060
-    Speed: 130
-    CameraShakeValue: 3
-    SparklesScale: 3
-  level5Stats:
-    Scale: 80
-    CameraDistance: 1350
-    Speed: 160
-    CameraShakeValue: 5
-    SparklesScale: 4
-  level6Stats:
-    Scale: 95
-    CameraDistance: 1575
-    Speed: 190
-    CameraShakeValue: 5
-    SparklesScale: 4.5
-  level7Stats:
-    Scale: 110
-    CameraDistance: 1800
-    Speed: 220
-    CameraShakeValue: 5
-    SparklesScale: 5
-  level8Stats:
-    Scale: 125
-    CameraDistance: 2100
-    Speed: 250
-    CameraShakeValue: 5
-    SparklesScale: 5.5
-  level9Stats:
-    Scale: 140
-    CameraDistance: 2300
-    Speed: 280
-    CameraShakeValue: 5
-    SparklesScale: 6
-  levelStatsLerpTime: 0.75
-  galaxyVFXController: {fileID: 0}
-  sparkles: {fileID: 0}
-  boostSpeedTime: 10
-  lightning: {fileID: 0}
 --- !u!114 &6174059951066813886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -421,6 +349,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4fbc9e9443f3674592a4e80fdd22bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gravityArea: {fileID: 6179441209481528307}
 --- !u!1 &5580137252981655065
 GameObject:
   m_ObjectHideFlags: 0
@@ -671,4 +600,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 450eff331b54e2542874701796745642, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerController: {fileID: 9084743045460912238}
+  playerController: {fileID: 0}
+  splitClone: {fileID: 6174059951066813886}

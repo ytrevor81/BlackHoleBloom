@@ -622,7 +622,7 @@ public class WhiteHole : MonoBehaviour, IGravityInteract
             return GM.Level10ObjectCount;
     }
 
-    public void EnterOrbitOfPlayer()
+    public void EnterOrbitOfPlayer(bool isRealPlayer)
     {
         levelOfInjection = GM.CurrentLevel;
         maxNumOfPoints = CalculatePoints();

@@ -116,7 +116,7 @@ public class NewComet : MonoBehaviour, IGravityInteract, IBarrierInteract
         }
     }
 
-    public void EnterOrbitOfPlayer()
+    public void EnterOrbitOfPlayer(bool isRealPlayer)
     {
         if (currentCoroutine != null)
             StopCoroutine(currentCoroutine);

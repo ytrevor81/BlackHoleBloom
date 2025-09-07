@@ -235,7 +235,7 @@ public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
         {
             if (targetLogic == null || targetLogic.inPlayerZone)
             {
-                EnterOrbitOfPlayer();
+                EnterOrbitOfPlayer(isRealPlayer: true);
                 return;
             }
 
@@ -449,7 +449,7 @@ public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
         gameObject.SetActive(false);
     }
 
-    public virtual void EnterOrbitOfPlayer()
+    public virtual void EnterOrbitOfPlayer(bool isRealPlayer)
     {
         if (CelestialBodyFinderCollider != null)
             CelestialBodyFinderCollider.SetActive(false);

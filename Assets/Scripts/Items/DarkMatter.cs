@@ -174,7 +174,7 @@ public class DarkMatter : MonoBehaviour, IGravityInteract
         gameObject.SetActive(false);
     }
 
-    public void EnterOrbitOfPlayer()
+    public void EnterOrbitOfPlayer(bool isRealPlayer)
     {
         isMovingToPlayer = true;
         coll.enabled = false;
