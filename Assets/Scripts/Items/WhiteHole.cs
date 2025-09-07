@@ -43,7 +43,7 @@ public class WhiteHole : MonoBehaviour, IGravityInteract
 
     [SerializeField] private float sameScaleAsPlayerTime;
     [SerializeField] private float decreaseScaleTime;
-    [SerializeField] private float massPerTick;
+    [SerializeField] private int massPerTick;
     [SerializeField] private float timeBetweenTicks;
     [SerializeField] private int numOfTicks;
     private int maxNumOfPoints;
@@ -101,7 +101,6 @@ public class WhiteHole : MonoBehaviour, IGravityInteract
 
     private PlayerController player;
     private bool inPlayerZone;
-    private Vector2 directionToPlayer;
     private Vector2 currentVelocity;
     private Vector2 gravitationalForce;
     private bool particlesAnimated;

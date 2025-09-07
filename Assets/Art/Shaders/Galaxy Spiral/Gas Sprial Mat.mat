@@ -41,21 +41,21 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _ArmThickness: 188
-    - _ArmsAlpha: 0
+    - _ArmThickness: 1.18
+    - _ArmsAlpha: 2
     - _ArmsCount: 2
     - _BrightnessExponent: 2
-    - _ColorIntensity: 40
+    - _ColorIntensity: 100
     - _EdgeBrightness: 2
-    - _NoiseScale: 2.5
-    - _NoiseSpeed: 0.15
+    - _NoiseScale: 5
+    - _NoiseSpeed: 0.5
     - _NoiseStrength: 31.3
     - _QueueControl: 0
     - _QueueOffset: 0
     - _RadiusFalloff: 1.21
     - _TwistStrength: 25
     m_Colors:
-    - _ColorArm: {r: 1, g: 0.5372549, b: 0, a: 1}
+    - _ColorArm: {r: 0.33333334, g: 0, b: 1, a: 1}
     - _ColorCore: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &3900855334180982777

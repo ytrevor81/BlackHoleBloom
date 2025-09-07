@@ -21,7 +21,7 @@ public class BeginRoomAnimations : MonoBehaviour
     [SerializeField] private CanvasGroup canvasGroupUI;
     [SerializeField] private CelestialBodyManager celestialBodyManager;
     [SerializeField] private float canvasGroupUIFadeSpeed;
-    [SerializeField] private GameObject shockwave;
+    [SerializeField] private LevelUpAndGammaRay shockwaveLogic;
     [SerializeField] private Transform blackHole;
     [SerializeField] private Transform star;
     [SerializeField] private float rotationSpeed;
@@ -155,10 +155,9 @@ public class BeginRoomAnimations : MonoBehaviour
 
         blackHole.gameObject.SetActive(true);
         star.gameObject.SetActive(false);
-        shockwave.SetActive(true);
+        shockwaveLogic.ActivateLevelUpShockwave(5f);
         GM.HapticsManager.HeavyVibration();
         BHBAudio.PlayOneShotAttachedFromLoadedSampleData(GM.AudioManager.SFXBank.BeginGamePulseDescription, gameObject);
-        //GM.AudioManager.ChangeMusicTrack(AudioManager.MusicTrack.Room1);
     }
 
     public void FadeInUI_AnimationEvent()

@@ -85,14 +85,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cloudParticles: {fileID: 5233394128042495716}
   coreParticles: {fileID: 5475589012808865837}
-  level2ScaleVectors: {x: 2, y: 30}
-  level3ScaleVectors: {x: 3, y: 50}
-  level4ScaleVectors: {x: 4, y: 70}
-  level5ScaleVectors: {x: 5, y: 90}
-  level6ScaleVectors: {x: 6, y: 110}
-  level7ScaleVectors: {x: 7, y: 130}
-  level8ScaleVectors: {x: 8, y: 150}
-  level9ScaleVectors: {x: 8, y: 150}
+  level2ScaleVectors: {x: 1.5, y: 20}
+  level3ScaleVectors: {x: 2, y: 30}
+  level4ScaleVectors: {x: 2.5, y: 40}
+  level5ScaleVectors: {x: 3, y: 50}
+  level6ScaleVectors: {x: 3.5, y: 60}
+  level7ScaleVectors: {x: 4, y: 70}
+  level8ScaleVectors: {x: 4.5, y: 80}
+  level9ScaleVectors: {x: 5, y: 90}
   scaleLerpTime: 0.75
   timeToPlayer: 0.5
   shrinkTime: 0.25

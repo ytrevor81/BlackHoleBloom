@@ -1,4 +1,6 @@
 using UnityEngine;
+using Cinemachine;
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -18,6 +20,7 @@ public class PresetManager : MonoBehaviour
     [Space]
     [SerializeField] private GameObject[] room1Assets;
 
+    [SerializeField] private CinemachineVirtualCamera mainCamera;
     [SerializeField] private GameObject playerStar;
     [SerializeField] private GameObject playerBlackHole;
     [SerializeField] private CanvasGroup uiCanvasGroup;
@@ -76,6 +79,7 @@ public class PresetManager : MonoBehaviour
         }
 
         ResetCodexEntries();
+        SetMainCameraDistance(_camDistance: 295f);
     }
     public void Room1Viewer_Editor()
     {
@@ -114,11 +118,19 @@ public class PresetManager : MonoBehaviour
         }
 
         ResetCodexEntries();
+        SetMainCameraDistance(_camDistance: 340f);
+    }
+
+    private void SetMainCameraDistance(float _camDistance)
+    {
+        CinemachineFramingTransposer framingTransposer = mainCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
+        framingTransposer.m_CameraDistance = _camDistance;
+        EditorUtility.SetDirty(framingTransposer);
     }
 
     private void ResetCodexEntries()
     {
-        for (int i=0; i < entries.Length; i++)
+        for (int i = 0; i < entries.Length; i++)
         {
             entries[i].IsDiscovered = false;
             entries[i].ReadInCodex = false;

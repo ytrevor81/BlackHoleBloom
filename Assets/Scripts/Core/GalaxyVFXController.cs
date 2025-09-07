@@ -71,10 +71,16 @@ public class GalaxyVFXController : MonoBehaviour
     protected bool colorChangeActive;
     protected float shaderElaspedTime;
     protected float colorElaspedTime;
-
-    //Boost specific
-
     protected IEnumerator currentCoroutine;
+
+    [Header("Split Clone")]
+    [Space]
+    [SerializeField] private GameObject splitCloneContainer;
+    [SerializeField] private Transform cloneSpiralArms;
+    [SerializeField] private Transform cloneAccretionDiskContainer;
+
+    private Material cloneDiskMaterial;
+    private Material cloneSpiralMaterial;
 
     protected virtual void Awake()
     {
@@ -83,6 +89,14 @@ public class GalaxyVFXController : MonoBehaviour
         targetColorArm = spiralLightOrangeColor;
         sparklesEmission = sparkles.emission;
         accretionDiskMaterial.SetColor(COLOR_DISK, spiralLightOrangeColor);
+
+        if (splitCloneContainer != null)
+        {
+            cloneDiskMaterial = cloneAccretionDiskContainer.GetComponent<SpriteRenderer>().material;
+            cloneSpiralMaterial = cloneSpiralArms.GetComponent<SpriteRenderer>().material;
+            cloneDiskMaterial.SetColor(COLOR_DISK, spiralLightOrangeColor);
+            cloneSpiralMaterial.SetColor(COLOR_ARM, spiralLightOrangeColor);
+        }
     }
 
     protected virtual void Start()
@@ -100,7 +114,6 @@ public class GalaxyVFXController : MonoBehaviour
     protected virtual void Update()
     {
         RotateDiskAndSpiral();
-
         ChangeShaderValues();
         
         if (!player.inBoostMode)
@@ -383,6 +396,21 @@ public class GalaxyVFXController : MonoBehaviour
         sprialMaterial.SetFloat(EDGE_BRIGHTNESS, currentEdgeBrightness);
         sprialMaterial.SetFloat(ARMS_ALPHA, currentArmsAlpha);
         sprialMaterial.SetColor(COLOR_ARM, currentColorArm);
+
+        if (splitCloneContainer == null)
+            return;
+        
+        cloneSpiralMaterial.SetFloat(TWIST_STRENGTH, currentTwistStrength);
+        cloneSpiralMaterial.SetFloat(ARM_THICKNESS, currentArmThickness);
+        cloneSpiralMaterial.SetFloat(NOISE_SCALE, currentNoiseScale);
+        cloneSpiralMaterial.SetFloat(NOISE_STRENGTH, currentNoiseStrength);
+        cloneSpiralMaterial.SetFloat(RADIUS_FALLOFF, currentRadiusFalloff);
+        cloneSpiralMaterial.SetFloat(NOISE_SPEED, currentNoiseSpeed);
+        cloneSpiralMaterial.SetFloat(COLOR_INTENSITY, currentColorIntensity);
+        cloneSpiralMaterial.SetFloat(BRIGHTNESS_EXPONENT, currentBrightnessExponent);
+        cloneSpiralMaterial.SetFloat(EDGE_BRIGHTNESS, currentEdgeBrightness);
+        cloneSpiralMaterial.SetFloat(ARMS_ALPHA, currentArmsAlpha);
+        cloneSpiralMaterial.SetColor(COLOR_ARM, currentColorArm);
     }
 
     public void Level1SprialShader_Editor()

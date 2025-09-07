@@ -22,12 +22,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float initialSpeed;
     [SerializeField] private VariableJoystick joystick;
     [SerializeField] private CinemachineVirtualCamera mainCamera;
-    [SerializeField] private Shockwave shockwave;
     [SerializeField] private GameObject gravityArea;
 
     [Header("Level Increases")]
     [Space]
 
+    [SerializeField] private LevelUpAndGammaRay levelUpAndGammaRay;
     [SerializeField] private LevelStats level2Stats;
     [SerializeField] private LevelStats level3Stats;
     [SerializeField] private LevelStats level4Stats;
@@ -181,25 +181,25 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void AddWhiteHoleMass(float mass, int numOfObjectsAbsorbed)
+    public void AddWhiteHoleMass(int mass, int numOfObjectsAbsorbed)
     {
         if (GM.CutscenePlaying)
             return;
 
         CacheHUDIfNull();
-        GM.Score += mass;
+        GM.Mass += mass;
         GM.NumOfObjectsAbsorbed += numOfObjectsAbsorbed;
         HUD.UpdateHUDNumbers(mass);
         GM.ChangeLevelIfValid();
     }
 
-    public void AddMass(float mass)
+    public void AddMass(int mass)
     {
         if (GM.CutscenePlaying)
             return;
 
         CacheHUDIfNull();
-        GM.Score += mass;
+        GM.Mass += mass;
         GM.NumOfObjectsAbsorbed += 1;
         HUD.UpdateHUDNumbers(mass);
         GM.ChangeLevelIfValid();
@@ -325,8 +325,7 @@ public class PlayerController : MonoBehaviour
     private void LevelUp()
     {
         IncreaseStats();
-        shockwave.CameraShakeValue = GetCameraShakeValue();
-        shockwave.gameObject.SetActive(true);
+        levelUpAndGammaRay.ActivateLevelUpShockwave(GetCameraShakeValue());
         galaxyVFXController.UpgradeVFX();
         BHBAudio.PlayOneShotAttachedFromLoadedSampleData(SFXBank.LevelUpDescription, gameObject);
         GM.AudioManager.SetMusicProgress();

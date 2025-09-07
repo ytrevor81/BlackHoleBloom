@@ -11,7 +11,7 @@ public class CelestialBodySettings : ScriptableObject
         Tier4
     }
 
-    [field: SerializeField] public float Mass {  get; private set; }
+    [field: SerializeField] public int Mass {  get; private set; }
     [SerializeField] private Vector2 Level1OrbitRange;
     [SerializeField] private Vector2 Level2OrbitRange;
     [SerializeField] private Vector2 Level3OrbitRange;
@@ -27,7 +27,6 @@ public class CelestialBodySettings : ScriptableObject
     [field: SerializeField] public Vector2 InitialSpeedRange { get; private set; }
     [field: SerializeField] public Vector2 InitialRotationRange { get; private set; }
     [field: SerializeField] public float SpeedToPlayer { get; private set; }
-    //[field: SerializeField] public float ShrinkSpeedToPlayer { get; private set; }
     [field: SerializeField] public float OrbitDeclineRate { get; private set; }
     [field: SerializeField] public float SpeedIncreaseRate { get; private set; }
     [field: SerializeField] public int TrajectorySteps { get; private set; }

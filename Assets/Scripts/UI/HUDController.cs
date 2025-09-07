@@ -95,7 +95,6 @@ public class HUDController : MonoBehaviour
 
     private bool isFadingIn;
     private bool isFadingOut;
-    private float fadeSpeed = 1f;
     private IEnumerator currentCoroutine;
     private WaitForSecondsRealtime delayOneSecond = new WaitForSecondsRealtime(1f);
 
@@ -211,7 +210,7 @@ public class HUDController : MonoBehaviour
 
         while (elapsedTime < zoomTime)
         {
-            canvasAlpha -= Time.deltaTime * fadeSpeed;
+            canvasAlpha -= Time.deltaTime;
 
             if (canvasAlpha <= 0)
                 canvasAlpha = 0;
@@ -283,7 +282,7 @@ public class HUDController : MonoBehaviour
     {
         if (isFadingIn)
         {
-            overallHUDcanvasGroup.alpha += fadeSpeed * Time.deltaTime;
+            overallHUDcanvasGroup.alpha += Time.deltaTime;
 
             if (overallHUDcanvasGroup.alpha >= 1)
             {
@@ -293,7 +292,7 @@ public class HUDController : MonoBehaviour
         }
         else if (isFadingOut)
         {
-            overallHUDcanvasGroup.alpha -= fadeSpeed * Time.deltaTime;
+            overallHUDcanvasGroup.alpha -= Time.deltaTime;
 
             if (overallHUDcanvasGroup.alpha <= 0)
             {
@@ -432,11 +431,11 @@ public class HUDController : MonoBehaviour
     }
 
 
-    public void UpdateHUDNumbers(float mass)
+    public void UpdateHUDNumbers(int mass)
     {
-        scoreText.text = GM.Score.ToString("N0");
+        scoreText.text = GM.Mass.ToString("N0");
         UpdateLevelBar();
-        spawnedMassNumbers.AddNumToQueue((int)mass);
+        spawnedMassNumbers.AddNumToQueue(mass);
     }
     private void UpdateLevelBar()
     {

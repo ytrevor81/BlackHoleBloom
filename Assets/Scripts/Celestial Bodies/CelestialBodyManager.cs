@@ -425,7 +425,7 @@ public class CelestialBodyManager : MonoBehaviour
         }
     }
 
-    public float GetMass(CelestialBodyType _type)
+    public int GetMass(CelestialBodyType _type)
     {
         if (_type == CelestialBodyType.Tier1)
             return tier1Settings.Mass;

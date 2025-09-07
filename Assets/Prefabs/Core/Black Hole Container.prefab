@@ -113,7 +113,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 100, y: 100, z: 1}
+  m_LocalScale: {x: 65, y: 65, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8862231563582019484}
@@ -347,7 +347,7 @@ MonoBehaviour:
   canvasGroupUI: {fileID: 0}
   celestialBodyManager: {fileID: 0}
   canvasGroupUIFadeSpeed: 2
-  shockwave: {fileID: 9184293059341867467}
+  shockwaveLogic: {fileID: 4508631876752810199}
   blackHole: {fileID: 6251016667328930280}
   star: {fileID: 3925791180742197707}
   rotationSpeed: 100
@@ -445,6 +445,54 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5553669832529927883}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6469793427970645542
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4087887142949042220}
+  - component: {fileID: 4508631876752810199}
+  m_Layer: 0
+  m_Name: Level Up VFX And Gamma Ray Burst
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4087887142949042220
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6469793427970645542}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7864190525468572329}
+  m_Father: {fileID: 6251016667328930280}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4508631876752810199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6469793427970645542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a08addbd86fd554aa1363118a1250d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shockwaveObject: {fileID: 9184293059341867467}
+  shockwaveTime: 1
+  mainVC: {fileID: 0}
 --- !u!1 &6835707247510681421
 GameObject:
   m_ObjectHideFlags: 0
@@ -5388,7 +5436,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 8, y: 8, z: 1}
+  m_LocalScale: {x: 6.75, y: 6.75, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6251016667328930280}
@@ -5528,8 +5576,9 @@ Transform:
   m_Children:
   - {fileID: 7407259114973712408}
   - {fileID: 4005481419765327881}
-  - {fileID: 7864190525468572329}
+  - {fileID: 4087887142949042220}
   - {fileID: 5553669832529927883}
+  - {fileID: 7023034350016176339}
   m_Father: {fileID: 7437820139679411611}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7178245481080871424
@@ -5662,56 +5711,56 @@ MonoBehaviour:
   initialSpeed: 50
   joystick: {fileID: 0}
   mainCamera: {fileID: 0}
-  shockwave: {fileID: 7304445671350150157}
   gravityArea: {fileID: 8024123783381914032}
+  levelUpAndGammaRay: {fileID: 4508631876752810199}
   level2Stats:
     Scale: 35
-    CameraDistance: 541.4
+    CameraDistance: 590
     Speed: 75
-    CameraShakeValue: 5
+    CameraShakeValue: 3
     SparklesScale: 1
   level3Stats:
     Scale: 50
-    CameraDistance: 768.8
+    CameraDistance: 820
     Speed: 100
-    CameraShakeValue: 5
+    CameraShakeValue: 3
     SparklesScale: 1
   level4Stats:
     Scale: 65
-    CameraDistance: 1004.3
+    CameraDistance: 1060
     Speed: 130
-    CameraShakeValue: 5
-    SparklesScale: 2
+    CameraShakeValue: 3
+    SparklesScale: 3
   level5Stats:
     Scale: 80
-    CameraDistance: 1234.4
+    CameraDistance: 1350
     Speed: 160
     CameraShakeValue: 5
-    SparklesScale: 2.2
+    SparklesScale: 4
   level6Stats:
     Scale: 95
-    CameraDistance: 1468.7
+    CameraDistance: 1575
     Speed: 190
     CameraShakeValue: 5
-    SparklesScale: 2.5
+    SparklesScale: 4.5
   level7Stats:
     Scale: 110
-    CameraDistance: 1691
+    CameraDistance: 1800
     Speed: 220
     CameraShakeValue: 5
-    SparklesScale: 2.5
+    SparklesScale: 5
   level8Stats:
     Scale: 125
-    CameraDistance: 1938
+    CameraDistance: 2100
     Speed: 250
     CameraShakeValue: 5
-    SparklesScale: 2.92
+    SparklesScale: 5.5
   level9Stats:
     Scale: 140
-    CameraDistance: 2175
+    CameraDistance: 2300
     Speed: 280
     CameraShakeValue: 5
-    SparklesScale: 3.3
+    SparklesScale: 6
   levelStatsLerpTime: 0.75
   galaxyVFXController: {fileID: 4972267873851095815}
   sparkles: {fileID: 8400492187628172946}
@@ -5744,7 +5793,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 1}
+  m_LocalScale: {x: 9, y: 9, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8400492187628172946}
@@ -5966,9 +6015,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7864190525468572329}
   - component: {fileID: 749834983291491447}
-  - component: {fileID: 7304445671350150157}
   m_Layer: 0
-  m_Name: Shockwave
+  m_Name: Level Up Shockwave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5984,10 +6032,10 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5395092, y: 0.99543494, z: 1}
+  m_LocalScale: {x: 52.40734, y: 42.13586, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6251016667328930280}
+  m_Father: {fileID: 4087887142949042220}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &749834983291491447
 SpriteRenderer:
@@ -6041,20 +6089,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7304445671350150157
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9184293059341867467}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6626343e270e9c44c8ea43867d745d31, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shockwaveTime: 0.75
-  mainVC: {fileID: 0}
 --- !u!1001 &1155947122106055991
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6112,8 +6146,92 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a31c7726f29e8e4894c637afe26ba91, type: 3}
+--- !u!4 &514563261583834198 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1670456435679396193, guid: 2a31c7726f29e8e4894c637afe26ba91, type: 3}
+  m_PrefabInstance: {fileID: 1155947122106055991}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1528351336889356781 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 378149231758453978, guid: 2a31c7726f29e8e4894c637afe26ba91, type: 3}
+  m_PrefabInstance: {fileID: 1155947122106055991}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4096424264225827978 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2941927950934380989, guid: 2a31c7726f29e8e4894c637afe26ba91, type: 3}
   m_PrefabInstance: {fileID: 1155947122106055991}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4290286124046991893
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6251016667328930280}
+    m_Modifications:
+    - target: {fileID: 1971495099676492098, guid: 29d8f3fb566d6a44fbd9a1aa3b2f86cf, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 3851269356383997635}
+    - target: {fileID: 1971495099676492098, guid: 29d8f3fb566d6a44fbd9a1aa3b2f86cf, type: 3}
+      propertyPath: lightningVFXExplosion
+      value: 
+      objectReference: {fileID: 1528351336889356781}
+    - target: {fileID: 1971495099676492098, guid: 29d8f3fb566d6a44fbd9a1aa3b2f86cf, type: 3}
+      propertyPath: lightningVFXTravelToPlayer
+      value: 
+      objectReference: {fileID: 514563261583834198}
+    - target: {fileID: 2700391356616564037, guid: 29d8f3fb566d6a44fbd9a1aa3b2f86cf, type: 3}
+      propertyPath: m_Name
+      value: Lightning Ability Set
+      objectReference: {fileID: 0}
+    - target: {fileID: 6556393298126136006, guid: 29d8f3fb566d6a44fbd9a1aa3b2f86cf, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6556393298126136006, guid: 29d8f3fb566d6a44fbd9a1aa3b2f86cf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6556393298126136006, guid: 29d8f3fb566d6a44fbd9a1aa3b2f86cf, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6556393298126136006, guid: 29d8f3fb566d6a44fbd9a1aa3b2f86cf, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6556393298126136006, guid: 29d8f3fb566d6a44fbd9a1aa3b2f86cf, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6556393298126136006, guid: 29d8f3fb566d6a44fbd9a1aa3b2f86cf, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6556393298126136006, guid: 29d8f3fb566d6a44fbd9a1aa3b2f86cf, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6556393298126136006, guid: 29d8f3fb566d6a44fbd9a1aa3b2f86cf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6556393298126136006, guid: 29d8f3fb566d6a44fbd9a1aa3b2f86cf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6556393298126136006, guid: 29d8f3fb566d6a44fbd9a1aa3b2f86cf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 29d8f3fb566d6a44fbd9a1aa3b2f86cf, type: 3}
+--- !u!4 &7023034350016176339 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6556393298126136006, guid: 29d8f3fb566d6a44fbd9a1aa3b2f86cf, type: 3}
+  m_PrefabInstance: {fileID: 4290286124046991893}
   m_PrefabAsset: {fileID: 0}

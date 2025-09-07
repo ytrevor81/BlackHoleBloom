@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
     [field: SerializeField] public int Level10ObjectCount { get; private set; }
 
     public float Timer { get; set; }
-    public float Score { get; set; }
+    public long Mass { get; set; }
     public int NumOfObjectsAbsorbed { get; set; }
     public bool CutscenePlaying { get; set; }
 
@@ -142,7 +142,7 @@ public class GameManager : MonoBehaviour
         isRoomCompleted = false;
         Time.timeScale = 1;
         CurrentLevel = Level.Level1;
-        Score = 0;
+        Mass = 0;
         Timer = RoomTime;
         NumOfObjectsAbsorbed = 0;
         CutscenePlaying = false;
