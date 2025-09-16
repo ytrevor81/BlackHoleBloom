@@ -5774,7 +5774,8 @@ MonoBehaviour:
   galaxyVFXController: {fileID: 4972267873851095815}
   sparkles: {fileID: 8400492187628172946}
   boostSpeedTime: 10
-  lightning: {fileID: 0}
+  lightning: {fileID: 2366078820596826967}
+  splitController: {fileID: 7694320417763054156}
 --- !u!1 &8521459718361005166
 GameObject:
   m_ObjectHideFlags: 0
@@ -6242,6 +6243,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29d8f3fb566d6a44fbd9a1aa3b2f86cf, type: 3}
+--- !u!114 &2366078820596826967 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1971495099676492098, guid: 29d8f3fb566d6a44fbd9a1aa3b2f86cf, type: 3}
+  m_PrefabInstance: {fileID: 4290286124046991893}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a9681234c777ff4a83d716a8dfb7a4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &7023034350016176339 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6556393298126136006, guid: 29d8f3fb566d6a44fbd9a1aa3b2f86cf, type: 3}
@@ -6352,3 +6364,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3283885387316581297, guid: b8a56f18aa44d5140b8727f74150042c, type: 3}
   m_PrefabInstance: {fileID: 5305067290396752711}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7694320417763054156 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2547019993584314635, guid: b8a56f18aa44d5140b8727f74150042c, type: 3}
+  m_PrefabInstance: {fileID: 5305067290396752711}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6374883683218671740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49b0acf9c76ef7b49a3321713dbf5517, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

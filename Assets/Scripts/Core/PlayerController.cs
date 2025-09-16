@@ -139,6 +139,36 @@ public class PlayerController : MonoBehaviour
         rb.MovePosition(predictedPosition);
     }
 
+    public float GetLevelCloneCameraDistanceValue()
+    {
+        if (GM.CurrentLevel == GameManager.Level.Level2)
+            return level2Stats.CameraDistance_Clone;
+
+        else if (GM.CurrentLevel == GameManager.Level.Level3)
+            return level3Stats.CameraDistance_Clone;
+
+        else if (GM.CurrentLevel == GameManager.Level.Level4)
+            return level4Stats.CameraDistance_Clone;
+
+        else if (GM.CurrentLevel == GameManager.Level.Level5)
+            return level5Stats.CameraDistance_Clone;
+
+        else if (GM.CurrentLevel == GameManager.Level.Level6)
+            return level6Stats.CameraDistance_Clone;
+
+        else if (GM.CurrentLevel == GameManager.Level.Level7)
+            return level7Stats.CameraDistance_Clone;
+
+        else if (GM.CurrentLevel == GameManager.Level.Level8)
+            return level8Stats.CameraDistance_Clone;
+            
+        else if (GM.CurrentLevel == GameManager.Level.Level9 || GM.CurrentLevel == GameManager.Level.Level10)
+            return level9Stats.CameraDistance_Clone;
+
+        else
+            return 490f;
+    }
+
     private Vector2 CalculatePlayerInputForce()
     {
         if (inBoostMode)
