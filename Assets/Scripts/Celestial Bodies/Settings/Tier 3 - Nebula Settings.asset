@@ -26,7 +26,6 @@ MonoBehaviour:
   <InitialSpeedRange>k__BackingField: {x: 20, y: 25}
   <InitialRotationRange>k__BackingField: {x: 130, y: 150}
   <SpeedToPlayer>k__BackingField: 3
-  <ShrinkSpeedToPlayer>k__BackingField: 250
   <OrbitDeclineRate>k__BackingField: 10
   <SpeedIncreaseRate>k__BackingField: 5
   <TrajectorySteps>k__BackingField: 30
@@ -34,10 +33,9 @@ MonoBehaviour:
   <RadialGain>k__BackingField: 10
   <TangentGain>k__BackingField: 1
   <PathSpeed>k__BackingField: 20
-  <ShrinkSpeed>k__BackingField: 10
-  <FadeOutSpeed>k__BackingField: 2
   <TimeBetweenAbsorbSFXCalls>k__BackingField: 0.25
   <MinSpawnDistanceFromCamera>k__BackingField: 30
+  <GoToCloneSpeed>k__BackingField: 175
   celestialBodyPrefabs:
   - {fileID: 7412056892289224704, guid: 94b3d85bf67554745b7049258c2cffbb, type: 3}
   - {fileID: 5204723089484698490, guid: 5a932fc9c4a0a4c4ba56ee5a295ca026, type: 3}

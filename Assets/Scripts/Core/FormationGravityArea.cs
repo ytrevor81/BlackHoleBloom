@@ -20,11 +20,17 @@ public class FormationGravityArea : MonoBehaviour
             if (collision.TryGetComponent(out IGravityInteract _gravityInteract))
             {
                 if (playerController != null)
-                    _gravityInteract.EnterOrbitOfPlayer(isRealPlayer: true);
-
-                else
-                    _gravityInteract.EnterOrbitOfPlayer(isRealPlayer: false);
+                    _gravityInteract.EnterOrbitOfPlayer(_targetOrbit: TargetOrbit());
             }
         }
+    }
+
+    private Transform TargetOrbit()
+    {
+        if (playerController != null)
+            return playerController.transform;
+
+        else
+            return splitClone.transform;
     }
 }

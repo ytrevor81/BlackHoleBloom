@@ -5709,7 +5709,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609eb4c5ba5af9a47a2676a2f39d6120, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <GravitationalForce>k__BackingField: 10000
   initialSpeed: 50
   joystick: {fileID: 0}
   mainCamera: {fileID: 0}
@@ -5721,48 +5720,56 @@ MonoBehaviour:
     Speed: 75
     CameraShakeValue: 3
     SparklesScale: 1
+    CameraDistance_Clone: 886.6
   level3Stats:
     Scale: 50
     CameraDistance: 820
     Speed: 100
     CameraShakeValue: 3
     SparklesScale: 1
+    CameraDistance_Clone: 1281.3
   level4Stats:
     Scale: 65
     CameraDistance: 1060
     Speed: 130
     CameraShakeValue: 3
     SparklesScale: 3
+    CameraDistance_Clone: 1696.8
   level5Stats:
     Scale: 80
     CameraDistance: 1350
     Speed: 160
     CameraShakeValue: 5
     SparklesScale: 4
+    CameraDistance_Clone: 2005
   level6Stats:
     Scale: 95
     CameraDistance: 1575
     Speed: 190
     CameraShakeValue: 5
     SparklesScale: 4.5
+    CameraDistance_Clone: 2425
   level7Stats:
     Scale: 110
     CameraDistance: 1800
     Speed: 220
     CameraShakeValue: 5
     SparklesScale: 5
+    CameraDistance_Clone: 2791
   level8Stats:
     Scale: 125
     CameraDistance: 2100
     Speed: 250
     CameraShakeValue: 5
     SparklesScale: 5.5
+    CameraDistance_Clone: 3131
   level9Stats:
     Scale: 140
     CameraDistance: 2300
     Speed: 280
     CameraShakeValue: 5
     SparklesScale: 6
+    CameraDistance_Clone: 3501
   levelStatsLerpTime: 0.75
   galaxyVFXController: {fileID: 4972267873851095815}
   sparkles: {fileID: 8400492187628172946}
@@ -6251,10 +6258,6 @@ PrefabInstance:
     - target: {fileID: 1290070706549863227, guid: b8a56f18aa44d5140b8727f74150042c, type: 3}
       propertyPath: m_Name
       value: Split Clone Container
-      objectReference: {fileID: 0}
-    - target: {fileID: 1290070706549863227, guid: b8a56f18aa44d5140b8727f74150042c, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5890538972913311946, guid: b8a56f18aa44d5140b8727f74150042c, type: 3}
       propertyPath: m_LocalPosition.x

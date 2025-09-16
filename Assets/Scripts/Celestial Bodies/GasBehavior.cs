@@ -28,9 +28,9 @@ public class GasBehavior : CelestialBody
         }
     }
 
-    public override void EnterOrbitOfPlayer(bool isRealPlayer)
+    public override void EnterOrbitOfPlayer(Transform _targetOrbit)
     {
-        base.EnterOrbitOfPlayer(isRealPlayer: true);
+        base.EnterOrbitOfPlayer(_targetOrbit);
         trailParticle.gameObject.SetActive(true);
     }
 
@@ -47,7 +47,7 @@ public class GasBehavior : CelestialBody
         float lerpedProgress = elaspedTime / BHBConstants.SHRINK_TO_SINGULARITY_TIME;
         
         mainBodyTransform.localScale = Vector3.Lerp(originalScale, targetScale, lerpedProgress);
-        rb.position = Vector3.Lerp(startingPos, playerPos, lerpedProgress);
+        rb.position = Vector3.Lerp(startingPos, targetPos, lerpedProgress);
 
 
         if (elaspedTime >= BHBConstants.SHRINK_TO_SINGULARITY_TIME)

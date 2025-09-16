@@ -6,6 +6,7 @@ public class WhiteHole : MonoBehaviour, IGravityInteract
     private GameManager GM;
     protected Rigidbody2D rb;
     private Collider2D coll;
+    private PlayerController playerLogic;
 
     [Header("MAIN REFS")]
     [Space]
@@ -98,9 +99,8 @@ public class WhiteHole : MonoBehaviour, IGravityInteract
     [SerializeField] private int TrajectorySteps;
     [SerializeField] private float OrbitRadius;
     private SpriteRenderer spriteRenderer;
-
-    private PlayerController player;
-    private bool inPlayerZone;
+    private Transform targetTransform;
+    private bool inTargetOrbit;
     private Vector2 currentVelocity;
     private Vector2 gravitationalForce;
     private bool particlesAnimated;
@@ -134,7 +134,7 @@ public class WhiteHole : MonoBehaviour, IGravityInteract
 
     void Start()
     {
-        player = PlayerController.Instance;
+        playerLogic = PlayerController.Instance;
         GM = GameManager.Instance;
         GM.OnLevelChanged += ChangeSize;
     }
@@ -164,7 +164,7 @@ public class WhiteHole : MonoBehaviour, IGravityInteract
         }
         else
         {
-            if (inPlayerZone)
+            if (inTargetOrbit)
                 EjectIntoBlackHole();
 
             AnimateBeacon();
@@ -176,7 +176,7 @@ public class WhiteHole : MonoBehaviour, IGravityInteract
         if (beaconFinished)
             return;
 
-        if (inPlayerZone)
+        if (inTargetOrbit)
         {
             if (beaconAlpha <= 0)
             {
@@ -208,8 +208,8 @@ public class WhiteHole : MonoBehaviour, IGravityInteract
 
     void FixedUpdate()
     {
-        if (inPlayerZone)
-            OrbitPlayer();
+        if (inTargetOrbit)
+            OrbitTarget();
     }
 
     private Vector2 CalculateGravitationalForce(Vector2 dirToPlayer)
@@ -244,23 +244,23 @@ public class WhiteHole : MonoBehaviour, IGravityInteract
         return _velocity;
     }
 
-    private void OrbitPlayer()
+    private void OrbitTarget()
     {
         rb.velocity = Vector2.zero;
-        Vector3 directionToPlayer = player.transform.position - transform.position;
+        Vector3 directionToTarget = targetTransform.position - transform.position;
         // Apply gravitational force
-        gravitationalForce = CalculateGravitationalForce(directionToPlayer);
+        gravitationalForce = CalculateGravitationalForce(directionToTarget);
         currentVelocity += gravitationalForce * Time.fixedDeltaTime;
 
         // Apply orbital correction to maintain circular orbit
-        currentVelocity = NudgeTowardsOrbit(currentVelocity, directionToPlayer, RadialGain, TangentGain, simulated: false);
+        currentVelocity = NudgeTowardsOrbit(currentVelocity, directionToTarget, RadialGain, TangentGain, simulated: false);
         // Distance constraint: gently pull back if too far, push away if too close
-        float currentDistance = directionToPlayer.magnitude;
+        float currentDistance = directionToTarget.magnitude;
         float distanceError = OrbitRadius - currentDistance;
 
         if (Mathf.Abs(distanceError) > 0.5f) // Only apply correction if significantly off
         {
-            Vector2 distanceCorrection = directionToPlayer.normalized * (distanceError * 0.1f); // Gentle correction
+            Vector2 distanceCorrection = directionToTarget.normalized * (distanceError * 0.1f); // Gentle correction
             currentVelocity += distanceCorrection * Time.fixedDeltaTime;
         }
         // Ensure minimum velocity to prevent stopping
@@ -276,8 +276,8 @@ public class WhiteHole : MonoBehaviour, IGravityInteract
     {
         AdaptParticleVisualDistance();
 
-        Vector2 directionToPlayer = (player.transform.position - transform.position).normalized;
-        float targetAngle = Mathf.Atan2(directionToPlayer.y, directionToPlayer.x) * Mathf.Rad2Deg;
+        Vector2 directionToTarget = (targetTransform.position - transform.position).normalized;
+        float targetAngle = Mathf.Atan2(directionToTarget.y, directionToTarget.x) * Mathf.Rad2Deg;
         vfxContainer.transform.rotation = Quaternion.Euler(0, 0, targetAngle + 90);
 
 
@@ -322,7 +322,7 @@ public class WhiteHole : MonoBehaviour, IGravityInteract
             if (numOfObjectsToAbsorb < 1)
                 numOfObjectsToAbsorb = 1;
 
-            player.AddWhiteHoleMass(massPerTick * MassPerTickMultiplier(), numOfObjectsToAbsorb);
+            playerLogic.AddWhiteHoleMass(massPerTick * MassPerTickMultiplier(), numOfObjectsToAbsorb);
 
             if (!codexEntryChecked)
             {
@@ -379,8 +379,8 @@ public class WhiteHole : MonoBehaviour, IGravityInteract
 
     private void AdaptParticleVisualDistance()
     {
-        float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
-        float normalizedDistance = Mathf.Clamp01((distanceToPlayer - minDistanceVFX) / (maxDistanceVFX - minDistanceVFX));
+        float distanceToTarget = Vector2.Distance(transform.position, targetTransform.position);
+        float normalizedDistance = Mathf.Clamp01((distanceToTarget - minDistanceVFX) / (maxDistanceVFX - minDistanceVFX));
         float newLifetimeMatterLine = Mathf.Lerp(minLifetimeMatterLine, maxLifetimeMatterLine, normalizedDistance);
         float newLifetimeGasLine = Mathf.Lerp(minLifetimeGasLine, maxLifetimeGasLine, normalizedDistance);
 
@@ -518,7 +518,7 @@ public class WhiteHole : MonoBehaviour, IGravityInteract
 
     private void ChangeSize()
     {
-        if (inPlayerZone)
+        if (inTargetOrbit)
             return;
 
         OrbitRadius += 5;
@@ -622,19 +622,20 @@ public class WhiteHole : MonoBehaviour, IGravityInteract
             return GM.Level10ObjectCount;
     }
 
-    public void EnterOrbitOfPlayer(bool isRealPlayer)
+    public void EnterOrbitOfPlayer(Transform _targetOrbit)
     {
+        targetTransform = _targetOrbit;
         levelOfInjection = GM.CurrentLevel;
         maxNumOfPoints = CalculatePoints();
         initialScale = transform.localScale;
         particleInitialScale = gasParticle.transform.localScale;
 
         coll.enabled = false;
-        inPlayerZone = true;
+        inTargetOrbit = true;
 
-        Vector2 toPlayer = player.transform.position - transform.position;
-        float r = toPlayer.magnitude;
-        Vector2 radialDir = toPlayer / r;
+        Vector2 toTarget = targetTransform.position - transform.position;
+        float r = toTarget.magnitude;
+        Vector2 radialDir = toTarget / r;
         Vector2 tangentDir = new Vector2(-radialDir.y, radialDir.x);
 
         float orbitalSpeed = Mathf.Sqrt(Gravity / r);
@@ -646,6 +647,10 @@ public class WhiteHole : MonoBehaviour, IGravityInteract
         fillStarted = false;
         currentTick = 0;
         lastTickTime = 0f;
+    }
+    public void EnterOrbitOfClone(Transform _targetOrbit)
+    {
+        EnterOrbitOfPlayer(_targetOrbit);
     }
     public void EnterOrbitOfOtherCelestialBody(CelestialBody celestialBody, Collider2D _collider)
     {

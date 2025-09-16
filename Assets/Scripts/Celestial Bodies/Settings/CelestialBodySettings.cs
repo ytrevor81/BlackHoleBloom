@@ -41,6 +41,10 @@ public class CelestialBodySettings : ScriptableObject
     [field: SerializeField] public float MinSpawnDistanceFromCamera { get; private set; }
 
     [field: Space]
+
+    [field: SerializeField] public float GoToCloneSpeed { get; private set; }
+
+    [field: Space]
     [SerializeField] private GameObject[] celestialBodyPrefabs;
 
     public GameObject GetCelestialBodyPrefab()

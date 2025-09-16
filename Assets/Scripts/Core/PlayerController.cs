@@ -18,7 +18,6 @@ public class PlayerController : MonoBehaviour
     [field: Header("Main Refs")]
     [field: Space]
 
-    [field: SerializeField] public float GravitationalForce { get; private set; }
     [SerializeField] private float initialSpeed;
     [SerializeField] private VariableJoystick joystick;
     [SerializeField] private CinemachineVirtualCamera mainCamera;
@@ -26,6 +25,8 @@ public class PlayerController : MonoBehaviour
 
     [Header("Level Increases")]
     [Space]
+
+    //clone zoom level 1: 490
 
     [SerializeField] private LevelUpAndGammaRay levelUpAndGammaRay;
     [SerializeField] private LevelStats level2Stats;
@@ -42,6 +43,7 @@ public class PlayerController : MonoBehaviour
     private float elaspedTime;
     private bool updateSizeAndView;
     private float targetCameraView;
+    private float targetCameraView_CloneActive;
     private float targetSparklesScale;
     private float targetScale;
     private float previousCameraDistance;
@@ -70,9 +72,9 @@ public class PlayerController : MonoBehaviour
     [Space]
 
     [SerializeField] private LightningAbility lightning;
+    [SerializeField] private SplitController splitController;
 
     private Rigidbody2D rb;
-
     private Vector2 currentVelocity;
     private List<CelestialBody> objectsInOrbit = new List<CelestialBody>();
     private HashSet<GameObject> objectsInOrbitGameObjects = new HashSet<GameObject>();
@@ -160,11 +162,19 @@ public class PlayerController : MonoBehaviour
         return joystick.Direction * (speed * BoostMultiplier); ;
     }
 
+    private float TargetCameraLerp()
+    {
+        if (splitController.Active)
+            return targetCameraView_CloneActive;
+        else
+            return targetCameraView;
+    }
+
     private void UpdateScaleAndCameraSize()
     {
         elaspedTime += Time.deltaTime;
 
-        currentCameraDistance = Mathf.Lerp(previousCameraDistance, targetCameraView, elaspedTime / levelStatsLerpTime);
+        currentCameraDistance = Mathf.Lerp(previousCameraDistance, TargetCameraLerp(), elaspedTime / levelStatsLerpTime);
         currentScale = Vector2.Lerp(previousScale, new Vector2(targetScale, targetScale), elaspedTime / levelStatsLerpTime);
         currentSparklesScale = Vector2.Lerp(previousSparklesScale, new Vector2(targetSparklesScale, targetSparklesScale), elaspedTime / levelStatsLerpTime);
 
@@ -174,7 +184,7 @@ public class PlayerController : MonoBehaviour
 
         if (elaspedTime >= levelStatsLerpTime)
         {
-            transposer.m_CameraDistance = targetCameraView;
+            transposer.m_CameraDistance = TargetCameraLerp();
             transform.localScale = new Vector2(targetScale, targetScale);
             sparkles.localScale = new Vector2(targetSparklesScale, targetSparklesScale);
             updateSizeAndView = false;
@@ -233,6 +243,7 @@ public class PlayerController : MonoBehaviour
             targetCameraView = level2Stats.CameraDistance;
             speed = level2Stats.Speed;
             targetSparklesScale = level2Stats.SparklesScale;
+            targetCameraView_CloneActive = level2Stats.CameraDistance_Clone;
         }
         else if (GM.CurrentLevel == GameManager.Level.Level3)
         {
@@ -240,6 +251,7 @@ public class PlayerController : MonoBehaviour
             targetCameraView = level3Stats.CameraDistance;
             speed = level3Stats.Speed;
             targetSparklesScale = level3Stats.SparklesScale;
+            targetCameraView_CloneActive = level3Stats.CameraDistance_Clone;
         }
         else if (GM.CurrentLevel == GameManager.Level.Level4)
         {
@@ -247,6 +259,7 @@ public class PlayerController : MonoBehaviour
             targetCameraView = level4Stats.CameraDistance;
             speed = level4Stats.Speed;
             targetSparklesScale = level4Stats.SparklesScale;
+            targetCameraView_CloneActive = level4Stats.CameraDistance_Clone;
         }
         else if (GM.CurrentLevel == GameManager.Level.Level5)
         {
@@ -254,6 +267,7 @@ public class PlayerController : MonoBehaviour
             targetCameraView = level5Stats.CameraDistance;
             speed = level5Stats.Speed;
             targetSparklesScale = level5Stats.SparklesScale;
+            targetCameraView_CloneActive = level5Stats.CameraDistance_Clone;
 
             sparkles.gameObject.SetActive(true);
         }
@@ -263,6 +277,7 @@ public class PlayerController : MonoBehaviour
             targetCameraView = level6Stats.CameraDistance;
             speed = level6Stats.Speed;
             targetSparklesScale = level6Stats.SparklesScale;
+            targetCameraView_CloneActive = level6Stats.CameraDistance_Clone;
         }
         else if (GM.CurrentLevel == GameManager.Level.Level7)
         {
@@ -270,6 +285,7 @@ public class PlayerController : MonoBehaviour
             targetCameraView = level7Stats.CameraDistance;
             speed = level7Stats.Speed;
             targetSparklesScale = level7Stats.SparklesScale;
+            targetCameraView_CloneActive = level7Stats.CameraDistance_Clone;
         }
         else if (GM.CurrentLevel == GameManager.Level.Level8)
         {
@@ -277,6 +293,7 @@ public class PlayerController : MonoBehaviour
             targetCameraView = level8Stats.CameraDistance;
             speed = level8Stats.Speed;
             targetSparklesScale = level8Stats.SparklesScale;
+            targetCameraView_CloneActive = level8Stats.CameraDistance_Clone;
         }
         else if (GM.CurrentLevel == GameManager.Level.Level9 || GM.CurrentLevel == GameManager.Level.Level10)
         {
@@ -284,6 +301,7 @@ public class PlayerController : MonoBehaviour
             targetCameraView = level9Stats.CameraDistance;
             speed = level9Stats.Speed;
             targetSparklesScale = level9Stats.SparklesScale;
+            targetCameraView_CloneActive = level9Stats.CameraDistance_Clone;
         }
 
         updateSizeAndView = true;
@@ -311,7 +329,8 @@ public class PlayerController : MonoBehaviour
         objectsInOrbitGameObjects.Add(_collider.gameObject);
 
         CelestialBody celestialBody = _collider.GetComponent<CelestialBody>();
-        celestialBody.EnterOrbitOfPlayer(isRealPlayer: true);
+        
+        celestialBody.EnterOrbitOfPlayer(_targetOrbit: transform);
         objectsInOrbit.Add(celestialBody);
     }
     public void RemoveObjectFromOrbitingList(CelestialBody _celestialBody)
@@ -378,6 +397,7 @@ public struct LevelStats
     public float Speed;
     public float CameraShakeValue;
     public float SparklesScale;
+    public float CameraDistance_Clone;
 }
 
 #if UNITY_EDITOR

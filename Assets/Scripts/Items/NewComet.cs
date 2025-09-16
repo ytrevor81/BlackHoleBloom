@@ -10,9 +10,9 @@ public class NewComet : MonoBehaviour, IGravityInteract, IBarrierInteract
     private Animator animator;
     private Rigidbody2D rb;
     private OffscreenArrow offscreenArrow;
-    private PlayerController player;
     public CinemachineVirtualCamera BoostAnimationCamera { get; set; }
     public bool Used { get; private set; }
+    private Transform targetTransform;
 
     [Header("MAIN REFS")]
     [Space]
@@ -30,7 +30,7 @@ public class NewComet : MonoBehaviour, IGravityInteract, IBarrierInteract
     [SerializeField] private float particleToPlayerLerpTime;
     [SerializeField] private float deactivateAfterParticleWentToPlayerTime;
     private float elapsedTime;
-    private bool inPlayerZone;
+    private bool inTargetOrbit;
     private float coreRotation;
     private WaitForFixedUpdate waitForFixedUpdate = new WaitForFixedUpdate();
     private bool particleTravellingToPlayer;
@@ -60,11 +60,10 @@ public class NewComet : MonoBehaviour, IGravityInteract, IBarrierInteract
     {
         GM = GameManager.Instance;
         HUD = HUDController.Instance;
-        player = PlayerController.Instance;
         offscreenArrow = OffscreenArrow.Instance;
         offscreenArrow.InitializeTargetForOffscreenArrow(transform);
 
-        Vector2 dirToPlayer = (player.transform.position - transform.position).normalized;
+        Vector2 dirToPlayer = (PlayerController.Instance.transform.position - transform.position).normalized;
         rb.AddForce(dirToPlayer * travelSpeed, ForceMode2D.Impulse);
 
         float targetRotation = Mathf.Atan2(dirToPlayer.y, dirToPlayer.x) * Mathf.Rad2Deg;
@@ -73,7 +72,7 @@ public class NewComet : MonoBehaviour, IGravityInteract, IBarrierInteract
 
     void Update()
     {
-        if (!inPlayerZone)
+        if (!inTargetOrbit)
         {
             coreRotation -= coreRotationSpeed * Time.deltaTime;
             cometCore.rotation = Quaternion.Euler(0, 0, coreRotation);
@@ -82,7 +81,7 @@ public class NewComet : MonoBehaviour, IGravityInteract, IBarrierInteract
         if (particleTravellingToPlayer)
         {
             elapsedTime += Time.deltaTime;
-            goToPlayerParticle.transform.position = Vector2.Lerp(transform.position, player.transform.position, elapsedTime / particleToPlayerLerpTime);
+            goToPlayerParticle.transform.position = Vector2.Lerp(transform.position, targetTransform.position, elapsedTime / particleToPlayerLerpTime);
 
             if (elapsedTime >= particleToPlayerLerpTime)
             {
@@ -91,7 +90,7 @@ public class NewComet : MonoBehaviour, IGravityInteract, IBarrierInteract
                 goToPlayerParticle.Stop();
                 HUD.FadeInHUD();
                 HUD.CheckCodexEntry(codexEntry);
-                player.EnterBoostMode();
+                PlayerController.Instance.EnterBoostMode();
 
                 currentCoroutine = DelayDeactivatingObject();
                 StartCoroutine(currentCoroutine);
@@ -103,25 +102,27 @@ public class NewComet : MonoBehaviour, IGravityInteract, IBarrierInteract
 
     private void HandlePausedStateDuringSpecialAnimations()
     {
-        if (!paused && !inPlayerZone && GM.CutscenePlaying)
+        if (!paused && !inTargetOrbit && GM.CutscenePlaying)
         {
             cachedVelocity = rb.velocity;
             rb.velocity = Vector2.zero;
             paused = true;
         }
-        else if (paused && !inPlayerZone && !GM.CutscenePlaying)
+        else if (paused && !inTargetOrbit && !GM.CutscenePlaying)
         {
             rb.velocity = cachedVelocity;
             paused = false;
         }
     }
 
-    public void EnterOrbitOfPlayer(bool isRealPlayer)
+    public void EnterOrbitOfPlayer(Transform _targetOrbit)
     {
+        targetTransform = _targetOrbit;
+
         if (currentCoroutine != null)
             StopCoroutine(currentCoroutine);
 
-        inPlayerZone = true;
+        inTargetOrbit = true;
         rb.velocity = Vector2.zero;
         rb.isKinematic = true;
         Used = true;
@@ -138,7 +139,7 @@ public class NewComet : MonoBehaviour, IGravityInteract, IBarrierInteract
             GM.CometAnimationPlayedFirstTime = true;
             GM.CutscenePlaying = true;
             
-            float difference = player.transform.position.x - transform.position.x;
+            float difference = targetTransform.position.x - transform.position.x;
 
             if (difference > 0)
             {
@@ -160,6 +161,10 @@ public class NewComet : MonoBehaviour, IGravityInteract, IBarrierInteract
             animator.speed = 1.5f;
             animator.enabled = true;
         }
+    }
+    public void EnterOrbitOfClone(Transform _targetOrbit)
+    {
+        EnterOrbitOfPlayer(_targetOrbit);
     }
     public void EnterOrbitOfOtherCelestialBody(CelestialBody celestialBody, Collider2D _collider)
     {
@@ -193,7 +198,7 @@ public class NewComet : MonoBehaviour, IGravityInteract, IBarrierInteract
 
     public void HitBarrier(Vector2 contactPoint)
     {
-        if (inPlayerZone)
+        if (inTargetOrbit)
             return;
 
         StartCoroutine(NewReflectedRotation());
@@ -203,7 +208,7 @@ public class NewComet : MonoBehaviour, IGravityInteract, IBarrierInteract
     {
         yield return waitForFixedUpdate;
 
-        if (!inPlayerZone)
+        if (!inTargetOrbit)
         {
             float targetRotation = Mathf.Atan2(rb.velocity.y, rb.velocity.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0, 0, targetRotation);

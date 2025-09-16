@@ -11,6 +11,7 @@ public class DarkMatter : MonoBehaviour, IGravityInteract
 
     [SerializeField] private Transform cloudParticles;
     [SerializeField] private Transform coreParticles;
+    [SerializeField] private AnimationCurve goToTargetCurve;
 
 
     [Header("Level Scaling")]
@@ -35,6 +36,7 @@ public class DarkMatter : MonoBehaviour, IGravityInteract
 
     private Coroutine currentCoroutine;
     private bool isMovingToPlayer;
+    private Transform targetTransform;
 
     void Awake()
     {
@@ -137,17 +139,16 @@ public class DarkMatter : MonoBehaviour, IGravityInteract
         }
     }
 
-    private IEnumerator MoveToPlayerCoroutine()
+    private IEnumerator MoveToTargetCoroutine()
     {
         float elaspedTime = 0f;
-        Transform playerPos = PlayerController.Instance.transform;
         Vector3 startingPos = transform.position;
 
         while (elaspedTime < timeToPlayer)
         {
             elaspedTime += Time.deltaTime;
-
-            transform.position = Vector3.Lerp(startingPos, playerPos.position, elaspedTime / timeToPlayer);
+            float curveValue = goToTargetCurve.Evaluate(elaspedTime / timeToPlayer);
+            transform.position = Vector3.Lerp(startingPos, targetTransform.position, curveValue);
             yield return null;
         }
 
@@ -165,7 +166,7 @@ public class DarkMatter : MonoBehaviour, IGravityInteract
             coreParticles.localScale = Vector3.Lerp(startingScaleMainAndCoreParticles, targetShrinkScaleForEverything, t);
             cloudParticles.localScale = Vector3.Lerp(startingScaleCloudParticles, targetShrinkScaleForEverything, t);
 
-            transform.position = playerPos.position;
+            transform.position = targetTransform.position;
 
             yield return null;
         }
@@ -174,12 +175,17 @@ public class DarkMatter : MonoBehaviour, IGravityInteract
         gameObject.SetActive(false);
     }
 
-    public void EnterOrbitOfPlayer(bool isRealPlayer)
+    public void EnterOrbitOfPlayer(Transform _targetOrbit)
     {
+        targetTransform = _targetOrbit;
         isMovingToPlayer = true;
         coll.enabled = false;
         StopCurrentCoroutine();
-        currentCoroutine = StartCoroutine(MoveToPlayerCoroutine());
+        currentCoroutine = StartCoroutine(MoveToTargetCoroutine());
+    }
+    public void EnterOrbitOfClone(Transform _targetOrbit)
+    {
+        EnterOrbitOfPlayer(_targetOrbit);
     }
 
     public void EnterOrbitOfOtherCelestialBody(CelestialBody celestialBody, Collider2D _collider)

@@ -4,7 +4,6 @@ using UnityEngine;
 public class SplitClone : MonoBehaviour
 {
     private GameManager GM;
-    private HUDController HUD;
     [SerializeField] private GameObject gravityArea;
 
     private List<CelestialBody> objectsInOrbit = new List<CelestialBody>();
@@ -13,39 +12,6 @@ public class SplitClone : MonoBehaviour
     void Start()
     {
         GM = GameManager.Instance;
-        HUD = HUDController.Instance;
-    }
-
-    private void CacheHUDIfNull()
-    {
-        if (HUD != null)
-            return;
-
-        HUD = HUDController.Instance;
-    }
-
-    public void AddWhiteHoleMass(int mass, int numOfObjectsAbsorbed)
-    {
-        if (GM.CutscenePlaying)
-            return;
-
-        CacheHUDIfNull();
-        GM.Mass += mass;
-        GM.NumOfObjectsAbsorbed += numOfObjectsAbsorbed;
-        HUD.UpdateHUDNumbers(mass);
-        GM.ChangeLevelIfValid();
-    }
-
-    public void AddMass(int mass)
-    {
-        if (GM.CutscenePlaying)
-            return;
-
-        CacheHUDIfNull();
-        GM.Mass += mass;
-        GM.NumOfObjectsAbsorbed += 1;
-        HUD.UpdateHUDNumbers(mass);
-        GM.ChangeLevelIfValid();
     }
 
     public void AddObjectToOrbitingList(Collider2D _collider)
@@ -56,7 +22,7 @@ public class SplitClone : MonoBehaviour
         objectsInOrbitGameObjects.Add(_collider.gameObject);
 
         CelestialBody celestialBody = _collider.GetComponent<CelestialBody>();
-        celestialBody.EnterOrbitOfPlayer(isRealPlayer: false);
+        celestialBody.EnterOrbitOfClone(_targetOrbit: transform);
         objectsInOrbit.Add(celestialBody);
     }
     public void RemoveObjectFromOrbitingList(CelestialBody _celestialBody)

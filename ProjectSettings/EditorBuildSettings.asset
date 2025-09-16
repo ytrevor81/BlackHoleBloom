@@ -5,9 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Nebula Room.unity
     guid: 8801d128ca5218542be20f914f014b00
+  - enabled: 1
+    path: Assets/Scenes/Temp.unity
+    guid: 44456ef8a88754f43a9eee8328639027
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: c92e8a4ec2823034dac8b11324f6613c, type: 2}
     com.unity.adaptiveperformance.samsung.android.provider_settings: {fileID: 11400000, guid: b600fabf941574645ac1dee8355ca04c, type: 2}

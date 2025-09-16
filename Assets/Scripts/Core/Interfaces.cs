@@ -3,7 +3,8 @@ using UnityEngine;
 
 public interface IGravityInteract
 {
-    public void EnterOrbitOfPlayer(bool isRealPlayer);
+    public void EnterOrbitOfPlayer(Transform _targetOrbit);
+    public void EnterOrbitOfClone(Transform _targetOrbit);
     public void EnterOrbitOfOtherCelestialBody(CelestialBody celestialBody, Collider2D _collider);
 }
 

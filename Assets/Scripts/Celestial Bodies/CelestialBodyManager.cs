@@ -8,12 +8,14 @@ public class CelestialBodyManager : MonoBehaviour
     private GameManager GM;
     private SFXBank SFXBank;
     private HUDController HUD;
+    private PlayerController playerLogic;
 
     [Header("Main References")]
     [Space]
     [SerializeField] private Camera mainCamera;
     [SerializeField] private CinemachineVirtualCamera virtualCamera;
     [SerializeField] private GameObject player;
+    [SerializeField] private SplitClone clone;
 
     private VCHelper vcHelper;
     private bool overrideSpawning;
@@ -37,9 +39,10 @@ public class CelestialBodyManager : MonoBehaviour
     [SerializeField] private CelestialBodySettings tier2Settings;
     [SerializeField] private CelestialBodySettings tier3Settings;
     [SerializeField] private CelestialBodySettings tier4Settings;
+    [field: SerializeField] public AnimationCurve GoToCloneCurve { get; private set; }
 
-    [Header("Spawn Settings")]
-    [Space]
+    [field: Header("Spawn Settings")]
+    [field: Space]
     
     [SerializeField] private float spawnInterval;
     [SerializeField] private float higherLevelSpawnInterval;
@@ -106,6 +109,7 @@ public class CelestialBodyManager : MonoBehaviour
     {
         HUD = HUDController.Instance;
         GM = GameManager.Instance;
+        playerLogic = PlayerController.Instance;
         GM.OnCutsceneStarted += OnCutsceneStarted;
         GM.OnCutsceneEnded += OnCutsceneEnded;
         GM.OnLevelChanged += UpdateSpawnInterval;
@@ -226,7 +230,7 @@ public class CelestialBodyManager : MonoBehaviour
 
     private void ManageCelestialBody(CelestialBody celestialBody, CelestialBodySettings settings)
     {
-        celestialBody.MoveToPlayer(settings);
+        celestialBody.MoveToTarget(settings);
         celestialBody.PlotEventHorizonPath(settings);
         celestialBody.AnimateLine(settings);
     }
@@ -390,6 +394,8 @@ public class CelestialBodyManager : MonoBehaviour
 
     public void PerformAbsorbBehavior(CelestialBodyType _type, CodexEntry _entryData, bool playSFX)
     {
+        playerLogic.AddMass(GetMass(_type));
+
         CacheHUDIfValid();
 
         if (playSFX)
@@ -448,6 +454,11 @@ public class CelestialBodyManager : MonoBehaviour
 
     public void RemoveCelestialBodyFromActiveSet(CelestialBody celestialBody)
     {
+        if (clone.gameObject.activeInHierarchy)
+            clone.RemoveObjectFromOrbitingList(celestialBody);
+
+        playerLogic.RemoveObjectFromOrbitingList(celestialBody);
+
         if (celestialBody.Type == CelestialBodyType.Tier1 && activeTier1Set.Contains(celestialBody))
             activeTier1Set.Remove(celestialBody);
 
