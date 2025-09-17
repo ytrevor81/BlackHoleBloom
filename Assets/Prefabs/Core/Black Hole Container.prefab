@@ -6039,7 +6039,7 @@ MonoBehaviour:
     EdgeBrightness: 2
     ArmsAlpha: 2
     SparklesEmissionIntensity: 15
-  splitCloneContainer: {fileID: 6374883683218671740}
+  splitCloneContainer: {fileID: 7694320417763054156}
   cloneSpiralArms: {fileID: 4115255853066541046}
   cloneAccretionDiskContainer: {fileID: 7209654748872288502}
 --- !u!1 &9184293059341867467
@@ -6378,11 +6378,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8107378673008815281, guid: b8a56f18aa44d5140b8727f74150042c, type: 3}
   m_PrefabInstance: {fileID: 5305067290396752711}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &6374883683218671740 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1290070706549863227, guid: b8a56f18aa44d5140b8727f74150042c, type: 3}
-  m_PrefabInstance: {fileID: 5305067290396752711}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7209654748872288502 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3283885387316581297, guid: b8a56f18aa44d5140b8727f74150042c, type: 3}
@@ -6393,7 +6388,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2547019993584314635, guid: b8a56f18aa44d5140b8727f74150042c, type: 3}
   m_PrefabInstance: {fileID: 5305067290396752711}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6374883683218671740}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 49b0acf9c76ef7b49a3321713dbf5517, type: 3}

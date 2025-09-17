@@ -131,9 +131,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49b0acf9c76ef7b49a3321713dbf5517, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   clone: {fileID: 6174059951066813886}
   cloneSpiral: {fileID: 8107378673008815281}
   targetClonePos: {fileID: 3506536643841094871}
+  mainCamera: {fileID: 0}
   goToOrbitPosCurve:
     serializedVersion: 2
     m_Curve:
@@ -270,7 +272,7 @@ Transform:
   m_GameObject: {fileID: 3080487314831642945}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 6.24, z: 0}
+  m_LocalPosition: {x: 0, y: 5.5, z: 0}
   m_LocalScale: {x: 0.75000006, y: 0.75000006, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

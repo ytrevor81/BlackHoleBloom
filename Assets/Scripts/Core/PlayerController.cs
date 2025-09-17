@@ -86,6 +86,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         transposer = mainCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
         speed = initialSpeed;
+        targetCameraView = 340f;
     }
 
     IEnumerator Start()
@@ -167,7 +168,7 @@ public class PlayerController : MonoBehaviour
             return level9Stats.CameraDistance_Clone;
 
         else
-            return 490f;
+            return 455f;
     }
 
     private Vector2 CalculatePlayerInputForce()
@@ -197,7 +198,7 @@ public class PlayerController : MonoBehaviour
     {
         if (SplitController.Active)
             return targetCameraView_CloneActive;
-            
+
         else
             return targetCameraView;
     }
@@ -224,6 +225,8 @@ public class PlayerController : MonoBehaviour
             updateSizeAndView = false;
         }
     }
+
+    public float GetTargetCameraDistance() => targetCameraView;
 
     public void AddWhiteHoleMass(int mass, int numOfObjectsAbsorbed)
     {

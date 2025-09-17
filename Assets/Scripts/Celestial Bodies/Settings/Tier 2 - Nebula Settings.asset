@@ -24,7 +24,7 @@ MonoBehaviour:
   Level9OrbitRange: {x: 20, y: 22}
   <OrbitRadiusForOtherCelestialBodies>k__BackingField: 22
   <InitialSpeedRange>k__BackingField: {x: 15, y: 20}
-  <InitialRotationRange>k__BackingField: {x: 15, y: 20}
+  <InitialRotationRange>k__BackingField: {x: 0.5, y: 1}
   <SpeedToPlayer>k__BackingField: 3
   <OrbitDeclineRate>k__BackingField: 5
   <SpeedIncreaseRate>k__BackingField: 5

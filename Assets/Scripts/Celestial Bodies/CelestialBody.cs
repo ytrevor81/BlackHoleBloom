@@ -24,8 +24,6 @@ public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
     private bool inTargetOrbit;
     private Vector2 currentVelocity;
     private Vector2 gravitationalForce;
-    private Vector2 simulatedPos;
-    private Vector2 simulatedVelocity;
     private float orbitDistanceMultiplier;
     private float simulatedOrbitDistanceMultiplier;
     private float increaseSpeedThreshold;
@@ -48,6 +46,7 @@ public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
     protected Vector3 startingPos;
     public bool GoingToClone { get; private set;  }
     private float elaspedTimeToClone;
+    private bool overrideOrbitBehavior;
     protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -70,22 +69,7 @@ public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
             spriteRenderer.color = originalColor;
         }
 
-        targetCelestialBodyLogic = null;
-        targetCelestialBodyTrans = null;
-
-        elaspedTime = 0f;
-        elaspedTimeToClone = 0f;
-        pathProgress = 0f;
-        shrinking = false;
         rb.isKinematic = false;
-        inTargetOrbit = false;
-        lineRenderer.gameObject.SetActive(false);
-        currentVelocity = Vector2.zero;
-        isInOrbit = false;
-
-        gameObject.tag = BHBConstants.CELESTIAL_BODY;
-        playerDetectionCollider.SetActive(true);
-        coll.enabled = true;
     }
 
     void OnDisable()
@@ -98,6 +82,37 @@ public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
         targetCelestialBodyLogic = null;
         targetCelestialBodyTrans = null;
         GoingToClone = false;
+    }
+
+    public void BlockAndResetMovementVars()
+    {
+        overrideOrbitBehavior = true;
+
+        isInOrbit = false;
+        inTargetOrbit = false;
+        targetCelestialBodyLogic = null;
+        targetCelestialBodyTrans = null;
+        GoingToClone = false;
+        targetCelestialBodyLogic = null;
+        targetCelestialBodyTrans = null;
+        targetTransform = null;
+
+        elaspedTime = 0f;
+        elaspedTimeToClone = 0f;
+        pathProgress = 0f;
+        shrinking = false;
+        inTargetOrbit = false;
+        lineRenderer.gameObject.SetActive(false);
+        currentVelocity = Vector2.zero;
+        coll.enabled = false;
+    }
+
+    public void UnblockMovementVars()
+    {
+        gameObject.tag = BHBConstants.CELESTIAL_BODY;
+        playerDetectionCollider.SetActive(true);
+        coll.enabled = true;
+        overrideOrbitBehavior = false;
     }
 
     public void InitialBoost(CelestialBodySettings settings)
@@ -207,7 +222,7 @@ public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
 
     public void MoveToClone()
     {
-        if (!GoingToClone)
+        if (!GoingToClone || overrideOrbitBehavior)
             return;
 
         rb.velocity = Vector2.zero;
@@ -220,13 +235,13 @@ public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
         }
 
         elaspedTimeToClone += Time.deltaTime;
-        float lerpedProgress = elaspedTimeToClone / 1f;
+        float lerpedProgress = elaspedTimeToClone / 0.75f;
         transform.position = Vector3.Lerp(startingPos, targetPos, lerpedProgress);
     }
 
     public void MoveToTarget(CelestialBodySettings settings)
     {
-        if (GoingToClone)
+        if (GoingToClone || overrideOrbitBehavior)
             return;
             
         if (inTargetOrbit)
@@ -238,7 +253,7 @@ public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
             {
                 PlayerController _player = PlayerController.Instance;
 
-                if (targetCelestialBodyLogic.GoingToClone)
+                if (targetCelestialBodyLogic != null && targetCelestialBodyLogic.GoingToClone)
                     EnterOrbitOfClone(_player.SplitController.GetCloneTransform());
 
                 else
@@ -255,7 +270,7 @@ public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
             currentVelocity = NudgeTowardsOrbit(currentVelocity, directionToTarget, settings.RadialGain, settings.TangentGain, simulated: false);
 
             speedToPlayer = settings.SpeedToPlayer;
-            rb.MovePosition(rb.position + (currentVelocity * settings.SpeedToPlayer) * Time.fixedDeltaTime);
+            rb.MovePosition(rb.position + currentVelocity * settings.SpeedToPlayer * Time.fixedDeltaTime);
         }
     }
 
@@ -277,7 +292,7 @@ public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
 
     public void AnimateLine(CelestialBodySettings settings)
     {
-        if ((!inTargetOrbit && !shrinking) || GoingToClone)
+        if ((!inTargetOrbit && !shrinking) || GoingToClone || overrideOrbitBehavior)
             return;
 
         if (simCounter <= 1)
@@ -369,11 +384,11 @@ public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
 
     public void PlotEventHorizonPath(CelestialBodySettings settings)
     {
-        if ((!inTargetOrbit && !shrinking) || GoingToClone) //Type == CelestialBodyType.Gas
+        if ((!inTargetOrbit && !shrinking) || GoingToClone || overrideOrbitBehavior)
             return;
 
-        simulatedPos = rb.position;
-        simulatedVelocity = currentVelocity;
+        Vector2 simulatedPos = rb.position;
+        Vector2 simulatedVelocity = currentVelocity;
 
         simCounter = 0;
 
@@ -412,6 +427,9 @@ public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
 
     public void DiveIntoEventHorizon()
     {
+        if (overrideOrbitBehavior)
+            return;
+
         playerDetectionCollider.SetActive(false);
         lineRenderer.gameObject.SetActive(false);
         startingPos = rb.position;
@@ -420,6 +438,9 @@ public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
 
     public virtual void AbsorbIntoPlayer()
     {
+        if (overrideOrbitBehavior)
+            return;
+
         Manager.RemoveCelestialBodyFromActiveSet(this);
         Manager.PerformAbsorbBehavior(Type, entry, playSFX: true);
         targetTransform = null;
@@ -433,6 +454,9 @@ public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
     }
     public void HitByLightning()
     {
+        if (overrideOrbitBehavior)
+            return;
+
         Manager.RemoveCelestialBodyFromActiveSet(this);
         targetTransform = null;
         inTargetOrbit = false;
@@ -454,7 +478,7 @@ public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
 
     public virtual void EnterOrbitOfPlayer(Transform _targetOrbit)
     {
-        if (inTargetOrbit)
+        if (inTargetOrbit || overrideOrbitBehavior)
             return;
             
         if (CelestialBodyFinderCollider != null)
@@ -478,7 +502,7 @@ public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
     }
     public virtual void EnterOrbitOfClone(Transform _targetOrbit)
     {
-         if (inTargetOrbit)
+         if (inTargetOrbit || overrideOrbitBehavior)
             return;
 
         GoingToClone = true;
@@ -493,7 +517,8 @@ public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
             || Type == CelestialBodyType.Tier4
             || (Type == CelestialBodyType.Tier2 && _celestialBody.Type == CelestialBodyType.Tier4)
             || (Type == CelestialBodyType.Tier3 && _celestialBody.Type == CelestialBodyType.Tier3)
-            || isInOrbit;
+            || isInOrbit
+            || overrideOrbitBehavior;
     }
     public void EnterOrbitOfOtherCelestialBody(CelestialBody celestialBody, Collider2D _collider)
     {

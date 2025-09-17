@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
@@ -368,7 +369,7 @@ public class CelestialBodyManager : MonoBehaviour
             }
         }
     }
-    
+
     private void SpawnCelestialBody()
     {
         CelestialBody celestialBody = CelestialBody();
@@ -377,6 +378,7 @@ public class CelestialBodyManager : MonoBehaviour
 
         celestialBody.transform.position = GetRandomValidPosition(celestialBody);
         celestialBody.gameObject.SetActive(true);
+        celestialBody.BlockAndResetMovementVars();
 
         if (celestialBody.Type == CelestialBodyType.Tier1)
         {
@@ -398,7 +400,20 @@ public class CelestialBodyManager : MonoBehaviour
             activeTier4Set.Add(celestialBody);
             celestialBody.InitialBoost(tier4Settings);
         }
+
+
+        if (moveableCelestialBodiesSet.Contains(celestialBody))
+            moveableCelestialBodiesSet.Remove(celestialBody);
+        
+        StartCoroutine(DelayReactivatingOrbitingBehavior(celestialBody));
     }
+
+    private IEnumerator DelayReactivatingOrbitingBehavior(CelestialBody _celestialBody)
+    {
+        yield return null;
+        _celestialBody.UnblockMovementVars();
+    }
+
 
     public void PerformAbsorbBehavior(CelestialBodyType _type, CodexEntry _entryData, bool playSFX)
     {

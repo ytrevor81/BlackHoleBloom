@@ -1277,6 +1277,17 @@ MonoBehaviour:
   blendDistance: 0
   weight: 1
   sharedProfile: {fileID: 11400000, guid: f42c16768150fd44fbd11eb9d9ba4c65, type: 2}
+--- !u!114 &895626840 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4972267873851095815, guid: cd381eb969f869344869caeef8a6fc33, type: 3}
+  m_PrefabInstance: {fileID: 2647092401228622580}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2556d2086406b4e4eb9c72863e688516, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &895773355
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2879,6 +2890,38 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 120669081}
+    - target: {fileID: 3851269356383997635, guid: cd381eb969f869344869caeef8a6fc33, type: 3}
+      propertyPath: level2Stats.CameraDistance_Clone
+      value: 830.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 3851269356383997635, guid: cd381eb969f869344869caeef8a6fc33, type: 3}
+      propertyPath: level3Stats.CameraDistance_Clone
+      value: 1173.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3851269356383997635, guid: cd381eb969f869344869caeef8a6fc33, type: 3}
+      propertyPath: level4Stats.CameraDistance_Clone
+      value: 1527.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3851269356383997635, guid: cd381eb969f869344869caeef8a6fc33, type: 3}
+      propertyPath: level5Stats.CameraDistance_Clone
+      value: 1893
+      objectReference: {fileID: 0}
+    - target: {fileID: 3851269356383997635, guid: cd381eb969f869344869caeef8a6fc33, type: 3}
+      propertyPath: level6Stats.CameraDistance_Clone
+      value: 2237
+      objectReference: {fileID: 0}
+    - target: {fileID: 3851269356383997635, guid: cd381eb969f869344869caeef8a6fc33, type: 3}
+      propertyPath: level7Stats.CameraDistance_Clone
+      value: 2598
+      objectReference: {fileID: 0}
+    - target: {fileID: 3851269356383997635, guid: cd381eb969f869344869caeef8a6fc33, type: 3}
+      propertyPath: level8Stats.CameraDistance_Clone
+      value: 2982
+      objectReference: {fileID: 0}
+    - target: {fileID: 3851269356383997635, guid: cd381eb969f869344869caeef8a6fc33, type: 3}
+      propertyPath: level9Stats.CameraDistance_Clone
+      value: 3265
+      objectReference: {fileID: 0}
     - target: {fileID: 4508631876752810199, guid: cd381eb969f869344869caeef8a6fc33, type: 3}
       propertyPath: mainVC
       value: 
@@ -2979,6 +3022,14 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 120669081}
+    - target: {fileID: 7694320417763054156, guid: cd381eb969f869344869caeef8a6fc33, type: 3}
+      propertyPath: vfxController
+      value: 
+      objectReference: {fileID: 895626840}
+    - target: {fileID: 7694320417763054156, guid: cd381eb969f869344869caeef8a6fc33, type: 3}
+      propertyPath: timeInOrbitState
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
