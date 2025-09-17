@@ -46,7 +46,8 @@ public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
     protected float elaspedTime;
     private Color targetColor;
     protected Vector3 startingPos;
-    private bool goingToClone;
+    public bool GoingToClone { get; private set;  }
+    private float elaspedTimeToClone;
     protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -73,6 +74,7 @@ public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
         targetCelestialBodyTrans = null;
 
         elaspedTime = 0f;
+        elaspedTimeToClone = 0f;
         pathProgress = 0f;
         shrinking = false;
         rb.isKinematic = false;
@@ -95,7 +97,7 @@ public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
         inTargetOrbit = false;
         targetCelestialBodyLogic = null;
         targetCelestialBodyTrans = null;
-        goingToClone = false;
+        GoingToClone = false;
     }
 
     public void InitialBoost(CelestialBodySettings settings)
@@ -203,8 +205,11 @@ public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
         }
     }
 
-    private void MoveToClone(CelestialBodySettings settings)
+    public void MoveToClone()
     {
+        if (!GoingToClone)
+            return;
+
         rb.velocity = Vector2.zero;
         targetPos = targetTransform.position;
 
@@ -214,26 +219,31 @@ public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
             return;
         }
 
-        Vector2 newPos = Vector2.MoveTowards(rb.position, targetPos, settings.GoToCloneSpeed * Time.fixedDeltaTime);
-        rb.MovePosition(newPos);
+        elaspedTimeToClone += Time.deltaTime;
+        float lerpedProgress = elaspedTimeToClone / 1f;
+        transform.position = Vector3.Lerp(startingPos, targetPos, lerpedProgress);
     }
 
     public void MoveToTarget(CelestialBodySettings settings)
     {
+        if (GoingToClone)
+            return;
+            
         if (inTargetOrbit)
-        {
-            if (goingToClone)
-                MoveToClone(settings);
+            MoveToPlayer(settings);
 
-            else
-                MoveToPlayer(settings);
-            //MoveToPlayer(settings);
-        }
         else
         {
             if (targetCelestialBodyLogic == null || targetCelestialBodyLogic.inTargetOrbit)
             {
-                EnterOrbitOfPlayer(_targetOrbit: PlayerController.Instance.transform);
+                PlayerController _player = PlayerController.Instance;
+
+                if (targetCelestialBodyLogic.GoingToClone)
+                    EnterOrbitOfClone(_player.SplitController.GetCloneTransform());
+
+                else
+                    EnterOrbitOfPlayer(_targetOrbit: _player.transform);
+
                 return;
             }
 
@@ -267,7 +277,7 @@ public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
 
     public void AnimateLine(CelestialBodySettings settings)
     {
-        if (!inTargetOrbit && !shrinking)
+        if ((!inTargetOrbit && !shrinking) || GoingToClone)
             return;
 
         if (simCounter <= 1)
@@ -359,7 +369,7 @@ public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
 
     public void PlotEventHorizonPath(CelestialBodySettings settings)
     {
-        if (!inTargetOrbit && !shrinking) //Type == CelestialBodyType.Gas
+        if ((!inTargetOrbit && !shrinking) || GoingToClone) //Type == CelestialBodyType.Gas
             return;
 
         simulatedPos = rb.position;
@@ -471,7 +481,7 @@ public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
          if (inTargetOrbit)
             return;
 
-        goingToClone = true;
+        GoingToClone = true;
         startingPos = rb.position;
         currentVelocity = rb.velocity;
         EnterOrbitOfPlayer(_targetOrbit);

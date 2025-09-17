@@ -53,6 +53,11 @@ public class SplitController : MonoBehaviour
         cloneTrans.position = transform.position;
     }
 
+    public Transform GetCloneTransform()
+    {
+        return cloneTrans;
+    }
+
     void OnDisable()
     {
         Active = false;

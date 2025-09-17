@@ -5771,11 +5771,35 @@ MonoBehaviour:
     SparklesScale: 6
     CameraDistance_Clone: 3501
   levelStatsLerpTime: 0.75
+  levelUpStatsCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   galaxyVFXController: {fileID: 4972267873851095815}
   sparkles: {fileID: 8400492187628172946}
   boostSpeedTime: 10
   lightning: {fileID: 2366078820596826967}
-  splitController: {fileID: 7694320417763054156}
+  SplitController: {fileID: 7694320417763054156}
 --- !u!1 &8521459718361005166
 GameObject:
   m_ObjectHideFlags: 0

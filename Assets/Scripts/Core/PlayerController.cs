@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour
 
     [Space]
     [SerializeField] private float levelStatsLerpTime;
+    [SerializeField] private AnimationCurve levelUpStatsCurve;
     private float elaspedTime;
     private bool updateSizeAndView;
     private float targetCameraView;
@@ -72,7 +73,7 @@ public class PlayerController : MonoBehaviour
     [Space]
 
     [SerializeField] private LightningAbility lightning;
-    [SerializeField] private SplitController splitController;
+    [field: SerializeField] public SplitController SplitController;
 
     private Rigidbody2D rb;
     private Vector2 currentVelocity;
@@ -194,8 +195,9 @@ public class PlayerController : MonoBehaviour
 
     private float TargetCameraLerp()
     {
-        if (splitController.Active)
+        if (SplitController.Active)
             return targetCameraView_CloneActive;
+            
         else
             return targetCameraView;
     }
@@ -204,9 +206,11 @@ public class PlayerController : MonoBehaviour
     {
         elaspedTime += Time.deltaTime;
 
-        currentCameraDistance = Mathf.Lerp(previousCameraDistance, TargetCameraLerp(), elaspedTime / levelStatsLerpTime);
-        currentScale = Vector2.Lerp(previousScale, new Vector2(targetScale, targetScale), elaspedTime / levelStatsLerpTime);
-        currentSparklesScale = Vector2.Lerp(previousSparklesScale, new Vector2(targetSparklesScale, targetSparklesScale), elaspedTime / levelStatsLerpTime);
+        float curveValue = levelUpStatsCurve.Evaluate(elaspedTime / levelStatsLerpTime);
+
+        currentCameraDistance = Mathf.Lerp(previousCameraDistance, TargetCameraLerp(), curveValue);
+        currentScale = Vector2.Lerp(previousScale, new Vector2(targetScale, targetScale), curveValue);
+        currentSparklesScale = Vector2.Lerp(previousSparklesScale, new Vector2(targetSparklesScale, targetSparklesScale), curveValue);
 
         transposer.m_CameraDistance = currentCameraDistance;
         transform.localScale = currentScale;

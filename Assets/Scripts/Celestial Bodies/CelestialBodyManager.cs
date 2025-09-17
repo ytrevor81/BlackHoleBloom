@@ -322,6 +322,14 @@ public class CelestialBodyManager : MonoBehaviour
         }
 
         HandleAbsorbSFXTimers();
+
+        if (moveableCelestialBodiesSet.Count > 0)
+        {
+            for (int i = 0; i < moveableCelestialBodiesSet.Count; i++)
+            {
+                moveableCelestialBodiesSet[i].MoveToClone();
+            }
+        }
     }
 
     private void HandleAbsorbSFXTimers()
