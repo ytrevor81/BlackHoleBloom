@@ -421,6 +421,9 @@ public class CelestialBodyManager : MonoBehaviour
 
     public void PerformAbsorbBehavior(CelestialBodyType _type, CodexEntry _entryData, bool playSFX)
     {
+        if (playerLogic == null)
+            playerLogic = PlayerController.Instance;
+            
         playerLogic.AddMass(GetMass(_type));
 
         CacheHUDIfValid();

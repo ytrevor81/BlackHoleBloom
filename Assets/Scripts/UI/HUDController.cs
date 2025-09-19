@@ -353,9 +353,14 @@ public class HUDController : MonoBehaviour
 
     private void UpdateTimer()
     {
-        if (GM == null || GM.CutscenePlaying)
+        if (GM == null)
+        {
+            GM = GameManager.Instance;
             return;
-
+        }
+        else if (GM.CutscenePlaying)
+            return;
+            
         if (GM.Timer > 1)
         {
             GM.Timer -= Time.deltaTime;

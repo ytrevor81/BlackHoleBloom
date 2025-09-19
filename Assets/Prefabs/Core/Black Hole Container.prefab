@@ -5720,56 +5720,56 @@ MonoBehaviour:
     Speed: 75
     CameraShakeValue: 3
     SparklesScale: 1
-    CameraDistance_Clone: 886.6
+    CameraDistance_Clone: 830.66
   level3Stats:
     Scale: 50
     CameraDistance: 820
     Speed: 100
     CameraShakeValue: 3
     SparklesScale: 1
-    CameraDistance_Clone: 1281.3
+    CameraDistance_Clone: 1173.6
   level4Stats:
     Scale: 65
     CameraDistance: 1060
     Speed: 130
     CameraShakeValue: 3
     SparklesScale: 3
-    CameraDistance_Clone: 1696.8
+    CameraDistance_Clone: 1527.2
   level5Stats:
     Scale: 80
     CameraDistance: 1350
     Speed: 160
     CameraShakeValue: 5
     SparklesScale: 4
-    CameraDistance_Clone: 2005
+    CameraDistance_Clone: 1893
   level6Stats:
     Scale: 95
     CameraDistance: 1575
     Speed: 190
     CameraShakeValue: 5
     SparklesScale: 4.5
-    CameraDistance_Clone: 2425
+    CameraDistance_Clone: 2237
   level7Stats:
     Scale: 110
     CameraDistance: 1800
     Speed: 220
     CameraShakeValue: 5
     SparklesScale: 5
-    CameraDistance_Clone: 2791
+    CameraDistance_Clone: 2598
   level8Stats:
     Scale: 125
     CameraDistance: 2100
     Speed: 250
     CameraShakeValue: 5
     SparklesScale: 5.5
-    CameraDistance_Clone: 3131
+    CameraDistance_Clone: 2982
   level9Stats:
     Scale: 140
     CameraDistance: 2300
     Speed: 280
     CameraShakeValue: 5
     SparklesScale: 6
-    CameraDistance_Clone: 3501
+    CameraDistance_Clone: 3265
   levelStatsLerpTime: 0.75
   levelUpStatsCurve:
     serializedVersion: 2

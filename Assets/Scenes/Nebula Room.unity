@@ -222,7 +222,6 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   spawnInterval: 0.05
-  higherLevelSpawnInterval: 0.02
   amountOfBodiesLevel1:
     PercentageOfBodiesToSpawn: {x: 100, y: 0, z: 0, w: 0}
     MaxNumOfBodiesToSpawn: 200
@@ -2890,38 +2889,6 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 120669081}
-    - target: {fileID: 3851269356383997635, guid: cd381eb969f869344869caeef8a6fc33, type: 3}
-      propertyPath: level2Stats.CameraDistance_Clone
-      value: 830.66
-      objectReference: {fileID: 0}
-    - target: {fileID: 3851269356383997635, guid: cd381eb969f869344869caeef8a6fc33, type: 3}
-      propertyPath: level3Stats.CameraDistance_Clone
-      value: 1173.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 3851269356383997635, guid: cd381eb969f869344869caeef8a6fc33, type: 3}
-      propertyPath: level4Stats.CameraDistance_Clone
-      value: 1527.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3851269356383997635, guid: cd381eb969f869344869caeef8a6fc33, type: 3}
-      propertyPath: level5Stats.CameraDistance_Clone
-      value: 1893
-      objectReference: {fileID: 0}
-    - target: {fileID: 3851269356383997635, guid: cd381eb969f869344869caeef8a6fc33, type: 3}
-      propertyPath: level6Stats.CameraDistance_Clone
-      value: 2237
-      objectReference: {fileID: 0}
-    - target: {fileID: 3851269356383997635, guid: cd381eb969f869344869caeef8a6fc33, type: 3}
-      propertyPath: level7Stats.CameraDistance_Clone
-      value: 2598
-      objectReference: {fileID: 0}
-    - target: {fileID: 3851269356383997635, guid: cd381eb969f869344869caeef8a6fc33, type: 3}
-      propertyPath: level8Stats.CameraDistance_Clone
-      value: 2982
-      objectReference: {fileID: 0}
-    - target: {fileID: 3851269356383997635, guid: cd381eb969f869344869caeef8a6fc33, type: 3}
-      propertyPath: level9Stats.CameraDistance_Clone
-      value: 3265
-      objectReference: {fileID: 0}
     - target: {fileID: 4508631876752810199, guid: cd381eb969f869344869caeef8a6fc33, type: 3}
       propertyPath: mainVC
       value: 
