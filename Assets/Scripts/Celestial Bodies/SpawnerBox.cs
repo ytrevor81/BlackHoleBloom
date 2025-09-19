@@ -8,7 +8,7 @@ public class SpawnerBox : MonoBehaviour
         {
             if (collision.TryGetComponent(out CelestialBody celestialBody))
             {
-                celestialBody.ReturnToPool();
+                celestialBody.ReturnToPool(despawnedByBoundary: true);
             }
         }
     }

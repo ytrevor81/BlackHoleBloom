@@ -198,7 +198,7 @@ public class LightningAbility : MonoBehaviour
             lightningVFXTravelToPlayer.position = targetPos;
             lightningVFXTravelToPlayer.gameObject.SetActive(true);
 
-            targetLogic.HitByLightning();
+            targetLogic.ReturnToPool(despawnedByBoundary: false);
             particleTravelElaspedTime = 0f;
             particleReachedPlayer = false;
         }

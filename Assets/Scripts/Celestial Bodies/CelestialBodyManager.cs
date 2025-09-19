@@ -10,6 +10,8 @@ public class CelestialBodyManager : MonoBehaviour
     private SFXBank SFXBank;
     private HUDController HUD;
     private PlayerController playerLogic;
+    private Transform playerTrans;
+    private Transform cloneTrans;
 
     [Header("Main References")]
     [Space]
@@ -46,7 +48,6 @@ public class CelestialBodyManager : MonoBehaviour
     [field: Space]
     
     [SerializeField] private float spawnInterval;
-    [SerializeField] private float higherLevelSpawnInterval;
 
     [Space]
 
@@ -62,7 +63,9 @@ public class CelestialBodyManager : MonoBehaviour
 
     private float spawnTimer;
 
-    private List<CelestialBody> moveableCelestialBodiesSet = new List<CelestialBody>();
+    private List<CelestialBody> orbitPlayerBodies = new List<CelestialBody>();
+    private List<CelestialBody> orbitCloneBodies = new List<CelestialBody>();
+    private List<CelestialBody> orbitOtherBodiesBodies = new List<CelestialBody>();
     private List<CelestialBody> activeTier1Set = new List<CelestialBody>();
     private List<CelestialBody> activeTier2Set = new List<CelestialBody>();
     private List<CelestialBody> activeTier3Set = new List<CelestialBody>();
@@ -82,6 +85,8 @@ public class CelestialBodyManager : MonoBehaviour
         vcHelper = virtualCamera.GetComponent<VCHelper>();
         spawnTimer = spawnInterval;
         InitializeListsAndCelestialBodies();
+        playerTrans = player.transform;
+        cloneTrans = clone.transform;
 
         if (!player.activeInHierarchy)
         {
@@ -113,7 +118,6 @@ public class CelestialBodyManager : MonoBehaviour
         playerLogic = PlayerController.Instance;
         GM.OnCutsceneStarted += OnCutsceneStarted;
         GM.OnCutsceneEnded += OnCutsceneEnded;
-        GM.OnLevelChanged += UpdateSpawnInterval;
         SFXBank = GM.AudioManager.SFXBank;
         SFXBank.LoadCelestialBodies();
     }
@@ -130,15 +134,6 @@ public class CelestialBodyManager : MonoBehaviour
         {
             GM.OnCutsceneStarted -= OnCutsceneStarted;
             GM.OnCutsceneEnded -= OnCutsceneEnded;
-            GM.OnLevelChanged -= UpdateSpawnInterval;
-        }
-    }
-
-    private void UpdateSpawnInterval()
-    {
-        if (GM.CurrentLevel == GameManager.Level.Level4)
-        {
-            spawnInterval = higherLevelSpawnInterval;
         }
     }
 
@@ -210,28 +205,58 @@ public class CelestialBodyManager : MonoBehaviour
         if (GM.CutscenePlaying)
             return;
 
-        if (moveableCelestialBodiesSet.Count > 0)
+        if (orbitPlayerBodies.Count > 0)
         {
-            for (int i = 0; i < moveableCelestialBodiesSet.Count; i++)
+            for (int i = 0; i < orbitPlayerBodies.Count; i++)
+                ManageMovementToPlayer(orbitPlayerBodies[i], GetSettings(orbitPlayerBodies[i].Type));
+        }
+
+        if (orbitOtherBodiesBodies.Count > 0)
+        {
+            for (int i = 0; i < orbitOtherBodiesBodies.Count; i++)
+                orbitOtherBodiesBodies[i].MoveToOtherCelestialBody(GetSettings(orbitOtherBodiesBodies[i].Type));
+        }
+    }
+    void Update()
+    {
+        if (CanSpawn())
+        {
+            spawnTimer -= Time.deltaTime;
+
+            if (spawnTimer < 0)
             {
-                if (moveableCelestialBodiesSet[i].Type == CelestialBodyType.Tier1)
-                    ManageCelestialBody(moveableCelestialBodiesSet[i], tier1Settings);
-
-                else if (moveableCelestialBodiesSet[i].Type == CelestialBodyType.Tier2)
-                    ManageCelestialBody(moveableCelestialBodiesSet[i], tier2Settings);
-
-                else if (moveableCelestialBodiesSet[i].Type == CelestialBodyType.Tier3)
-                    ManageCelestialBody(moveableCelestialBodiesSet[i], tier3Settings);
-
-                else
-                    ManageCelestialBody(moveableCelestialBodiesSet[i], tier4Settings);
+                SpawnCelestialBody();
+                spawnTimer = spawnInterval;
             }
+        }
+
+        HandleAbsorbSFXTimers();
+
+        if (orbitCloneBodies.Count > 0)
+        {
+            for (int i = 0; i < orbitCloneBodies.Count; i++)
+                orbitCloneBodies[i].MoveToClone();
         }
     }
 
-    private void ManageCelestialBody(CelestialBody celestialBody, CelestialBodySettings settings)
+    private CelestialBodySettings GetSettings(CelestialBodyType _type)
     {
-        celestialBody.MoveToTarget(settings);
+        if (_type == CelestialBodyType.Tier1)
+            return tier1Settings;
+
+        else if (_type == CelestialBodyType.Tier2)
+            return tier2Settings;
+
+        else if (_type == CelestialBodyType.Tier3)
+            return tier3Settings;
+
+        else
+            return tier4Settings;
+    }
+
+    private void ManageMovementToPlayer(CelestialBody celestialBody, CelestialBodySettings settings)
+    {
+        celestialBody.MoveToPlayer(settings);
         celestialBody.PlotEventHorizonPath(settings);
         celestialBody.AnimateLine(settings);
     }
@@ -309,30 +334,6 @@ public class CelestialBodyManager : MonoBehaviour
             return amountOfBodiesLevel9;
     }
 
-    void Update()
-    {
-        if (CanSpawn())
-        {
-            spawnTimer -= Time.deltaTime;
-
-            if (spawnTimer < 0)
-            {
-                SpawnCelestialBody();
-                spawnTimer = spawnInterval;
-            }
-        }
-
-        HandleAbsorbSFXTimers();
-
-        if (moveableCelestialBodiesSet.Count > 0)
-        {
-            for (int i = 0; i < moveableCelestialBodiesSet.Count; i++)
-            {
-                moveableCelestialBodiesSet[i].MoveToClone();
-            }
-        }
-    }
-
     private void HandleAbsorbSFXTimers()
     {
         tier1AbsorbSFXTimer -= Time.deltaTime;
@@ -402,16 +403,19 @@ public class CelestialBodyManager : MonoBehaviour
         }
 
 
-        if (moveableCelestialBodiesSet.Contains(celestialBody))
-            moveableCelestialBodiesSet.Remove(celestialBody);
-        
         StartCoroutine(DelayReactivatingOrbitingBehavior(celestialBody));
     }
 
     private IEnumerator DelayReactivatingOrbitingBehavior(CelestialBody _celestialBody)
     {
         yield return null;
-        _celestialBody.UnblockMovementVars();
+        
+        RemoveCelestialBodyOrbitingClone(_celestialBody);
+        RemoveCelestialBodyOrbitingOtherBody(_celestialBody);
+        RemoveCelestialBodyOrbitingPlayer(_celestialBody);
+
+        if (_celestialBody.gameObject.activeInHierarchy)
+            _celestialBody.UnblockMovementVars();
     }
 
 
@@ -469,19 +473,40 @@ public class CelestialBodyManager : MonoBehaviour
             return tier4Settings.Mass;
     }
 
-    public void MakeCelestialBodyMoveable(CelestialBody celestialBody)
+    public void MoveCelestialBodyAroundPlayer(CelestialBody celestialBody)
     {
-        if (!moveableCelestialBodiesSet.Contains(celestialBody))
-            moveableCelestialBodiesSet.Add(celestialBody);
+        if (!celestialBody.OrbitingPlayer)
+            orbitPlayerBodies.Add(celestialBody);
+    }
+    public void MoveCelestialBodyAroundClone(CelestialBody celestialBody)
+    {
+        if (!celestialBody.OrbitingClone)
+            orbitCloneBodies.Add(celestialBody);
+    }
+    public void MoveCelestialBodyAroundOtherBody(CelestialBody celestialBody)
+    {
+        if (!celestialBody.OrbitingOtherBody)
+            orbitOtherBodiesBodies.Add(celestialBody);
     }
 
-    public void RemoveCelestialBodyFromActiveSet(CelestialBody celestialBody)
+    public void RemoveCelestialBodyOrbitingOtherBody(CelestialBody celestialBody)
     {
-        if (clone.gameObject.activeInHierarchy)
-            clone.RemoveObjectFromOrbitingList(celestialBody);
+        if (celestialBody.OrbitingOtherBody)
+            orbitOtherBodiesBodies.Remove(celestialBody);
+    }
+    public void RemoveCelestialBodyOrbitingPlayer(CelestialBody celestialBody)
+    {
+        if (celestialBody.OrbitingPlayer)
+            orbitPlayerBodies.Remove(celestialBody);
+    }
+    public void RemoveCelestialBodyOrbitingClone(CelestialBody celestialBody)
+    {
+        if (celestialBody.OrbitingClone)
+            orbitCloneBodies.Remove(celestialBody);
+    }
 
-        playerLogic.RemoveObjectFromOrbitingList(celestialBody);
-
+    public void RemoveCelestialBodyCompletelyFromActiveLists(CelestialBody celestialBody)
+    {
         if (celestialBody.Type == CelestialBodyType.Tier1 && activeTier1Set.Contains(celestialBody))
             activeTier1Set.Remove(celestialBody);
 
@@ -494,8 +519,9 @@ public class CelestialBodyManager : MonoBehaviour
         else if (celestialBody.Type == CelestialBodyType.Tier4 && activeTier4Set.Contains(celestialBody))
             activeTier4Set.Remove(celestialBody);
 
-        if (moveableCelestialBodiesSet.Contains(celestialBody))
-            moveableCelestialBodiesSet.Remove(celestialBody);
+        RemoveCelestialBodyOrbitingPlayer(celestialBody);
+        RemoveCelestialBodyOrbitingClone(celestialBody);
+        RemoveCelestialBodyOrbitingOtherBody(celestialBody);
     }
 
     public float NewOrbitMultiplier(CelestialBodyType _type)

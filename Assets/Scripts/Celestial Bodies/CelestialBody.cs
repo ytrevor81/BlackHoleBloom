@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using static CelestialBodySettings;
 
-public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
+public class CelestialBody : MonoBehaviour, IGravityInteract
 {
     protected Rigidbody2D rb;
     private Collider2D coll;
@@ -21,7 +21,6 @@ public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
     private Vector3[] simulatedPoints;
     protected Vector2 targetPos;
     protected Transform targetTransform;
-    private bool inTargetOrbit;
     private Vector2 currentVelocity;
     private Vector2 gravitationalForce;
     private float orbitDistanceMultiplier;
@@ -40,13 +39,15 @@ public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
     protected Vector3 originalScale;
     protected Vector3 targetScale = new Vector3(0.1f, 0.1f, 0.1f);
     private Color originalColor;
-    private bool isInOrbit;
     protected float elaspedTime;
     private Color targetColor;
     protected Vector3 startingPos;
-    public bool GoingToClone { get; private set;  }
     private float elaspedTimeToClone;
     private bool overrideOrbitBehavior;
+    public bool OrbitingPlayer { get; private set; }
+    public bool OrbitingClone { get; private set; }
+    public bool OrbitingOtherBody { get; private set; }
+    public bool DespawnedByBoundary { get; set; }
     protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -77,22 +78,20 @@ public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
         if (coll != null)
             coll.enabled = false;
 
-        isInOrbit = false;
-        inTargetOrbit = false;
-        targetCelestialBodyLogic = null;
-        targetCelestialBodyTrans = null;
-        GoingToClone = false;
+        if (Manager != null)
+            Manager.RemoveCelestialBodyCompletelyFromActiveLists(this);
+        
+        OrbitingOtherBody = false;
+        OrbitingPlayer = false;
+        OrbitingClone = false;
     }
 
     public void BlockAndResetMovementVars()
     {
+        coll.enabled = false;
         overrideOrbitBehavior = true;
+        DespawnedByBoundary = false;
 
-        isInOrbit = false;
-        inTargetOrbit = false;
-        targetCelestialBodyLogic = null;
-        targetCelestialBodyTrans = null;
-        GoingToClone = false;
         targetCelestialBodyLogic = null;
         targetCelestialBodyTrans = null;
         targetTransform = null;
@@ -101,14 +100,16 @@ public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
         elaspedTimeToClone = 0f;
         pathProgress = 0f;
         shrinking = false;
-        inTargetOrbit = false;
         lineRenderer.gameObject.SetActive(false);
         currentVelocity = Vector2.zero;
-        coll.enabled = false;
     }
 
     public void UnblockMovementVars()
     {
+        OrbitingClone = false;
+        OrbitingPlayer = false;
+        OrbitingOtherBody = false;
+
         gameObject.tag = BHBConstants.CELESTIAL_BODY;
         playerDetectionCollider.SetActive(true);
         coll.enabled = true;
@@ -167,7 +168,7 @@ public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
         {
             effectiveDistance = r / orbitDistanceMultiplier;
 
-            if (inTargetOrbit)
+            if (OrbitingPlayer || OrbitingOtherBody)
             {
                 orbitDistanceMultiplier -= Time.fixedDeltaTime * orbitDeclineRate;
 
@@ -192,7 +193,7 @@ public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
         return _velocity;
     }
 
-    private void MoveToPlayer(CelestialBodySettings settings)
+    public void MoveToPlayer(CelestialBodySettings settings)
     {
         rb.velocity = Vector2.zero;
         targetPos = targetTransform.position;
@@ -222,9 +223,6 @@ public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
 
     public void MoveToClone()
     {
-        if (!GoingToClone || overrideOrbitBehavior)
-            return;
-
         rb.velocity = Vector2.zero;
         targetPos = targetTransform.position;
 
@@ -239,39 +237,37 @@ public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
         transform.position = Vector3.Lerp(startingPos, targetPos, lerpedProgress);
     }
 
-    public void MoveToTarget(CelestialBodySettings settings)
+    public void MoveToOtherCelestialBody(CelestialBodySettings settings)
     {
-        if (GoingToClone || overrideOrbitBehavior)
+        if (!OrbitingOtherBody || OrbitingPlayer || shrinking || OrbitingClone || overrideOrbitBehavior)
             return;
             
-        if (inTargetOrbit)
-            MoveToPlayer(settings);
-
-        else
+        else if (targetCelestialBodyLogic == null || targetCelestialBodyLogic.OrbitingClone || targetCelestialBodyLogic.OrbitingPlayer || targetCelestialBodyLogic.DespawnedByBoundary)
         {
-            if (targetCelestialBodyLogic == null || targetCelestialBodyLogic.inTargetOrbit)
-            {
-                PlayerController _player = PlayerController.Instance;
+            Manager.RemoveCelestialBodyOrbitingOtherBody(this);
+            OrbitingOtherBody = false;
 
-                if (targetCelestialBodyLogic != null && targetCelestialBodyLogic.GoingToClone)
-                    EnterOrbitOfClone(_player.SplitController.GetCloneTransform());
+            PlayerController _player = PlayerController.Instance;
 
-                else
-                    EnterOrbitOfPlayer(_targetOrbit: _player.transform);
+            if (targetCelestialBodyLogic != null && targetCelestialBodyLogic.OrbitingClone)
+                EnterOrbitOfClone(_player.SplitController.GetCloneTransform());
 
-                return;
-            }
+            else if (targetCelestialBodyLogic != null && targetCelestialBodyLogic.DespawnedByBoundary)
+                ReturnToPool(despawnedByBoundary: true);
 
-            rb.velocity = Vector2.zero;
-            Vector2 directionToTarget = (Vector2)targetCelestialBodyTrans.position - (Vector2)transform.position;
+            else
+                EnterOrbitOfPlayer(_targetOrbit: _player.transform);
 
-            gravitationalForce = CalculateGravitationalForce(directionToTarget);
-            currentVelocity += (gravitationalForce + directionToTarget) * Time.fixedDeltaTime;
-            currentVelocity = NudgeTowardsOrbit(currentVelocity, directionToTarget, settings.RadialGain, settings.TangentGain, simulated: false);
-
-            speedToPlayer = settings.SpeedToPlayer;
-            rb.MovePosition(rb.position + currentVelocity * settings.SpeedToPlayer * Time.fixedDeltaTime);
+            return;
         }
+
+        rb.velocity = Vector2.zero;
+        Vector2 directionToTarget = (Vector2)targetCelestialBodyTrans.position - (Vector2)transform.position;
+        gravitationalForce = CalculateGravitationalForce(directionToTarget);
+        currentVelocity += (gravitationalForce + directionToTarget) * Time.fixedDeltaTime;
+        currentVelocity = NudgeTowardsOrbit(currentVelocity, directionToTarget, settings.RadialGain, settings.TangentGain, simulated: false);
+        speedToPlayer = settings.SpeedToPlayer;
+        rb.MovePosition(rb.position + currentVelocity * settings.SpeedToPlayer * Time.fixedDeltaTime);
     }
 
     protected virtual void Shrink()
@@ -292,7 +288,7 @@ public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
 
     public void AnimateLine(CelestialBodySettings settings)
     {
-        if ((!inTargetOrbit && !shrinking) || GoingToClone || overrideOrbitBehavior)
+        if (!OrbitingPlayer || shrinking || OrbitingClone || OrbitingOtherBody || overrideOrbitBehavior)
             return;
 
         if (simCounter <= 1)
@@ -384,7 +380,7 @@ public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
 
     public void PlotEventHorizonPath(CelestialBodySettings settings)
     {
-        if ((!inTargetOrbit && !shrinking) || GoingToClone || overrideOrbitBehavior)
+        if (!OrbitingPlayer || shrinking || OrbitingClone || OrbitingOtherBody || overrideOrbitBehavior)
             return;
 
         Vector2 simulatedPos = rb.position;
@@ -438,77 +434,77 @@ public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
 
     public virtual void AbsorbIntoPlayer()
     {
-        if (overrideOrbitBehavior)
-            return;
-
-        Manager.RemoveCelestialBodyFromActiveSet(this);
         Manager.PerformAbsorbBehavior(Type, entry, playSFX: true);
-        targetTransform = null;
-        inTargetOrbit = false;
-        isInOrbit = false;
+        ReturnToPool(despawnedByBoundary: false);
+    }
+
+    public void ReturnToPool(bool despawnedByBoundary)
+    {
+        Manager.RemoveCelestialBodyCompletelyFromActiveLists(this);
+
+        DespawnedByBoundary = despawnedByBoundary;
+        OrbitingOtherBody = false;
+        OrbitingPlayer = false;
+        OrbitingClone = false;
         shrinking = false;
         lineRenderer.positionCount = 0;
         lineRenderer.gameObject.SetActive(false);
-
-        gameObject.SetActive(false);
-    }
-    public void HitByLightning()
-    {
-        if (overrideOrbitBehavior)
-            return;
-
-        Manager.RemoveCelestialBodyFromActiveSet(this);
-        targetTransform = null;
-        inTargetOrbit = false;
-        isInOrbit = false;
-        shrinking = false;
-        lineRenderer.positionCount = 0;
-        lineRenderer.gameObject.SetActive(false);
-
-        gameObject.SetActive(false);
-    }
-
-    public void ReturnToPool()
-    {
-        Manager.RemoveCelestialBodyFromActiveSet(this);
-        lineRenderer.positionCount = 0;
-        lineRenderer.gameObject.SetActive(false);
+        
         gameObject.SetActive(false);
     }
 
     public virtual void EnterOrbitOfPlayer(Transform _targetOrbit)
     {
-        if (inTargetOrbit || overrideOrbitBehavior)
+        if (OrbitingPlayer || OrbitingClone || overrideOrbitBehavior)
             return;
             
         if (CelestialBodyFinderCollider != null)
             CelestialBodyFinderCollider.SetActive(false);
 
+        Manager.RemoveCelestialBodyOrbitingOtherBody(this);
+        OrbitingOtherBody = false;
+        OrbitingClone = false;
+
         targetTransform = _targetOrbit;
         rb.isKinematic = true;
+        rb.velocity = Vector2.zero;
         orbitDistanceMultiplier = Manager.NewOrbitMultiplier(Type);
-
         orbitDeclineRate = Manager.OrbitDeclineRate(Type);
         increaseSpeedThreshold = Manager.GetMinOrbitMultiplier(Type);
         gameObject.tag = BHBConstants.NULL;
         coll.enabled = false;
-        inTargetOrbit = true;
-        isInOrbit = true;
-        Manager.MakeCelestialBodyMoveable(this);
-        rb.velocity = Vector2.zero;
+
         lineRenderer.gameObject.SetActive(true);
         targetCelestialBodyLogic = null;
         targetCelestialBodyTrans = null;
+
+        Manager.MoveCelestialBodyAroundPlayer(this);
+        OrbitingPlayer = true;
     }
     public virtual void EnterOrbitOfClone(Transform _targetOrbit)
     {
-         if (inTargetOrbit || overrideOrbitBehavior)
+        if (OrbitingPlayer || OrbitingClone || overrideOrbitBehavior)
             return;
 
-        GoingToClone = true;
+        if (CelestialBodyFinderCollider != null)
+            CelestialBodyFinderCollider.SetActive(false);
+
+        Manager.RemoveCelestialBodyOrbitingOtherBody(this);
+        OrbitingOtherBody = false;
+        OrbitingPlayer = false;
+
+        rb.velocity = Vector2.zero;
         startingPos = rb.position;
-        currentVelocity = rb.velocity;
-        EnterOrbitOfPlayer(_targetOrbit);
+        targetTransform = _targetOrbit;
+        rb.isKinematic = true;
+        gameObject.tag = BHBConstants.NULL;
+        coll.enabled = false;
+
+        targetCelestialBodyLogic = null;
+        targetCelestialBodyTrans = null;
+
+        Manager.MoveCelestialBodyAroundClone(this);
+        OrbitingClone = true;
     }
 
     private bool OmitOrbitingOtherCelestialBody(CelestialBody _celestialBody)
@@ -517,7 +513,9 @@ public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
             || Type == CelestialBodyType.Tier4
             || (Type == CelestialBodyType.Tier2 && _celestialBody.Type == CelestialBodyType.Tier4)
             || (Type == CelestialBodyType.Tier3 && _celestialBody.Type == CelestialBodyType.Tier3)
-            || isInOrbit
+            || OrbitingClone
+            || OrbitingPlayer
+            || OrbitingOtherBody
             || overrideOrbitBehavior;
     }
     public void EnterOrbitOfOtherCelestialBody(CelestialBody celestialBody, Collider2D _collider)
@@ -530,19 +528,12 @@ public class CelestialBody : MonoBehaviour, IGravityInteract, IBarrierInteract
 
         targetCelestialBodyTrans = celestialBody.transform;
         targetCelestialBodyLogic = celestialBody;
-        isInOrbit = true;
-
+        rb.velocity = Vector2.zero;
         rb.isKinematic = true;
         orbitDistanceMultiplier = Manager.GetOrbitRadiusForOtherCelestialBodies(Type);
-
         increaseSpeedThreshold = Manager.GetMinOrbitMultiplier(Type);
-        Manager.MakeCelestialBodyMoveable(this);
-        rb.velocity = Vector2.zero;
-    }
 
-    public void HitBarrier(Vector2 contactPoint)
-    {
-        if (isInOrbit)
-            return;
+        Manager.MoveCelestialBodyAroundOtherBody(this);
+        OrbitingOtherBody = true;
     }
 }

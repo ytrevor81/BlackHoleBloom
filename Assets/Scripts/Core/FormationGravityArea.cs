@@ -9,11 +9,14 @@ public class FormationGravityArea : MonoBehaviour
     {
         if (collision.CompareTag(BHBConstants.CELESTIAL_BODY))
         {
-            if (playerController != null)
-                playerController.AddObjectToOrbitingList(collision);
+            if (collision.TryGetComponent(out CelestialBody celestialBody))
+            {
+                if (playerController != null)
+                    celestialBody.EnterOrbitOfPlayer(_targetOrbit: TargetOrbit());
 
-            else
-                splitClone.AddObjectToOrbitingList(collision);
+                else
+                    celestialBody.EnterOrbitOfClone(_targetOrbit: TargetOrbit());
+            }
         }
         else if (collision.CompareTag(BHBConstants.ITEM))
         {
@@ -21,6 +24,9 @@ public class FormationGravityArea : MonoBehaviour
             {
                 if (playerController != null)
                     _gravityInteract.EnterOrbitOfPlayer(_targetOrbit: TargetOrbit());
+                
+                else
+                    _gravityInteract.EnterOrbitOfClone(_targetOrbit: TargetOrbit());
             }
         }
     }

@@ -77,9 +77,6 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rb;
     private Vector2 currentVelocity;
-    private List<CelestialBody> objectsInOrbit = new List<CelestialBody>();
-    private HashSet<GameObject> objectsInOrbitGameObjects = new HashSet<GameObject>();
-
     private void Awake()
     {
         Instance = this;
@@ -358,26 +355,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void AddObjectToOrbitingList(Collider2D _collider)
-    {
-        if (objectsInOrbitGameObjects.Contains(_collider.gameObject))
-            return;
-
-        objectsInOrbitGameObjects.Add(_collider.gameObject);
-
-        CelestialBody celestialBody = _collider.GetComponent<CelestialBody>();
-        
-        celestialBody.EnterOrbitOfPlayer(_targetOrbit: transform);
-        objectsInOrbit.Add(celestialBody);
-    }
-    public void RemoveObjectFromOrbitingList(CelestialBody _celestialBody)
-    {
-        if (!objectsInOrbitGameObjects.Contains(_celestialBody.gameObject))
-            return;
-
-        objectsInOrbitGameObjects.Remove(_celestialBody.gameObject);
-        objectsInOrbit.Remove(_celestialBody);
-    }
     private void LevelUp()
     {
         IncreaseStats();
